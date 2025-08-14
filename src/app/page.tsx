@@ -1,4 +1,5 @@
 import { FaBolt, FaShieldAlt, FaChartLine, FaStore, FaTruck, FaUsers, FaArrowRight, FaCheckCircle, FaRocket, FaGlobe } from 'react-icons/fa';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -6,10 +7,15 @@ export default function Home() {
       {/* Header */}
       <header className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center">
-          {/* Logo placeholder - substitua pelo seu logo real */}
-          <div className="text-2xl font-bold text-[#FCA311]">
-            PolarBuy
-          </div>
+          {/* Logo real do PolarBuy */}
+          <Image 
+            src="/LogoPolarBuy.png" 
+            alt="PolarBuy Logo" 
+            width={150} 
+            height={40} 
+            className="h-10 w-auto"
+            priority
+          />
         </div>
         <a 
           href="#cta" 
@@ -23,6 +29,17 @@ export default function Home() {
         {/* Hero Section */}
         <section className="text-center py-20 px-6">
           <div className="max-w-6xl mx-auto">
+            {/* Logo central no Hero */}
+            <div className="mb-8">
+              <Image 
+                src="/LogoPolarBuy.png" 
+                alt="PolarBuy" 
+                width={200} 
+                height={80} 
+                className="mx-auto h-20 w-auto mb-6"
+                priority
+              />
+            </div>
             <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
               Pare de Pagar Taxas Abusivas.<br />
               <span className="text-[#FCA311] bg-gradient-to-r from-[#FCA311] to-yellow-400 bg-clip-text text-transparent">
@@ -81,6 +98,16 @@ export default function Home() {
         {/* Benefits Section (PolarChain™) */}
         <section id="benefits" className="container mx-auto px-6 py-20">
           <div className="text-center mb-16">
+            {/* Logo pequena na seção de benefícios */}
+            <div className="mb-6">
+              <Image 
+                src="/LogoPolarBuy.png" 
+                alt="PolarBuy" 
+                width={120} 
+                height={48} 
+                className="mx-auto h-12 w-auto opacity-80"
+              />
+            </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
               O Poder da <span className="text-[#FCA311] bg-gradient-to-r from-[#FCA311] to-yellow-400 bg-clip-text text-transparent">PolarChain™</span>
             </h2>
@@ -185,6 +212,16 @@ export default function Home() {
         {/* Final CTA Section */}
         <section id="cta" className="text-center container mx-auto px-6 py-24">
           <div className="max-w-4xl mx-auto">
+            {/* Logo final no CTA */}
+            <div className="mb-8">
+              <Image 
+                src="/LogoPolarBuy.png" 
+                alt="PolarBuy" 
+                width={180} 
+                height={72} 
+                className="mx-auto h-18 w-auto opacity-90"
+              />
+            </div>
             <h2 className="text-3xl md:text-5xl font-extrabold mb-6">
               Sua concorrência não vai esperar.<br /> 
               E nós também não.
@@ -214,7 +251,16 @@ export default function Home() {
         <div className="container mx-auto px-6 py-8">
           <div className="grid md:grid-cols-3 gap-8 mb-6">
             <div>
-              <h3 className="text-[#FCA311] font-bold text-lg mb-4">PolarBuy</h3>
+              {/* Logo no footer */}
+              <div className="mb-4">
+                <Image 
+                  src="/LogoPolarBuy.png" 
+                  alt="PolarBuy" 
+                  width={120} 
+                  height={48} 
+                  className="h-12 w-auto"
+                />
+              </div>
               <p className="text-gray-400 text-sm">
                 A revolução do comércio local. Menos taxas, mais controle, mais lucro.
               </p>

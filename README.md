@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PolarBuy Landing Page
 
-## Getting Started
+Landing page estratégica para o PolarBuy, posicionando a plataforma como uma revolução no comércio local.
 
-First, run the development server:
+## 🎯 Estratégia de Marketing
+
+Esta landing page foi desenvolvida com base em princípios de marketing direto e posicionamento estratégico:
+
+- **Público-Alvo**: Empreendedores insurgentes cansados de taxas abusivas
+- **Posicionamento**: Não é um app, é uma arma para dominar o mercado local
+- **Diferencial**: PolarChain™ - ecossistema inteligente que reduz custos para todos
+- **Tom**: Direto, agressivo e focado em poder e lucro
+
+## 🚀 Tecnologias
+
+- **Next.js 15** - Framework React com App Router
+- **TypeScript** - Tipagem estática
+- **Tailwind CSS** - Framework CSS utilitário
+- **React Icons** - Biblioteca de ícones
+- **Geist Fonts** - Tipografia moderna
+
+## 🎨 Paleta de Cores
+
+- **Primária**: #FCA311 (Amarelo vibrante)
+- **Secundária**: #1B263B (Azul escuro)
+- **Escura**: #0D1B2A (Azul principal)
+- **Clara**: #E0E1DD (Creme)
+- **Acento**: #b0b2af (Cinza médio)
+
+## 📱 Funcionalidades
+
+- ✅ Design responsivo para todos os dispositivos
+- ✅ Animações e transições suaves
+- ✅ SEO otimizado com metadados
+- ✅ Performance otimizada com Next.js
+- ✅ Acessibilidade e navegação por teclado
+- ✅ Call-to-actions estratégicos
+
+## 🛠️ Instalação e Desenvolvimento
 
 ```bash
+# Clone o repositório
+git clone [URL_DO_SEU_REPOSITORIO]
+cd polarbuy-landing
+
+# Instale as dependências
+npm install
+
+# Execute em modo de desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Abra http://localhost:3000 no seu navegador
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📦 Scripts Disponíveis
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `npm run dev` - Servidor de desenvolvimento
+- `npm run build` - Build de produção
+- `npm run start` - Servidor de produção
+- `npm run lint` - Verificação de código
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Deploy no Vercel
 
-## Learn More
+### Passo 1: Prepare o Repositório
+```bash
+git add .
+git commit -m "Landing page PolarBuy implementada"
+git push origin main
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Passo 2: Deploy no Vercel
+1. Acesse [vercel.com](https://vercel.com)
+2. Conecte sua conta GitHub
+3. Clique em "New Project"
+4. Selecione o repositório `polarbuy-landing`
+5. Clique em "Deploy"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+O Vercel detectará automaticamente que é um projeto Next.js e fará o deploy em segundos.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎯 Próximos Passos
 
-## Deploy on Vercel
+### Personalização
+- [ ] Adicionar logo real do PolarBuy
+- [ ] Incluir vídeo de demonstração
+- [ ] Configurar analytics (Google Analytics, Hotjar)
+- [ ] Adicionar formulário de captura de leads
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Funcionalidades
+- [ ] Sistema de newsletter
+- [ ] Chat de suporte
+- [ ] Calculadora de economia
+- [ ] Integração com CRM
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### SEO e Performance
+- [ ] Otimização de imagens
+- [ ] Lazy loading
+- [ ] PWA capabilities
+- [ ] Testes A/B
+
+## 📊 Métricas de Sucesso
+
+- **Conversão**: Taxa de cliques nos CTAs principais
+- **Engajamento**: Tempo na página e scroll depth
+- **Leads**: Captura de emails e contatos
+- **Performance**: Core Web Vitals e velocidade de carregamento
+
+## 🤝 Contribuição
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto é privado e proprietário do PolarBuy.
+
+## 📞 Suporte
+
+Para dúvidas técnicas ou estratégicas sobre a landing page, entre em contato com a equipe do PolarBuy.
+
+---
+
+**PolarBuy** - Domine Sua Cidade, Recupere Seu Lucro 🚀

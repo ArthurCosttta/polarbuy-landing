@@ -7,13 +7,13 @@ export default function Home() {
       {/* Header */}
       <header className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center">
-          {/* Logo real do PolarBuy */}
+          {/* Logo real do PolarBuy - Header maior */}
           <Image 
             src="/LogoPolarBuy.png" 
             alt="PolarBuy Logo" 
-            width={150} 
-            height={40} 
-            className="h-10 w-auto"
+            width={200} 
+            height={80} 
+            className="h-16 w-auto"
             priority
           />
         </div>
@@ -29,14 +29,14 @@ export default function Home() {
         {/* Hero Section */}
         <section className="text-center py-20 px-6">
           <div className="max-w-6xl mx-auto">
-            {/* Logo central no Hero */}
-            <div className="mb-8">
+            {/* Logo central no Hero - MUITO MAIOR */}
+            <div className="mb-12">
               <Image 
                 src="/LogoPolarBuy.png" 
                 alt="PolarBuy" 
-                width={200} 
-                height={80} 
-                className="mx-auto h-20 w-auto mb-6"
+                width={400} 
+                height={160} 
+                className="mx-auto h-32 w-auto mb-8"
                 priority
               />
             </div>
@@ -98,14 +98,14 @@ export default function Home() {
         {/* Benefits Section (PolarChain™) */}
         <section id="benefits" className="container mx-auto px-6 py-20">
           <div className="text-center mb-16">
-            {/* Logo pequena na seção de benefícios */}
-            <div className="mb-6">
+            {/* Logo na seção de benefícios - MAIOR */}
+            <div className="mb-8">
               <Image 
                 src="/LogoPolarBuy.png" 
                 alt="PolarBuy" 
-                width={120} 
-                height={48} 
-                className="mx-auto h-12 w-auto opacity-80"
+                width={200} 
+                height={80} 
+                className="mx-auto h-20 w-auto opacity-90"
               />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
@@ -212,14 +212,14 @@ export default function Home() {
         {/* Final CTA Section */}
         <section id="cta" className="text-center container mx-auto px-6 py-24">
           <div className="max-w-4xl mx-auto">
-            {/* Logo final no CTA */}
-            <div className="mb-8">
+            {/* Logo final no CTA - MAIOR */}
+            <div className="mb-10">
               <Image 
                 src="/LogoPolarBuy.png" 
                 alt="PolarBuy" 
-                width={180} 
-                height={72} 
-                className="mx-auto h-18 w-auto opacity-90"
+                width={300} 
+                height={120} 
+                className="mx-auto h-24 w-auto opacity-90"
               />
             </div>
             <h2 className="text-3xl md:text-5xl font-extrabold mb-6">
@@ -251,14 +251,14 @@ export default function Home() {
         <div className="container mx-auto px-6 py-8">
           <div className="grid md:grid-cols-3 gap-8 mb-6">
             <div>
-              {/* Logo no footer */}
-              <div className="mb-4">
+              {/* Logo no footer - MAIOR */}
+              <div className="mb-6">
                 <Image 
                   src="/LogoPolarBuy.png" 
                   alt="PolarBuy" 
-                  width={120} 
-                  height={48} 
-                  className="h-12 w-auto"
+                  width={180} 
+                  height={72} 
+                  className="h-16 w-auto"
                 />
               </div>
               <p className="text-gray-400 text-sm">

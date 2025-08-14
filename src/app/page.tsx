@@ -8,7 +8,7 @@ export default function Home() {
       <header className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center">
           {/* Logo real do PolarBuy - Header MUITO MAIOR */}
-          <Image 
+          <Image
             src="/LogoPolarBuy.png" 
             alt="PolarBuy Logo" 
             width={250} 
@@ -31,7 +31,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             {/* Logo central no Hero - ULTRA IMPACTANTE */}
             <div className="mb-16">
-              <Image 
+              <Image
                 src="/LogoPolarBuy.png" 
                 alt="PolarBuy" 
                 width={500} 
@@ -57,7 +57,7 @@ export default function Home() {
               >
                 Crie Sua Loja em 1 Clique <FaArrowRight className="inline" />
               </a>
-              <a 
+              <a
                 href="#demo" 
                 className="border-2 border-accent text-accent font-bold py-4 px-8 rounded-lg text-lg hover:bg-accent hover:text-background transition-all duration-300 transform hover:scale-105"
               >
@@ -67,8 +67,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Social Proof Section */}
-        <section className="py-12 bg-card/50">
+        {/* Social Proof Section - Fundo mais sutil para integração perfeita */}
+        <section className="py-12 bg-background/95">
           <div className="container mx-auto text-center">
             <h3 className="text-sm font-bold tracking-widest text-primary/60 uppercase mb-6">
               A mesma revolução que mudou mercados, agora no seu bairro
@@ -100,7 +100,7 @@ export default function Home() {
           <div className="text-center mb-16">
             {/* Logo na seção de benefícios - MUITO MAIOR */}
             <div className="mb-10">
-              <Image 
+              <Image
                 src="/LogoPolarBuy.png" 
                 alt="PolarBuy" 
                 width={280} 
@@ -116,7 +116,7 @@ export default function Home() {
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-card p-8 rounded-lg text-center hover:transform hover:scale-105 transition-all duration-300 border border-card hover:border-accent/30">
+            <div className="bg-card/90 p-8 rounded-lg text-center hover:transform hover:scale-105 transition-all duration-300 border border-card/80 hover:border-accent/40 shadow-background">
               <FaShieldAlt className="text-5xl text-accent mx-auto mb-6" />
               <h3 className="text-2xl font-bold mb-4">Corte Custos, Não Lucros</h3>
               <p className="text-primary/80 leading-relaxed">
@@ -124,7 +124,7 @@ export default function Home() {
                 Invista no seu crescimento, não na taxa deles.
               </p>
             </div>
-            <div className="bg-card p-8 rounded-lg text-center hover:transform hover:scale-105 transition-all duration-300 border border-card hover:border-accent/30">
+            <div className="bg-card/90 p-8 rounded-lg text-center hover:transform hover:scale-105 transition-all duration-300 border border-card/80 hover:border-accent/40 shadow-background">
               <FaTruck className="text-5xl text-accent mx-auto mb-6" />
               <h3 className="text-2xl font-bold mb-4">Controle Total da Entrega</h3>
               <p className="text-primary/80 leading-relaxed">
@@ -132,7 +132,7 @@ export default function Home() {
                 A entrega deixa de ser um custo para virar seu diferencial.
               </p>
             </div>
-            <div className="bg-card p-8 rounded-lg text-center hover:transform hover:scale-105 transition-all duration-300 border border-card hover:border-accent/30">
+            <div className="bg-card/90 p-8 rounded-lg text-center hover:transform hover:scale-105 transition-all duration-300 border border-card/80 hover:border-accent/40 shadow-background">
               <FaChartLine className="text-5xl text-accent mx-auto mb-6" />
               <h3 className="text-2xl font-bold mb-4">Crescimento em Rede</h3>
               <p className="text-primary/80 leading-relaxed">
@@ -143,8 +143,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Proof Section */}
-        <section id="demo" className="bg-card py-20 px-6">
+        {/* Proof Section - Fundo mais sutil */}
+        <section id="demo" className="bg-card/85 py-20 px-6">
           <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div className="text-center md:text-left">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
@@ -165,7 +165,7 @@ export default function Home() {
               </div>
             </div>
             {/* Placeholder para vídeo/demonstração */}
-            <div className="bg-background h-80 rounded-lg flex items-center justify-center border-2 border-dashed border-accent/30">
+            <div className="bg-background/95 h-80 rounded-lg flex items-center justify-center border-2 border-dashed border-accent/40 shadow-background">
               <div className="text-center">
                 <FaRocket className="text-6xl text-accent mx-auto mb-4" />
                 <p className="text-primary/60 text-lg">[Aqui vai seu vídeo de demonstração]</p>
@@ -214,7 +214,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto">
             {/* Logo final no CTA - ULTRA IMPACTANTE */}
             <div className="mb-12">
-              <Image 
+              <Image
                 src="/LogoPolarBuy.png" 
                 alt="PolarBuy" 
                 width={400} 
@@ -246,14 +246,14 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-primary/20 bg-card/50">
+      {/* Footer - Fundo mais sutil para integração perfeita */}
+      <footer className="border-t border-primary/20 bg-background/90">
         <div className="container mx-auto px-6 py-8">
           <div className="grid md:grid-cols-3 gap-8 mb-6">
             <div>
               {/* Logo no footer - MUITO MAIOR */}
               <div className="mb-8">
-                <Image 
+                <Image
                   src="/LogoPolarBuy.png" 
                   alt="PolarBuy" 
                   width={220} 

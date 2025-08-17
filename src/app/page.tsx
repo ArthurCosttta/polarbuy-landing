@@ -96,9 +96,9 @@ const Home = () => {
         />
 
         {/* Social Proof Section */}
-        <section className="py-12 bg-background/95">
+        <section className="py-12 bg-background">
           <div className="container mx-auto text-center">
-            <h3 className="text-sm font-bold tracking-widest text-primary/60 uppercase mb-6">
+            <h3 className="text-sm font-bold tracking-widest text-primary uppercase mb-6 opacity-60">
               A mesma revolução que mudou mercados, agora no seu bairro
             </h3>
             <div className="flex justify-center items-center gap-8 md:gap-16 mt-6 grayscale opacity-60">
@@ -124,7 +124,7 @@ const Home = () => {
         </section>
 
         {/* Benefits Section (PolarChain™) */}
-        <section id="benefits" className="container mx-auto px-6 py-20">
+        <section id="benefits" className="container mx-auto px-6 py-20 bg-background">
           <div className="text-center mb-16">
             {/* Logo na seção de benefícios - MUITO MAIOR */}
             <div className="mb-10">
@@ -136,10 +136,10 @@ const Home = () => {
                 className="mx-auto h-28 w-auto opacity-95"
               />
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              O Poder da <span className="text-accent bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">PolarChain™</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-primary">
+              O Poder da <span className="text-accent bg-gradient-to-r from-accent to-accent bg-clip-text text-transparent">PolarChain™</span>
             </h2>
-            <p className="text-lg text-primary/80 max-w-3xl mx-auto">
+            <p className="text-lg text-primary max-w-3xl mx-auto opacity-80">
               Nosso ecossistema inteligente não é mais um app. É sua arma para vencer.
             </p>
           </div>
@@ -178,35 +178,35 @@ const Home = () => {
         />
 
         {/* Features Grid */}
-        <section className="container mx-auto px-6 py-20">
+        <section className="container mx-auto px-6 py-20 bg-background">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">
               Por que o PolarBuy é <span className="text-accent">Diferente</span>
             </h2>
-            <p className="text-lg text-primary/80 max-w-2xl mx-auto">
+            <p className="text-lg text-primary max-w-2xl mx-auto opacity-80">
               Enquanto outros extraem valor, nós criamos valor para todos os participantes
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="text-center p-6">
               <FaCheckCircle className="text-4xl text-green-400 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Setup em 5 minutos</h3>
-              <p className="text-primary/70 text-sm">Sem burocracia, sem complicação</p>
+              <h3 className="text-xl font-bold mb-2 text-primary">Setup em 5 minutos</h3>
+              <p className="text-primary text-sm opacity-70">Sem burocracia, sem complicação</p>
             </div>
             <div className="text-center p-6">
               <FaCheckCircle className="text-4xl text-green-400 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Suporte 24/7</h3>
-              <p className="text-primary/70 text-sm">Equipe brasileira, sempre disponível</p>
+              <h3 className="text-xl font-bold mb-2 text-primary">Suporte 24/7</h3>
+              <p className="text-primary text-sm opacity-70">Equipe brasileira, sempre disponível</p>
             </div>
             <div className="text-center p-6">
               <FaCheckCircle className="text-4xl text-green-400 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Integração total</h3>
-              <p className="text-primary/70 text-sm">Conecta com seus sistemas existentes</p>
+              <h3 className="text-xl font-bold mb-2 text-primary">Integração total</h3>
+              <p className="text-primary text-sm opacity-70">Conecta com seus sistemas existentes</p>
             </div>
             <div className="text-center p-6">
               <FaCheckCircle className="text-4xl text-green-400 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Sem contratos longos</h3>
-              <p className="text-primary/70 text-sm">Cancele quando quiser, sem multas</p>
+              <h3 className="text-xl font-bold mb-2 text-primary">Sem contratos longos</h3>
+              <p className="text-primary text-sm opacity-70">Cancele quando quiser, sem multas</p>
             </div>
           </div>
         </section>
@@ -234,7 +234,7 @@ const Home = () => {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-primary/20 bg-background/90">
+      <footer className="border-t border-primary bg-background opacity-20">
         <div className="container mx-auto px-6 py-8">
           <div className="grid md:grid-cols-3 gap-8 mb-6">
             <div>
@@ -248,28 +248,28 @@ const Home = () => {
                   className="h-20 w-auto"
                 />
               </div>
-              <p className="text-primary/60 text-sm">
+              <p className="text-primary text-sm opacity-60">
                 A revolução do comércio local. Menos taxas, mais controle, mais lucro.
               </p>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Produto</h4>
-              <ul className="text-primary/60 text-sm space-y-2">
+              <h4 className="font-bold mb-4 text-primary">Produto</h4>
+              <ul className="text-primary text-sm space-y-2 opacity-60">
                 <li><a href="#" className="hover:text-accent transition-colors">Recursos</a></li>
                 <li><a href="#" className="hover:text-accent transition-colors">Preços</a></li>
                 <li><a href="#" className="hover:text-accent transition-colors">Integrações</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Suporte</h4>
-              <ul className="text-primary/60 text-sm space-y-2">
+              <h4 className="font-bold mb-4 text-primary">Suporte</h4>
+              <ul className="text-primary text-sm space-y-2 opacity-60">
                 <li><a href="#" className="hover:text-accent transition-colors">Central de Ajuda</a></li>
                 <li><a href="#" className="hover:text-accent transition-colors">Contato</a></li>
                 <li><a href="#" className="hover:text-accent transition-colors">Status</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-primary/20 pt-6 text-center text-primary/50">
+          <div className="border-t border-primary pt-6 text-center text-primary opacity-50">
             <p>&copy; {new Date().getFullYear()} PolarBuy. Todos os direitos reservados. É assim que você toma o poder.</p>
           </div>
         </div>

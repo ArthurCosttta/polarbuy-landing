@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ ctaLabel, ctaHref }) => {
   ];
 
   return (
-    <header className="container mx-auto px-6 py-4 flex justify-between items-center">
+    <header className="container mx-auto px-6 py-4 flex justify-between items-center bg-background">
       <div className="flex items-center gap-8">
         {/* Logo */}
         <Image
@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ ctaLabel, ctaHref }) => {
               className={`font-medium transition-colors duration-200 ${
                 item.active
                   ? 'text-accent border-b-2 border-accent'
-                  : 'text-primary/80 hover:text-accent'
+                  : 'text-primary hover:text-accent opacity-80'
               }`}
             >
               {item.label}

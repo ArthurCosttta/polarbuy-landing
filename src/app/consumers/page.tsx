@@ -98,9 +98,9 @@ const Consumers = () => {
         />
 
         {/* Social Proof */}
-        <section className="py-12 bg-background/95">
+        <section className="py-12 bg-background">
           <div className="container mx-auto text-center">
-            <h3 className="text-sm font-bold tracking-widest text-primary/60 uppercase">
+            <h3 className="text-sm font-bold tracking-widest text-primary uppercase opacity-60">
               A força do comércio local com tecnologia de ponta
             </h3>
             <div className="flex justify-center items-center gap-8 md:gap-16 mt-6 grayscale opacity-60">
@@ -113,12 +113,12 @@ const Consumers = () => {
         </section>
 
         {/* Benefits */}
-        <section id="benefits" className="container mx-auto px-6 py-20">
+        <section id="benefits" className="container mx-auto px-6 py-20 bg-background">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">
               Experiência movida por <span className="text-accent">PolarChain™</span>
             </h2>
-            <p className="text-lg text-primary/80 max-w-2xl mx-auto">
+            <p className="text-lg text-primary max-w-2xl mx-auto opacity-80">
               Qualidade, preço e velocidade — no mesmo pedido.
             </p>
           </div>
@@ -171,8 +171,8 @@ const Consumers = () => {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-primary/20 bg-background/90">
-        <div className="container mx-auto px-6 py-6 text-center text-primary/50">
+      <footer className="border-t border-primary bg-background opacity-20">
+        <div className="container mx-auto px-6 py-6 text-center text-primary opacity-50">
           <p>&copy; {new Date().getFullYear()} PolarBuy. Todos os direitos reservados.</p>
         </div>
       </footer>

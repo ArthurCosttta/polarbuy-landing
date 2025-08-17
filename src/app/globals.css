@@ -2,28 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #0D1B2A;
-  --primary: #E0E1DD;
-  --accent: #FCA311;
-  --card: #1B263B;
-}
-
-/* Scrollbar personalizada */
+/* Scrollbar personalizada simples */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--card);
+  background: #1B263B;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent);
+  background: #FCA311;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: #FCA311;
   opacity: 0.8;
 }

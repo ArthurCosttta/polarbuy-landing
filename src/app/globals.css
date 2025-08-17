@@ -26,16 +26,6 @@
   --card: #1B263B;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-primary: var(--primary);
-  --color-accent: var(--accent);
-  --color-card: var(--card);
-  
-  --font-geist-sans: var(--font-geist-sans);
-  --font-geist-mono: var(--font-geist-mono);
-}
-
 /* Scrollbar personalizada */
 ::-webkit-scrollbar {
   width: 8px;
@@ -58,26 +48,4 @@
 /* Transições suaves para mudança de tema */
 * {
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
-}
-
-/* Melhorias específicas para o tema claro */
-[data-theme="light"] {
-  /* Suaviza as bordas e sombras */
-  --card-border: rgba(58, 74, 92, 0.1);
-  --card-shadow: 0 2px 8px rgba(58, 74, 92, 0.08);
-  
-  /* Melhora a legibilidade */
-  --text-muted: rgba(58, 74, 92, 0.7);
-  --text-subtle: rgba(58, 74, 92, 0.5);
-}
-
-/* Melhorias específicas para o tema escuro */
-[data-theme="dark"] {
-  /* Mantém a fluidez original */
-  --card-border: rgba(224, 225, 221, 0.1);
-  --card-shadow: 0 2px 8px rgba(13, 27, 42, 0.3);
-  
-  /* Mantém o contraste original */
-  --text-muted: rgba(224, 225, 221, 0.7);
-  --text-subtle: rgba(224, 225, 221, 0.5);
 }

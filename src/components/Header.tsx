@@ -20,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ ctaLabel, ctaHref }) => {
   ];
 
   return (
-    <header className="container mx-auto px-6 py-4 flex justify-between items-center">
+    <header className="container mx-auto px-6 py-4 flex justify-between items-center border-b border-primary/10 bg-background/95 backdrop-blur-sm">
       <div className="flex items-center gap-8">
         {/* Logo */}
         <Image
@@ -38,10 +38,10 @@ const Header: React.FC<HeaderProps> = ({ ctaLabel, ctaHref }) => {
             <Link
               key={item.href}
               href={item.href}
-              className={`font-medium transition-colors duration-200 ${
+              className={`font-medium transition-all duration-300 ${
                 item.active
                   ? 'text-accent border-b-2 border-accent'
-                  : 'text-primary/80 hover:text-accent'
+                  : 'text-primary/80 hover:text-accent hover:border-b-2 hover:border-accent/40'
               }`}
             >
               {item.label}
@@ -55,7 +55,7 @@ const Header: React.FC<HeaderProps> = ({ ctaLabel, ctaHref }) => {
         <ThemeToggle />
         <a
           href={ctaHref}
-          className="hidden md:block bg-accent text-background font-bold py-2 px-6 rounded-lg hover:bg-accent/90 transition-all duration-300 transform hover:scale-105"
+          className="hidden md:block bg-accent text-background font-bold py-2 px-6 rounded-lg hover:bg-accent/90 transition-all duration-300 transform hover:scale-105 shadow-accent"
         >
           {ctaLabel}
         </a>

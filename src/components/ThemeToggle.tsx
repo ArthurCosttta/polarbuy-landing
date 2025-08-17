@@ -9,7 +9,7 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-lg bg-card/80 hover:bg-card border border-card/60 hover:border-accent/40 transition-all duration-300 transform hover:scale-105"
+      className="p-3 rounded-lg bg-card/80 hover:bg-card border border-primary/20 hover:border-accent/40 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-md"
       aria-label={`Mudar para tema ${theme === 'dark' ? 'claro' : 'escuro'}`}
       title={`Mudar para tema ${theme === 'dark' ? 'claro' : 'escuro'}`}
     >

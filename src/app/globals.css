@@ -2,23 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Tema Escuro (padrão) */
-:root[data-theme="dark"] {
-  --background: #0D1B2A;
-  --primary: #E0E1DD;
-  --accent: #FCA311;
-  --card: #1B263B;
-}
-
-/* Tema Claro - Ajustado para mais fluidez */
-:root[data-theme="light"] {
-  --background: #F8F6F0;
-  --primary: #3A4A5C;
-  --accent: #E67E22;
-  --card: #F0EDE5;
-}
-
-/* Fallback para tema escuro (padrão) */
 :root {
   --background: #0D1B2A;
   --primary: #E0E1DD;
@@ -43,9 +26,4 @@
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
   opacity: 0.8;
-}
-
-/* Transições suaves para mudança de tema */
-* {
-  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }

@@ -1,73 +1,101 @@
-import { FaBolt, FaShieldAlt, FaChartLine, FaStore, FaTruck, FaUsers, FaArrowRight, FaCheckCircle, FaRocket, FaGlobe } from 'react-icons/fa';
+import type { Metadata } from 'next';
+import { FaBolt, FaShieldAlt, FaChartLine, FaStore, FaTruck, FaCheckCircle, FaRocket, FaGlobe } from 'react-icons/fa';
 import Image from 'next/image';
 
-export default function Home() {
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
+import BenefitCard from '@/components/BenefitCard';
+import ProofBlock from '@/components/ProofBlock';
+import Fascinations from '@/components/Fascinations';
+import Testimonials from '@/components/Testimonials';
+import FinalCta from '@/components/FinalCta';
+
+export const metadata: Metadata = {
+  title: 'PolarBuy | Domine Sua Cidade, Recupere Seu Lucro',
+  description: 'Pare de pagar taxas abusivas. Com o PolarBuy e a tecnologia PolarChain™, você corta custos, controla sua entrega e aumenta suas vendas.',
+  openGraph: {
+    title: 'PolarBuy | Domine Sua Cidade, Recupere Seu Lucro',
+    description: 'Pare de pagar taxas abusivas. Com o PolarBuy e a tecnologia PolarChain™, você corta custos, controla sua entrega e aumenta suas vendas.',
+    type: 'website',
+    images: ['/og-default.png'],
+  },
+};
+
+// Constantes para fácil alteração
+const MERCHANT_CTA_HREF = '#cta';
+const MERCHANT_DEMO_HREF = '#demo';
+
+const Home = () => {
+  const benefits = [
+    {
+      icon: FaShieldAlt,
+      title: 'Corte Custos, Não Lucros',
+      text: 'Com taxas até 70% menores, o dinheiro que ia para as plataformas agora volta para o seu bolso. Invista no seu crescimento, não na taxa deles.',
+    },
+    {
+      icon: FaTruck,
+      title: 'Controle Total da Entrega',
+      text: 'Conecte-se diretamente com motoristas e empresas de logística. Defina suas taxas, suas regras. A entrega deixa de ser um custo para virar seu diferencial.',
+    },
+    {
+      icon: FaChartLine,
+      title: 'Crescimento em Rede',
+      text: 'Cada novo merchant e cliente no PolarBuy torna o ecossistema mais forte e barato para todos. É o efeito de rede trabalhando para você, não contra você.',
+    },
+  ];
+
+  const fascinations = [
+    'Taxas até 70% menores que concorrentes',
+    'Controle total da logística e entrega',
+    'Conexão direta com motoristas parceiros',
+    'Dashboard com métricas em tempo real',
+    'Suporte brasileiro 24/7',
+  ];
+
+  const testimonials = [
+    {
+      name: 'João Silva',
+      location: 'Vila Madalena, SP',
+      metric: '+R$58.000',
+      text: 'Economia anual de mais de R$58.000 em taxas. Agora invisto esse dinheiro no meu negócio.',
+    },
+    {
+      name: 'Maria Costa',
+      location: 'Botafogo, RJ',
+      metric: '4.9★',
+      text: 'Clientes adoram a entrega mais rápida e eu ganho mais com menos taxas.',
+    },
+  ];
+
   return (
     <div className="bg-background text-primary min-h-screen">
-      {/* Header */}
-      <header className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div className="flex items-center">
-          {/* Logo real do PolarBuy - Header MUITO MAIOR */}
-          <Image
-            src="/LogoPolarBuy.png" 
-            alt="PolarBuy Logo" 
-            width={250} 
-            height={100} 
-            className="h-20 w-auto"
-            priority
-          />
-        </div>
-        <a 
-          href="#cta" 
-          className="hidden md:block bg-accent text-background font-bold py-2 px-6 rounded-lg hover:bg-accent/90 transition-all duration-300 transform hover:scale-105"
-        >
-          Crie Sua Loja Agora
-        </a>
-      </header>
+      <Header 
+        ctaLabel="Crie Sua Loja Agora" 
+        ctaHref={MERCHANT_CTA_HREF} 
+      />
 
       <main>
-        {/* Hero Section */}
-        <section className="text-center py-20 px-6">
-          <div className="max-w-6xl mx-auto">
-            {/* Logo central no Hero - ULTRA IMPACTANTE */}
-            <div className="mb-16">
-              <Image
-                src="/LogoPolarBuy.png" 
-                alt="PolarBuy" 
-                width={500} 
-                height={200} 
-                className="mx-auto h-40 w-auto mb-10"
-                priority
-              />
-            </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+        <Hero
+          title={
+            <>
               Pare de Pagar Taxas Abusivas.<br />
-              <span className="text-accent bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
-                Domine Sua Cidade.
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl max-w-3xl mx-auto text-primary/80 mb-8 leading-relaxed">
+              <span className="text-accent">Domine Sua Cidade.</span>
+            </>
+          }
+          subtitle={
+            <>
               Você está cansado de entregar 30% do seu lucro para plataformas que não te ajudam a crescer? 
               Chegou a hora de tomar o controle com o PolarBuy e a tecnologia <span className="text-accent font-semibold">PolarChain™</span>.
-            </p>
-            <div className="flex justify-center gap-4 flex-wrap">
-              <a 
-                href="#cta" 
-                className="bg-accent text-background font-bold py-4 px-8 rounded-lg text-lg hover:bg-accent/90 transition-all duration-300 transform hover:scale-105 shadow-accent flex items-center gap-2"
-              >
-                Crie Sua Loja em 1 Clique <FaArrowRight className="inline" />
-              </a>
-              <a
-                href="#demo" 
-                className="border-2 border-accent text-accent font-bold py-4 px-8 rounded-lg text-lg hover:bg-accent hover:text-background transition-all duration-300 transform hover:scale-105"
-              >
-                Veja a Demonstração
-              </a>
-            </div>
-          </div>
-        </section>
+            </>
+          }
+          primaryCta="Crie Sua Loja em 1 Clique"
+          primaryCtaHref={MERCHANT_CTA_HREF}
+          secondaryCta="Veja a Demonstração"
+          secondaryCtaHref={MERCHANT_DEMO_HREF}
+          showLogo={true}
+        />
 
-        {/* Social Proof Section - Fundo mais sutil para integração perfeita */}
+        {/* Social Proof Section */}
         <section className="py-12 bg-background/95">
           <div className="container mx-auto text-center">
             <h3 className="text-sm font-bold tracking-widest text-primary/60 uppercase mb-6">
@@ -116,64 +144,38 @@ export default function Home() {
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-card/90 p-8 rounded-lg text-center hover:transform hover:scale-105 transition-all duration-300 border border-card/80 hover:border-accent/40 shadow-background">
-              <FaShieldAlt className="text-5xl text-accent mx-auto mb-6" />
-              <h3 className="text-2xl font-bold mb-4">Corte Custos, Não Lucros</h3>
-              <p className="text-primary/80 leading-relaxed">
-                Com taxas até 70% menores, o dinheiro que ia para as plataformas agora volta para o seu bolso. 
-                Invista no seu crescimento, não na taxa deles.
-              </p>
-            </div>
-            <div className="bg-card/90 p-8 rounded-lg text-center hover:transform hover:scale-105 transition-all duration-300 border border-card/80 hover:border-accent/40 shadow-background">
-              <FaTruck className="text-5xl text-accent mx-auto mb-6" />
-              <h3 className="text-2xl font-bold mb-4">Controle Total da Entrega</h3>
-              <p className="text-primary/80 leading-relaxed">
-                Conecte-se diretamente com motoristas e empresas de logística. Defina suas taxas, suas regras. 
-                A entrega deixa de ser um custo para virar seu diferencial.
-              </p>
-            </div>
-            <div className="bg-card/90 p-8 rounded-lg text-center hover:transform hover:scale-105 transition-all duration-300 border border-card/80 hover:border-accent/40 shadow-background">
-              <FaChartLine className="text-5xl text-accent mx-auto mb-6" />
-              <h3 className="text-2xl font-bold mb-4">Crescimento em Rede</h3>
-              <p className="text-primary/80 leading-relaxed">
-                Cada novo merchant e cliente no PolarBuy torna o ecossistema mais forte e barato para todos. 
-                É o efeito de rede trabalhando para você, não contra você.
-              </p>
-            </div>
+            {benefits.map((benefit, index) => (
+              <BenefitCard
+                key={index}
+                icon={benefit.icon}
+                title={benefit.title}
+                text={benefit.text}
+              />
+            ))}
           </div>
         </section>
 
-        {/* Proof Section - Fundo mais sutil */}
-        <section id="demo" className="bg-card/85 py-20 px-6">
-          <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-center md:text-left">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Não Acredite em Nós.<br/> 
-                <span className="text-accent bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
-                  Acredite na Matemática.
-                </span>
-              </h2>
-              <p className="text-lg text-primary/80 mb-6 leading-relaxed">
-                Um lojista que fatura R$30.000 por mês em outra plataforma paga em média 
-                <span className="text-red-400 font-bold"> R$8.100 em taxas</span>. 
-                No PolarBuy, esse custo pode cair para menos de 
-                <span className="text-green-400 font-bold"> R$3.200</span>.
-              </p>
-              <div className="bg-green-900/30 border border-green-500/50 text-green-300 p-6 rounded-lg">
-                <p className="text-2xl font-bold mb-2">Economia Anual de mais de R$ 58.000</p>
-                <p className="text-green-200">O que você faria com esse dinheiro de volta no seu caixa?</p>
-              </div>
-            </div>
-            {/* Placeholder para vídeo/demonstração */}
-            <div className="bg-background/95 h-80 rounded-lg flex items-center justify-center border-2 border-dashed border-accent/40 shadow-background">
-              <div className="text-center">
-                <FaRocket className="text-6xl text-accent mx-auto mb-4" />
-                <p className="text-primary/60 text-lg">[Aqui vai seu vídeo de demonstração]</p>
-                <p className="text-primary/40 text-sm">Mostre o PolarBuy em ação</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Proof Section */}
+        <ProofBlock
+          title={
+            <>
+              Não Acredite em Nós.<br/> 
+              <span className="text-accent">Acredite na Matemática.</span>
+            </>
+          }
+          body={
+            <>
+              Um lojista que fatura R$30.000 por mês em outra plataforma paga em média 
+              <span className="text-red-400 font-bold"> R$8.100 em taxas</span>. 
+              No PolarBuy, esse custo pode cair para menos de 
+              <span className="text-green-400 font-bold"> R$3.200</span>.
+            </>
+          }
+          stats={{
+            value: 'Economia Anual de mais de R$ 58.000',
+            description: 'O que você faria com esse dinheiro de volta no seu caixa?',
+          }}
+        />
 
         {/* Features Grid */}
         <section className="container mx-auto px-6 py-20">
@@ -209,44 +211,29 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Fascinations */}
+        <Fascinations items={fascinations} />
+
+        {/* Testimonials */}
+        <Testimonials testimonials={testimonials} />
+
         {/* Final CTA Section */}
-        <section id="cta" className="text-center container mx-auto px-6 py-24">
-          <div className="max-w-4xl mx-auto">
-            {/* Logo final no CTA - ULTRA IMPACTANTE */}
-            <div className="mb-12">
-              <Image
-                src="/LogoPolarBuy.png" 
-                alt="PolarBuy" 
-                width={400} 
-                height={160} 
-                className="mx-auto h-32 w-auto opacity-95"
-              />
-            </div>
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-6">
+        <FinalCta
+          title={
+            <>
               Sua concorrência não vai esperar.<br /> 
               E nós também não.
-            </h2>
-            <p className="text-lg md:text-xl max-w-3xl mx-auto text-primary/80 mb-10 leading-relaxed">
-              Enquanto você lê isso, seus concorrentes já estão pagando taxas menores e entregando mais rápido. 
-              Continuar no sistema antigo não é uma opção. É um prejuízo.
-            </p>
-            <div className="flex justify-center gap-4 flex-wrap">
-              <a 
-                href="#" 
-                className="bg-accent text-background font-bold py-5 px-12 rounded-lg text-xl hover:bg-accent/90 transition-all duration-300 shadow-accent-lg transform hover:scale-105 flex items-center gap-2"
-              >
-                <FaRocket className="text-2xl" />
-                Tomar o Controle Agora
-              </a>
-            </div>
-            <p className="text-sm text-primary/50 mt-4">
-              ⚡ Comece hoje mesmo • Sem cartão de crédito • Setup gratuito
-            </p>
-          </div>
-        </section>
+            </>
+          }
+          subtitle="Enquanto você lê isso, seus concorrentes já estão pagando taxas menores e entregando mais rápido. Continuar no sistema antigo não é uma opção. É um prejuízo."
+          ctaLabel="Tomar o Controle Agora"
+          ctaHref={MERCHANT_CTA_HREF}
+          showLogo={true}
+          riskReversal="⚡ Comece hoje mesmo • Sem cartão de crédito • Setup gratuito"
+        />
       </main>
 
-      {/* Footer - Fundo mais sutil para integração perfeita */}
+      {/* Footer */}
       <footer className="border-t border-primary/20 bg-background/90">
         <div className="container mx-auto px-6 py-8">
           <div className="grid md:grid-cols-3 gap-8 mb-6">
@@ -289,4 +276,6 @@ export default function Home() {
       </footer>
     </div>
   );
-}
+};
+
+export default Home;

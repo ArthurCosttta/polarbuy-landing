@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -9,27 +9,33 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Paleta de cores oficial da marca PolarBuy - Tons ajustados para combinar perfeitamente
-        background: '#0D1B2A',    // Cor de fundo principal (exata da logo)
-        primary: '#E0E1DD',       // Cor do texto principal
-        accent: '#FCA311',        // Cor de destaque
-        card: '#1B263B',          // Cor de fundo para seções/cards
+        // Tema Escuro (padrão)
+        background: 'var(--background)',
+        primary: 'var(--primary)',
+        accent: 'var(--accent)',
+        card: 'var(--card)',
         
-        // Variações de fundo para integração perfeita com a logo
-        'background/95': 'rgba(13, 27, 42, 0.95)',  // Fundo com 95% opacidade
-        'background/90': 'rgba(13, 27, 42, 0.9)',   // Fundo com 90% opacidade
-        'background/85': 'rgba(13, 27, 42, 0.85)',  // Fundo com 85% opacidade
-        'background/80': 'rgba(13, 27, 42, 0.8)',   // Fundo com 80% opacidade
-        'background/75': 'rgba(13, 27, 42, 0.75)',  // Fundo com 75% opacidade
-        'background/70': 'rgba(13, 27, 42, 0.7)',   // Fundo com 70% opacidade
-        'background/60': 'rgba(13, 27, 42, 0.6)',   // Fundo com 60% opacidade
-        'background/50': 'rgba(13, 27, 42, 0.5)',   // Fundo com 50% opacidade
-        'background/40': 'rgba(13, 27, 42, 0.4)',   // Fundo com 40% opacidade
-        'background/30': 'rgba(13, 27, 42, 0.3)',   // Fundo com 30% opacidade
-        'background/20': 'rgba(13, 27, 42, 0.2)',   // Fundo com 20% opacidade
-        'background/10': 'rgba(13, 27, 42, 0.1)',   // Fundo com 10% opacidade
+        // Variações de opacidade para tema escuro
+        'background/95': 'rgba(13, 27, 42, 0.95)',
+        'background/90': 'rgba(13, 27, 42, 0.9)',
+        'background/85': 'rgba(13, 27, 42, 0.85)',
+        'background/80': 'rgba(13, 27, 42, 0.8)',
+        'background/75': 'rgba(13, 27, 42, 0.75)',
+        'background/70': 'rgba(13, 27, 42, 0.7)',
+        'background/65': 'rgba(13, 27, 42, 0.65)',
+        'background/60': 'rgba(13, 27, 42, 0.6)',
+        'background/55': 'rgba(13, 27, 42, 0.55)',
+        'background/50': 'rgba(13, 27, 42, 0.5)',
+        'background/45': 'rgba(13, 27, 42, 0.45)',
+        'background/40': 'rgba(13, 27, 42, 0.4)',
+        'background/35': 'rgba(13, 27, 42, 0.35)',
+        'background/30': 'rgba(13, 27, 42, 0.3)',
+        'background/25': 'rgba(13, 27, 42, 0.25)',
+        'background/20': 'rgba(13, 27, 42, 0.2)',
+        'background/15': 'rgba(13, 27, 42, 0.15)',
+        'background/10': 'rgba(13, 27, 42, 0.1)',
+        'background/5': 'rgba(13, 27, 42, 0.05)',
         
-        // Variações de texto para contraste perfeito
         'primary/95': 'rgba(224, 225, 221, 0.95)',
         'primary/90': 'rgba(224, 225, 221, 0.9)',
         'primary/85': 'rgba(224, 225, 221, 0.85)',
@@ -48,8 +54,8 @@ const config: Config = {
         'primary/20': 'rgba(224, 225, 221, 0.2)',
         'primary/15': 'rgba(224, 225, 221, 0.15)',
         'primary/10': 'rgba(224, 225, 221, 0.1)',
+        'primary/5': 'rgba(224, 225, 221, 0.05)',
         
-        // Variações de destaque para melhor integração
         'accent/95': 'rgba(252, 163, 17, 0.95)',
         'accent/90': 'rgba(252, 163, 17, 0.9)',
         'accent/85': 'rgba(252, 163, 17, 0.85)',
@@ -68,8 +74,8 @@ const config: Config = {
         'accent/20': 'rgba(252, 163, 17, 0.2)',
         'accent/15': 'rgba(252, 163, 17, 0.15)',
         'accent/10': 'rgba(252, 163, 17, 0.1)',
+        'accent/5': 'rgba(252, 163, 17, 0.05)',
         
-        // Variações de card para seções mais sutis
         'card/95': 'rgba(27, 38, 59, 0.95)',
         'card/90': 'rgba(27, 38, 59, 0.9)',
         'card/85': 'rgba(27, 38, 59, 0.85)',
@@ -88,10 +94,16 @@ const config: Config = {
         'card/20': 'rgba(27, 38, 59, 0.2)',
         'card/15': 'rgba(27, 38, 59, 0.15)',
         'card/10': 'rgba(27, 38, 59, 0.1)',
+        'card/5': 'rgba(27, 38, 59, 0.05)',
+      },
+      boxShadow: {
+        'accent': '0 4px 14px 0 rgba(252, 163, 17, 0.39)',
+        'accent-lg': '0 10px 25px -3px rgba(252, 163, 17, 0.3), 0 4px 6px -2px rgba(252, 163, 17, 0.2)',
+        'background': '0 10px 25px -3px rgba(13, 27, 42, 0.1), 0 4px 6px -2px rgba(13, 27, 42, 0.05)',
       },
       fontFamily: {
-        sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-geist-mono)', 'monospace'],
+        sans: ['var(--font-geist-sans)', 'Arial', 'Helvetica', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'Monaco', 'Consolas', 'monospace'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
@@ -108,14 +120,9 @@ const config: Config = {
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
       },
-      boxShadow: {
-        'accent': '0 10px 25px -3px rgba(252, 163, 17, 0.1), 0 4px 6px -2px rgba(252, 163, 17, 0.05)',
-        'accent-lg': '0 20px 25px -5px rgba(252, 163, 17, 0.1), 0 10px 10px -5px rgba(252, 163, 17, 0.04)',
-        'background': '0 10px 25px -3px rgba(13, 27, 42, 0.1), 0 4px 6px -2px rgba(13, 27, 42, 0.05)',
-      },
     },
   },
   plugins: [],
-}
+};
 
-export default config
+export default config;

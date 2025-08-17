@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import ThemeToggle from './ThemeToggle';
 
 interface HeaderProps {
   ctaLabel: string;
@@ -49,13 +50,16 @@ const Header: React.FC<HeaderProps> = ({ ctaLabel, ctaHref }) => {
         </nav>
       </div>
 
-      {/* CTA Button */}
-      <a
-        href={ctaHref}
-        className="hidden md:block bg-accent text-background font-bold py-2 px-6 rounded-lg hover:bg-accent/90 transition-all duration-300 transform hover:scale-105"
-      >
-        {ctaLabel}
-      </a>
+      {/* Right side: Theme Toggle + CTA Button */}
+      <div className="flex items-center gap-4">
+        <ThemeToggle />
+        <a
+          href={ctaHref}
+          className="hidden md:block bg-accent text-background font-bold py-2 px-6 rounded-lg hover:bg-accent/90 transition-all duration-300 transform hover:scale-105"
+        >
+          {ctaLabel}
+        </a>
+      </div>
     </header>
   );
 };

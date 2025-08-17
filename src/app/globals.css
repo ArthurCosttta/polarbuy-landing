@@ -1,6 +1,18 @@
+/* Configuração de fontes - Arial como padrão */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Configuração de fontes personalizadas */
+@layer base {
+  html {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Arial', sans-serif;
+  }
+}
 
 /* Scrollbar personalizada simples */
 ::-webkit-scrollbar {

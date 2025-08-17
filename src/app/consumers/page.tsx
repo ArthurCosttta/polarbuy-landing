@@ -1,69 +1,105 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
+import type { Metadata } from 'next';
 import {
   FaBolt,
   FaShieldAlt,
   FaGift,
-  FaArrowRight,
 } from 'react-icons/fa';
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
+import BenefitCard from '@/components/BenefitCard';
+import ProofBlock from '@/components/ProofBlock';
+import Fascinations from '@/components/Fascinations';
+import Testimonials from '@/components/Testimonials';
+import FinalCta from '@/components/FinalCta';
 
-const Consumers: NextPage = () => {
+export const metadata: Metadata = {
+  title: 'PolarBuy | Receba Melhor, Pague Menos',
+  description: 'Tudo o que ama da sua cidade, chegando mais rápido e mais barato. PolarBuy com PolarChain™ entrega confiança e conveniência em um só app.',
+  openGraph: {
+    title: 'PolarBuy | Receba Melhor, Pague Menos',
+    description: 'Tudo o que ama da sua cidade, chegando mais rápido e mais barato. PolarBuy com PolarChain™ entrega confiança e conveniência em um só app.',
+    type: 'website',
+    images: ['/og-default.png'],
+  },
+};
+
+// Constantes para fácil alteração
+const CONSUMER_CTA_HREF = '#cta';
+const CONSUMER_DEMO_HREF = '#demo';
+
+const Consumers = () => {
+  const benefits = [
+    {
+      icon: FaBolt,
+      title: 'Entrega Mais Rápida',
+      text: 'Rotas inteligentes e logística local deixam o pedido na sua porta no menor tempo.',
+    },
+    {
+      icon: FaShieldAlt,
+      title: 'Confiável e Seguro',
+      text: 'Pagamentos protegidos e rastreamento em tempo real. Você sabe onde seu pedido está.',
+    },
+    {
+      icon: FaGift,
+      title: 'Melhor Custo-Benefício',
+      text: 'Menos taxas para o lojista = mais qualidade, melhores preços e ofertas para você.',
+    },
+  ];
+
+  const fascinations = [
+    'Rastreamento em tempo real',
+    'Entrega mais rápida no seu bairro',
+    'Menos taxas = melhores preços',
+    'Lojas selecionadas com nota alta',
+    'Ofertas locais que não aparecem em outros apps',
+  ];
+
+  const testimonials = [
+    {
+      name: 'Mariana Santos',
+      location: 'Pinheiros, SP',
+      metric: '4.9★',
+      text: 'Entrega sempre pontual e os preços são realmente melhores que outros apps.',
+    },
+    {
+      name: 'Roberto Lima',
+      location: 'Leblon, RJ',
+      metric: '15min',
+      text: 'Pedido chegou em 15 minutos! Nunca vi tanta velocidade na entrega.',
+    },
+  ];
+
   return (
-    <div className="bg-[#0D1B2A] text-[#E0E1DD]">
-      <Head>
-        <title>PolarBuy | Receba Melhor, Pague Menos</title>
-        <meta
-          name="description"
-          content="Tudo o que ama da sua cidade, chegando mais rápido e mais barato. PolarBuy com PolarChain™ entrega confiança e conveniência em um só app."
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      {/* Header */}
-      <header className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div className="flex items-center">
-          <Image src="/LogoPolarBuy.png" alt="PolarBuy Logo" width={150} height={40} />
-        </div>
-        <a
-          href="#cta"
-          className="hidden md:block bg-[#FCA311] text-[#0D1B2A] font-bold py-2 px-6 rounded-lg hover:bg-yellow-400 transition-colors duration-300"
-        >
-          Baixar o App
-        </a>
-      </header>
+    <div className="bg-background text-primary min-h-screen">
+      <Header 
+        ctaLabel="Baixar o App" 
+        ctaHref={CONSUMER_CTA_HREF} 
+      />
 
       <main>
-        {/* Hero */}
-        <section className="text-center py-20 px-6">
-          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
-            Chega <span className="text-[#FCA311]">Mais Rápido</span>. Paga{' '}
-            <span className="text-[#FCA311]">Mais Barato</span>.
-          </h1>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto text-[#b0b2af] mb-8">
-            Restaurantes, mercados, barbearias e serviços locais em um único lugar — com entrega
-            confiável e preços honestos.
-          </p>
-          <div className="flex justify-center gap-4 flex-wrap">
-            <a
-              href="#cta"
-              className="bg-[#FCA311] text-[#0D1B2A] font-bold py-4 px-8 rounded-lg text-lg hover:bg-yellow-400 transition-colors duration-300"
-            >
-              Começar a Pedir <FaArrowRight className="inline ml-2" />
-            </a>
-            <a
-              href="#demo"
-              className="border-2 border-[#FCA311] text-[#FCA311] font-bold py-4 px-8 rounded-lg text-lg hover:bg-[#FCA311] hover:text-[#0D1B2A] transition-colors duration-300"
-            >
-              Ver Restaurantes & Lojas
-            </a>
-          </div>
-        </section>
+        <Hero
+          title={
+            <>
+              Chega <span className="text-accent">Mais Rápido</span>. Paga{' '}
+              <span className="text-accent">Mais Barato</span>.
+            </>
+          }
+          subtitle={
+            <>
+              Restaurantes, mercados, barbearias e serviços locais em um único lugar — com entrega
+              confiável e preços honestos.
+            </>
+          }
+          primaryCta="Começar a Pedir"
+          primaryCtaHref={CONSUMER_CTA_HREF}
+          secondaryCta="Ver Restaurantes & Lojas"
+          secondaryCtaHref={CONSUMER_DEMO_HREF}
+        />
 
         {/* Social Proof */}
-        <section className="py-12 bg-[#1B263B]/50">
+        <section className="py-12 bg-background/95">
           <div className="container mx-auto text-center">
-            <h3 className="text-sm font-bold tracking-widest text-gray-400 uppercase">
+            <h3 className="text-sm font-bold tracking-widest text-primary/60 uppercase">
               A força do comércio local com tecnologia de ponta
             </h3>
             <div className="flex justify-center items-center gap-8 md:gap-16 mt-6 grayscale opacity-60">
@@ -75,87 +111,67 @@ const Consumers: NextPage = () => {
           </div>
         </section>
 
-        {/* Benefits (Consumers) */}
+        {/* Benefits */}
         <section id="benefits" className="container mx-auto px-6 py-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">
-              Experiência movida por <span className="text-[#FCA311]">PolarChain™</span>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Experiência movida por <span className="text-accent">PolarChain™</span>
             </h2>
-            <p className="text-lg text-[#b0b2af] max-w-2xl mx-auto mt-2">
+            <p className="text-lg text-primary/80 max-w-2xl mx-auto">
               Qualidade, preço e velocidade — no mesmo pedido.
             </p>
           </div>
-
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-[#1B263B] p-8 rounded-lg text-center">
-              <FaBolt className="text-5xl text-[#FCA311] mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-2">Entrega Mais Rápida</h3>
-              <p className="text-[#b0b2af]">
-                Rotas inteligentes e logística local deixam o pedido na sua porta no menor tempo.
-              </p>
-            </div>
-
-            <div className="bg-[#1B263B] p-8 rounded-lg text-center">
-              <FaShieldAlt className="text-5xl text-[#FCA311] mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-2">Confiável e Seguro</h3>
-              <p className="text-[#b0b2af]">
-                Pagamentos protegidos e rastreamento em tempo real. Você sabe onde seu pedido está.
-              </p>
-            </div>
-
-            <div className="bg-[#1B263B] p-8 rounded-lg text-center">
-              <FaGift className="text-5xl text-[#FCA311] mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-2">Melhor Custo-Benefício</h3>
-              <p className="text-[#b0b2af]">
-                Menos taxas para o lojista = mais qualidade, melhores preços e ofertas para você.
-              </p>
-            </div>
+            {benefits.map((benefit, index) => (
+              <BenefitCard
+                key={index}
+                icon={benefit.icon}
+                title={benefit.title}
+                text={benefit.text}
+              />
+            ))}
           </div>
         </section>
 
-        {/* Proof / Demo */}
-        <section id="demo" className="bg-[#1B263B] py-20 px-6">
-          <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-center md:text-left">
-              <h2 className="text-3xl md:text-4xl font-bold">
-                Seu pedido, do jeito certo. <br />
-                <span className="text-[#FCA311]">Rápido. Rastreado. Sem surpresas.</span>
-              </h2>
-              <p className="text-lg text-[#b0b2af] mt-4 mb-6">
-                Quando o lojista paga menos taxas, ele investe mais na sua experiência: melhor
-                embalagem, brindes e qualidade.
-              </p>
-              <div className="bg-green-900/50 border border-green-500 text-green-300 p-4 rounded-lg">
-                <p className="text-2xl font-bold">Satisfação média 4.8★</p>
-                <p>Mais cuidado no preparo e entrega = mais felicidade no recebimento.</p>
-              </div>
-            </div>
-            <div className="bg-[#0D1B2A] h-80 rounded-lg flex items-center justify-center">
-              <p className="text-gray-400">[Vídeo: fluxo do pedido e rastreamento]</p>
-            </div>
-          </div>
-        </section>
+        {/* Proof Block */}
+        <ProofBlock
+          title={
+            <>
+              Seu pedido, do jeito certo. <br />
+              <span className="text-accent">Rápido. Rastreado. Sem surpresas.</span>
+            </>
+          }
+          body={
+            <>
+              Quando o lojista paga menos taxas, ele investe mais na sua experiência: melhor
+              embalagem, brindes e qualidade.
+            </>
+          }
+          stats={{
+            value: 'Satisfação média 4.8★',
+            description: 'Mais cuidado no preparo e entrega = mais felicidade no recebimento.',
+          }}
+        />
 
-        {/* CTA */}
-        <section id="cta" className="text-center container mx-auto px-6 py-24">
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-4">
-            Descubra os melhores do seu bairro.
-          </h2>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto text-[#b0b2af] mb-10">
-            Um app, tudo o que importa. Baixe e faça seu primeiro pedido agora.
-          </p>
-          <a
-            href="#"
-            className="bg-[#FCA311] text-[#0D1B2A] font-bold py-5 px-12 rounded-lg text-xl hover:bg-yellow-400 transition-colors duration-300 shadow-lg shadow-yellow-500/20"
-          >
-            Baixar o App
-          </a>
-        </section>
+        {/* Fascinations */}
+        <Fascinations items={fascinations} />
+
+        {/* Testimonials */}
+        <Testimonials testimonials={testimonials} />
+
+        {/* Final CTA */}
+        <FinalCta
+          title="Descubra os melhores do seu bairro."
+          subtitle="Um app, tudo o que importa. Baixe e faça seu primeiro pedido agora."
+          ctaLabel="Baixar o App"
+          ctaHref={CONSUMER_CTA_HREF}
+          riskReversal="⚡ App gratuito • Sem taxas ocultas • Cancele quando quiser"
+        />
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-700">
-        <div className="container mx-auto px-6 py-6 text-center text-gray-500">
+      <footer className="border-t border-primary/20 bg-background/90">
+        <div className="container mx-auto px-6 py-6 text-center text-primary/50">
           <p>&copy; {new Date().getFullYear()} PolarBuy. Todos os direitos reservados.</p>
         </div>
       </footer>

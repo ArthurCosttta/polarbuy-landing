@@ -14,8 +14,8 @@ module.exports = {
         card: '#1B263B',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        heading: ['Poppins', 'system-ui', 'sans-serif'],
+        sans: ['Arial', 'sans-serif'],
+        heading: ['Arial', 'sans-serif'],
         mono: ['var(--font-geist-mono)', 'monospace'],
       },
     },

@@ -1,3 +1,5 @@
+// tailwind.config.js
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -8,15 +10,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: '#0C2231',     // fundo = igual ao da logo
-        primary: '#E0E1DD',        // texto
-        accent: '#FCA311',         // amarelo
-        card: '#1B263B',
+        background: '#0D1B2A',     // Cor EXATA do fundo da logo
+        primary: '#E0E1DD',        // Cor do urso e texto principal
+        accent: '#FCA311',         // Amarelo vibrante para destaque
+        card: '#1B263B',           // Um azul um pouco mais claro para cards
       },
       fontFamily: {
-        sans: ['Arial', 'sans-serif'],
-        heading: ['Arial', 'sans-serif'],
-        mono: ['var(--font-geist-mono)', 'monospace'],
+        // Removi as fontes customizadas por enquanto para simplificar.
+        // O Next.js já importa uma boa fonte padrão (Inter).
       },
     },
   },

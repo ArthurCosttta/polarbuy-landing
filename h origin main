@@ -1,0 +1,5 @@
+[33m0b52655[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m fix: corrige configuração do Tailwind - Remove arquivo duplicado da raiz - Atualiza cores no arquivo correto - Limpa cache do Next.js
+[33m77f7f08[m[33m ([m[1;31morigin/main[m[33m)[m fix: remove duplicação real da headline e do título Fascinations
+[33m960d24e[m fix: remove duplicação da seção e ajusta tamanho da headline
+[33m4b4e452[m feat: melhora design da landing page drivers com animações e headline otimizada
+[33mae156b2[m fix: corrige configuração do Tailwind para restaurar estilos CSS

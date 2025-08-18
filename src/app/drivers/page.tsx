@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const DRIVER_CTA_HREF = '#';
 
-const BenefitCard = ({ icon: Icon, title, text }: { icon: any; title: string; text: string }) => (
+const BenefitCard = ({ icon: Icon, title, text }: { icon: React.ComponentType<{ className?: string }>; title: string; text: string }) => (
   <div className="bg-card/60 p-6 rounded-lg text-center border border-card/80 hover:border-accent/40 transition-all duration-300 transform hover:-translate-y-1">
     <Icon className="text-4xl text-accent mx-auto mb-4" />
     <h3 className="text-xl font-bold mb-2">{title}</h3>
@@ -105,19 +105,19 @@ const DriversPage = () => {
             <div className="grid md:grid-cols-3 gap-8 text-left">
               <div className="bg-background p-6 rounded-lg">
                 <p className="text-primary/70 text-sm mb-2">Você pensa:</p>
-                <h3 className="text-xl font-semibold mb-4">"Vou demorar para conseguir a primeira corrida..."</h3>
+                <h3 className="text-xl font-semibold mb-4">&ldquo;Vou demorar para conseguir a primeira corrida...&rdquo;</h3>
                 <p className="text-accent text-2xl font-bold mb-4">Em menos de 3 minutos, sua primeira entrega de R$9 já aparece na tela.</p>
-                <p className="text-primary/80 text-sm"><strong>Por quê?</strong> Nossa IA te conecta instantaneamente com o pedido mais próximo que corresponde ao seu perfil, sem fila de espera ou "panelinha".</p>
+                <p className="text-primary/80 text-sm"><strong>Por quê?</strong> Nossa IA te conecta instantaneamente com o pedido mais próximo que corresponde ao seu perfil, sem fila de espera ou &ldquo;panelinha&rdquo;.</p>
               </div>
               <div className="bg-background p-6 rounded-lg">
                 <p className="text-primary/70 text-sm mb-2">Você pensa:</p>
-                <h3 className="text-xl font-semibold mb-4">"Não vou conseguir fazer dinheiro de verdade..."</h3>
+                <h3 className="text-xl font-semibold mb-4">&ldquo;Não vou conseguir fazer dinheiro de verdade...&rdquo;</h3>
                 <p className="text-accent text-2xl font-bold mb-4">Nossa IA te permite transformar 55 minutos em R$70 no seu bolso.</p>
                 <p className="text-primary/80 text-sm"><strong>Por quê?</strong> A PolarChain™ prevê picos de demanda. Em vez de reagir, você se antecipa. Nós te mostramos como fazer 10 entregas de R$7 em sequência, otimizando sua rota.</p>
               </div>
               <div className="bg-background p-6 rounded-lg">
                 <p className="text-primary/70 text-sm mb-2">Você pensa:</p>
-                <h3 className="text-xl font-semibold mb-4">"Isso é só mais um bico, não uma carreira..."</h3>
+                <h3 className="text-xl font-semibold mb-4">&ldquo;Isso é só mais um bico, não uma carreira...&rdquo;</h3>
                 <p className="text-accent text-2xl font-bold mb-4">Em 20 minutos, você pode criar sua própria transportadora e multiplicar sua renda.</p>
                 <p className="text-primary/80 text-sm"><strong>Por quê?</strong> O PolarBuy te dá as ferramentas para se tornar um parceiro logístico. Conecte-se com outros motoristas, atenda merchants com exclusividade e construa um negócio real.</p>
               </div>

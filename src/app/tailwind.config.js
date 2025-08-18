@@ -8,9 +8,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: '#0D1B2A',
-        primary: '#E0E1DD',
-        accent: '#FCA311',
+        background: '#0C2231',     // fundo = igual ao da logo
+        primary: '#E0E1DD',        // texto
+        accent: '#FCA311',         // amarelo
         card: '#1B263B',
       },
       fontFamily: {

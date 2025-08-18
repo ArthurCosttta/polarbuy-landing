@@ -22,14 +22,18 @@ const Header: React.FC<HeaderProps> = ({ ctaLabel, ctaHref }) => {
     <header className="container mx-auto px-6 py-4 flex justify-between items-center bg-background">
       <div className="flex items-center gap-8">
         {/* Logo */}
-        <Image
-          src="/LogoPolarBuy.png" 
-          alt="PolarBuy Logo" 
-          width={200} 
-          height={80} 
-          className="h-16 w-auto"
-          priority
-        />
+        <div className="flex items-center">
+          <div className="bg-background p-1 rounded">
+            <Image
+              src="/LogoPolarBuy.png" 
+              alt="PolarBuy Logo" 
+              width={200} 
+              height={80} 
+              className="block"
+              priority
+            />
+          </div>
+        </div>
         
         {/* Navigation */}
         <nav className="hidden md:flex items-center gap-6">

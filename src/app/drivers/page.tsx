@@ -123,9 +123,9 @@ const Drivers = () => {
 
       <main>
         {/* HERO PRINCIPAL - HEADLINE CORRIGIDA */}
-        <section className="container mx-auto px-6 py-16">
+        <section className="container mx-auto px-6 py-12">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
               <span className="text-primary">TRANSFORME SEU CARRO E MOTO</span>
               <br />
               <span className="text-accent">NUMA MÁQUINA DE VENDAS</span>
@@ -225,7 +225,7 @@ const Drivers = () => {
           }}
         />
 
-        {/* POR QUE ESCOLHER O POLARBUY — emocional + quebra de objeção "ridiculamente simples" */}
+        {/* POR QUE ESCOLHER O POLARBUY — ÚNICA SEÇÃO */}
         <section className="container mx-auto px-6 py-14">
           <h3 className="text-2xl font-bold mb-6">Por que escolher o PolarBuy?</h3>
 

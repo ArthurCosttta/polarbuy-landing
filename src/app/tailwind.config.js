@@ -1,3 +1,5 @@
+// tailwind.config.js
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -8,10 +10,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: '#0D1B2A',
-        primary: '#E0E1DD',
-        accent: '#FCA311',
-        card: '#1B263B',
+        background: '#0C2231',     // fundo = igual ao da logo
+        primary:   '#E0E1DD',      // texto
+        accent:    '#FCA311',      // amarelo
+      },
+      fontFamily: {
+        sans: ['Arial', 'sans-serif'],
+        heading: ['Arial', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'monospace'],
       },
     },
   },

@@ -12,6 +12,13 @@
   }
 }
 
+/* Adicionando a cor card que estava sendo usada */
+@layer utilities {
+  .bg-card {
+    background-color: #1B263B;
+  }
+}
+
 /* Scrollbar personalizada para um visual mais profissional */
 ::-webkit-scrollbar {
   width: 8px;

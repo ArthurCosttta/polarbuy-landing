@@ -132,10 +132,6 @@ const Drivers = () => {
             </h1>
             
             <div className="bg-background/30 border border-accent/30 rounded-lg p-6 mb-8 max-w-2xl mx-auto">
-              <p className="text-accent font-extrabold text-lg leading-snug mb-3">
-                TRANSFORME SEU CARRO E MOTO
-                <br /> NUMA MÁQUINA DE VENDAS
-              </p>
               <p className="text-primary/70 text-sm">
                 <FaShieldAlt className="inline mr-1 -mt-0.5" />
                 <strong>98%</strong> dos nossos motoristas relatam lucro maior usando rotas curtas e janelas de pico.*

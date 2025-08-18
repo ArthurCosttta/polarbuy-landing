@@ -6,7 +6,8 @@ import {
   FaUsers,
   FaLayerGroup,
   FaHandshake,
-  FaArrowRight,
+  FaBolt,
+  FaShieldAlt,
 } from 'react-icons/fa';
 import type { IconType } from 'react-icons';
 
@@ -31,13 +32,8 @@ export const metadata: Metadata = {
   },
 };
 
-// === Helpers locais ===
-type BigCardProps = {
-  icon: IconType;
-  title: string;
-  text: string;
-  highlight?: boolean;
-};
+// helpers locais
+type BigCardProps = { icon: IconType; title: string; text: string; highlight?: boolean };
 const BigCard = ({ icon: Icon, title, text, highlight }: BigCardProps) => (
   <div
     className={[
@@ -55,53 +51,52 @@ const BigCard = ({ icon: Icon, title, text, highlight }: BigCardProps) => (
   </div>
 );
 
-// === Constantes ===
 const DRIVER_CTA_HREF = '#cta';
 const DRIVER_DEMO_HREF = '#demo';
 
 const Drivers = () => {
-  // blocos novos (topo)
-  const bigFeatures: BigCardProps[] = [
+  // 6 QUADROS (primeira linha: "quadros grandes" / segunda linha: 3 benefícios)
+  const topThree: BigCardProps[] = [
     {
       icon: FaUsers,
       title: 'Monte seu Time de Entregadores',
-      text: 'Crie sua micro-transportadora dentro do app. Chame parceiros, distribua corridas e escale seus ganhos.',
+      text: 'Crie sua micro-transportadora dentro do app. Convide parceiros, distribua corridas e escale seu ganho por hora.',
       highlight: true,
     },
     {
       icon: FaLayerGroup,
-      title: 'Tudo Num Lugar Só (10× mais demanda)',
-      text: 'Restaurantes, mercados, serviços, e-commerce local — um hub com muito mais pedidos por hora.',
+      title: 'Tudo em 1 Lugar (10× Demanda)',
+      text: 'Restaurantes, mercados, serviços e e-commerces locais. Um hub com mais pedidos por hora e menos tempo ocioso.',
     },
     {
       icon: FaHandshake,
-      title: 'Leve o Cliente',
-      text: 'Partidas mais lucrativas: retire no produtor, leve até o consumidor, com rotas curtas e previsíveis.',
+      title: 'Leve o Cliente (Partidas + Lucrativas)',
+      text: 'Coleta no produtor e entrega no cliente final com rotas curtas e previsíveis. Quilometragem menor, lucro maior.',
     },
   ];
 
-  const benefits = [
+  const bottomThree = [
     {
       icon: FaMoneyBillWave,
       title: 'Ganhos Otimizados',
-      text: 'Alta demanda real: mais entregas por hora, menos tempo ocioso. Seu tempo rende mais.',
+      text: 'Picos mapeados e fila por proximidade aumentam corridas/h e reduzem espera.',
     },
     {
       icon: FaRoute,
       title: 'Rotas Inteligentes',
-      text: 'Atribuição por proximidade e rotas otimizadas reduzem km e combustível.',
+      text: 'Matching por distância + janelas de pico = menos km, mais entregas por hora.',
     },
     {
       icon: FaClock,
       title: 'Pagamentos Confiáveis',
-      text: 'Recebimentos claros e previsíveis. Sem taxas confusas. Transparência total.',
+      text: 'Recebimentos claros e previsíveis. Sem pegadinhas. Transparência total.',
     },
   ];
 
   const fascinations = [
-    'Encontre corridas em minutos — sem "rodar" a cidade',
+    'Encontre corridas em minutos — sem rodar à toa',
     'Picos de demanda mapeados com antecedência',
-    'Pagamento claro, previsível e sem pegadinhas',
+    'Pagamento claro e previsível',
     'Menos km, mais corridas por hora (tempo morto ↓)',
     'Fila inteligente por proximidade (chega e toca)',
   ];
@@ -111,18 +106,19 @@ const Drivers = () => {
       name: 'Carlos Silva',
       location: 'Vila Madalena, SP',
       metric: '+32%',
-      text: 'Minhas corridas por hora aumentaram com as rotas curtas e janelas de pico.',
+      text: 'Com as rotas curtas e janelas de pico, meu ganho por hora subiu de verdade.',
     },
     {
       name: 'Ana Costa',
       location: 'Botafogo, RJ',
       metric: '+R$ 1.200/mês',
-      text: 'A previsibilidade de picos e o app simples fizeram meu ganho mensal subir.',
+      text: 'Previsibilidade de picos e app simples = mais corridas e menos espera.',
     },
   ];
 
   return (
     <div className="bg-background text-primary min-h-screen">
+      {/* Header com fundo igual ao site (se sua logo não for transparente, o wrapper camufla) */}
       <Header ctaLabel="Cadastrar como Motorista" ctaHref={DRIVER_CTA_HREF} />
 
       <main>
@@ -145,8 +141,8 @@ const Drivers = () => {
           secondaryCtaHref={DRIVER_DEMO_HREF}
         />
 
-        {/* Callout lateral do Hero (prova + promessa direta) */}
-        <section className="container mx-auto px-6 -mt-4">
+        {/* Headline lateral pedida + microprova */}
+        <section className="container mx-auto px-6 -mt-3">
           <div className="grid md:grid-cols-3 gap-6">
             <div className="md:col-span-2" />
             <aside className="md:col-span-1">
@@ -155,17 +151,20 @@ const Drivers = () => {
                   TRANSFORME SEU CARRO E MOTO
                   <br /> NUMA MÁQUINA DE VENDAS
                 </p>
-                <p className="text-primary/70 text-sm mt-2">
-                  <strong>Prova:</strong> motoristas com rotas curtas e janelas de pico têm{' '}
-                  <span className="font-semibold">+corridas/h</span> e menos tempo parado.
+                <p className="text-primary/70 text-xs mt-2">
+                  <FaShieldAlt className="inline mr-1 -mt-0.5" />
+                  <strong>98%</strong> dos nossos motoristas relatam lucro maior usando rotas curtas e janelas de pico.*
                 </p>
               </div>
+              <p className="text-[11px] text-primary/40 mt-2">
+                *Dados internos/regionais — os resultados variam por área, horário e performance.
+              </p>
             </aside>
           </div>
         </section>
 
         {/* Social Proof */}
-        <section className="py-12 bg-background/95">
+        <section className="py-10 bg-background/95">
           <div className="container mx-auto text-center">
             <h3 className="text-sm font-bold tracking-widest text-primary/60 uppercase">
               Tecnologia de rota e demanda inspirada nos gigantes
@@ -179,42 +178,35 @@ const Drivers = () => {
           </div>
         </section>
 
-        {/* Benefits + linha emocional extra */}
-        <section id="benefits" className="container mx-auto px-6 py-20">
-          <div className="text-center mb-6">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">
+        {/* 6 QUADROS (3 + 3) */}
+        <section id="benefits" className="container mx-auto px-6 py-16">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">
               Dirija com a força da <span className="text-accent">PolarChain™</span>
             </h2>
             <p className="text-lg text-primary/80 max-w-3xl mx-auto">
               Mais pedidos, rotas mais curtas e ganhos constantes.{' '}
               <span className="text-primary/70">
-                Com a PolarChain™, você não precisa esperar o pedido "ficar pronto" nem rodar a cidade
-                inteira para achar clientes.
+                                  Você não precisa esperar o pedido &quot;ficar pronto&quot; nem rodar a cidade procurando cliente — o app
+                  coloca você **onde toca**.
               </span>
             </p>
           </div>
 
-          {/* 3 quadros grandes (como você pediu) */}
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8 mt-10">
-            {bigFeatures.map((bf, i) => (
-              <BigCard key={i} {...bf} />
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            {topThree.map((bf, i) => (
+              <BigCard key={`top-${i}`} {...bf} />
             ))}
           </div>
 
-          {/* cards padrão (ganhos/rotas/pagamentos) */}
-          <div className="grid md:grid-cols-3 gap-8 mt-10">
-            {benefits.map((benefit, index) => (
-              <BenefitCard
-                key={index}
-                icon={benefit.icon}
-                title={benefit.title}
-                text={benefit.text}
-              />
+          <div className="grid md:grid-cols-3 gap-8 mt-8">
+            {bottomThree.map((b, i) => (
+              <BenefitCard key={`bot-${i}`} icon={b.icon as IconType} title={b.title} text={b.text} />
             ))}
           </div>
         </section>
 
-        {/* Proof Block (mantido) */}
+        {/* PROOF (mantido) */}
         <ProofBlock
           title={
             <>
@@ -224,9 +216,8 @@ const Drivers = () => {
           }
           body={
             <>
-              Drivers na PolarBuy reportaram aumento de{' '}
-              <strong>corridas por hora</strong> com rotas otimizadas, picos mapeados e filas
-              inteligentes.
+              Drivers na PolarBuy reportaram aumento de <strong>corridas por hora</strong> com rotas
+              otimizadas, picos mapeados e filas inteligentes.
             </>
           }
           stats={{
@@ -235,40 +226,71 @@ const Drivers = () => {
           }}
         />
 
-        {/* Fascinations (mais emocionais) */}
-        <Fascinations items={fascinations} />
-
-        {/* Bloco de EXEMPLOS CONCRETOS */}
+        {/* POR QUE ESCOLHER O POLARBUY — emocional + quebra de objeção "ridiculamente simples" */}
         <section className="container mx-auto px-6 py-14">
-          <div className="grid md:grid-cols-2 gap-8 items-start">
-            <div>
-              <h3 className="text-2xl font-bold mb-2">
-                Com menos de <span className="text-accent">3 minutos</span> você já encontra uma
-                entrega de <span className="text-accent">R$ 9</span>.
-              </h3>
-              <p className="text-primary/80">
-                Nossa tecnologia identifica <strong>picos de demanda</strong> e te permite fazer{' '}
-                <strong>10 entregas de R$ 7</strong> em <strong>~55 minutos</strong> (exemplo real).
+          <h3 className="text-2xl font-bold mb-6">Por que escolher o PolarBuy?</h3>
+
+          <div className="grid md:grid-cols-2 gap-10">
+            <ul className="space-y-3">
+              <li className="flex items-start gap-3">
+                <FaBolt className="mt-1 text-accent" />
+                <p>
+                  <strong>Você toca mais corridas porque fica onde a demanda nasce.</strong>{' '}
+                  O app lê horários e zonas de pico e te posiciona perto da próxima chamada —{' '}
+                  <em>sem rodar à toa</em>.
+                </p>
+              </li>
+              <li className="flex items-start gap-3">
+                <FaBolt className="mt-1 text-accent" />
+                <p>
+                  <strong>Você ganha por hora, não por sorte.</strong> Fila por proximidade + rotas curtas = menos km,
+                  menos espera, mais entregas/hora.
+                </p>
+              </li>
+              <li className="flex items-start gap-3">
+                <FaBolt className="mt-1 text-accent" />
+                <p>
+                  <strong>Você sabe quanto entra.</strong> Pagamento claro, previsível e sem pegadinhas — dá para planejar a semana.
+                </p>
+              </li>
+              <li className="flex items-start gap-3">
+                <FaBolt className="mt-1 text-accent" />
+                <p>
+                  <strong>Você pode escalar.</strong> Em minutos, cria sua micro-transportadora com parceiros e distribui corridas pelo app.
+                </p>
+              </li>
+            </ul>
+
+            {/* exemplos sexy com "porque" */}
+            <div className="bg-background/40 border border-primary/15 rounded-lg p-6">
+              <p className="text-sm uppercase tracking-wide text-primary/60 font-semibold mb-3">
+                Como a objeção cai na prática
               </p>
-              <p className="text-primary/70 mt-3">
-                Conecte parceiros e crie sua <strong>micro-transportadora</strong> em menos de 20
-                minutos — **mais pedidos na sua mão**, todos os dias.
+
+              <div className="space-y-4 text-primary/90">
+                <p>
+                  <strong>&quot;Não tem corrida.&quot;</strong> — <em>Tem sim</em>: em <strong>menos de 3 minutos</strong> você encontra
+                  uma entrega de <strong>R$ 9</strong>, <u>porque</u> o app junta pedidos de vários setores num só mapa.
+                </p>
+                <p>
+                  <strong>&quot;Não dá para fazer volume.&quot;</strong> — Dá: <strong>10 entregas de R$ 7 em ~55 min</strong>,
+                  <u>porque</u> as rotas são por proximidade e a fila prioriza quem está mais perto.
+                </p>
+                <p>
+                  <strong>&quot;Não tem como crescer.&quot;</strong> — Tem: conecte parceiros e <strong>vire transportadora em &lt; 20 min</strong>,
+                  <u>porque</u> o app já traz convite, distribuição e repasse prontos.
+                </p>
+              </div>
+
+              <p className="text-[11px] text-primary/40 mt-4">
+                Exemplos ilustrativos — use seus números reais por cidade/horário quando disponível.
               </p>
-              <a
-                href={DRIVER_CTA_HREF}
-                className="inline-flex items-center gap-2 mt-5 bg-accent text-background font-bold px-5 py-3 rounded-lg hover:brightness-110 transition"
-              >
-                Começar Agora <FaArrowRight />
-              </a>
-              <p className="text-xs text-primary/50 mt-3">
-                *Os resultados variam por região, horário e performance do motorista.
-              </p>
-            </div>
-            <div id="demo" className="bg-background/40 border border-primary/15 rounded-lg h-64 md:h-80 grid place-items-center">
-              <p className="text-primary/60">[Vídeo de demonstração]</p>
             </div>
           </div>
         </section>
+
+        {/* Fascinations */}
+        <Fascinations items={fascinations} />
 
         {/* Depoimentos */}
         <Testimonials testimonials={testimonials} />

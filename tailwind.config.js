@@ -1,24 +1,21 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+// tailwind.config.js
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#0D1B2A',
-        primary: '#E0E1DD',
-        accent: '#FCA311',
-        card: '#1B263B',
-      },
-      fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        heading: ['Poppins', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-geist-mono)', 'monospace'],
+        background: '#0C2231',     // fundo = igual ao da logo
+        primary:   '#E0E1DD',      // texto
+        accent:    '#FCA311',      // amarelo
       },
     },
   },
+  content: [
+    './app/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './pages/**/*.{ts,tsx}',
+  ],
   plugins: [],
 }
+export default config

@@ -19,16 +19,16 @@ const Header: React.FC<HeaderProps> = ({ ctaLabel, ctaHref }) => {
   ];
 
   return (
-    <header className="container mx-auto px-6 py-4 flex justify-between items-center bg-background">
-      <div className="flex items-center gap-8">
+    <header className="container mx-auto px-6 py-3 flex justify-between items-center bg-background">
+      <div className="flex items-center gap-6">
         {/* Logo */}
         <div className="flex items-center">
           <div className="bg-background p-1 rounded">
             <Image
               src="/LogoPolarBuy.png" 
               alt="PolarBuy Logo" 
-              width={200} 
-              height={80} 
+              width={140} 
+              height={56} 
               className="block"
               priority
             />

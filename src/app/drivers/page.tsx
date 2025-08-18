@@ -37,10 +37,10 @@ type BigCardProps = { icon: IconType; title: string; text: string; highlight?: b
 const BigCard = ({ icon: Icon, title, text, highlight }: BigCardProps) => (
   <div
     className={[
-      'rounded-lg p-6 md:p-8 border',
+      'rounded-lg p-6 md:p-8 border transition-all duration-300 transform hover:scale-105 cursor-pointer',
       highlight
-        ? 'bg-background/40 border-accent/30 shadow-[0_0_0_1px_rgba(252,163,17,0.25)]'
-        : 'bg-background/20 border-primary/10',
+        ? 'bg-background/40 border-accent/30 shadow-[0_0_0_1px_rgba(252,163,17,0.25)] hover:shadow-[0_0_0_2px_rgba(252,163,17,0.4)]'
+        : 'bg-background/20 border-primary/10 hover:border-accent/30 hover:bg-background/30',
     ].join(' ')}
   >
     <div className="flex items-center gap-3 mb-3">
@@ -122,44 +122,43 @@ const Drivers = () => {
       <Header ctaLabel="Cadastrar como Motorista" ctaHref={DRIVER_CTA_HREF} />
 
       <main>
-        {/* HERO */}
-        <Hero
-          title={
-            <>
-              Mais Corridas. <span className="text-accent">Mais Ganhos.</span>
-            </>
-          }
-          subtitle={
-            <>
-              A PolarChain™ conecta você à maior demanda da cidade com rotas otimizadas e pagamentos
-              confiáveis. <span className="font-semibold">Sem taxas escondidas. Sem tempo perdido.</span>
-            </>
-          }
-          primaryCta="Começar Agora"
-          primaryCtaHref={DRIVER_CTA_HREF}
-          secondaryCta="Ver Como Funciona"
-          secondaryCtaHref={DRIVER_DEMO_HREF}
-        />
-
-        {/* Headline lateral pedida + microprova */}
-        <section className="container mx-auto px-6 -mt-3">
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="md:col-span-2" />
-            <aside className="md:col-span-1">
-              <div className="bg-background/30 border border-accent/30 rounded-lg p-5">
-                <p className="text-accent font-extrabold text-lg leading-snug">
-                  TRANSFORME SEU CARRO E MOTO
-                  <br /> NUMA MÁQUINA DE VENDAS
-                </p>
-                <p className="text-primary/70 text-xs mt-2">
-                  <FaShieldAlt className="inline mr-1 -mt-0.5" />
-                  <strong>98%</strong> dos nossos motoristas relatam lucro maior usando rotas curtas e janelas de pico.*
-                </p>
-              </div>
+        {/* HERO PRINCIPAL - HEADLINE CORRIGIDA */}
+        <section className="container mx-auto px-6 py-16">
+          <div className="text-center max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              <span className="text-primary">TRANSFORME SEU CARRO E MOTO</span>
+              <br />
+              <span className="text-accent">NUMA MÁQUINA DE VENDAS</span>
+            </h1>
+            
+            <div className="bg-background/30 border border-accent/30 rounded-lg p-6 mb-8 max-w-2xl mx-auto">
+              <p className="text-accent font-extrabold text-lg leading-snug mb-3">
+                TRANSFORME SEU CARRO E MOTO
+                <br /> NUMA MÁQUINA DE VENDAS
+              </p>
+              <p className="text-primary/70 text-sm">
+                <FaShieldAlt className="inline mr-1 -mt-0.5" />
+                <strong>98%</strong> dos nossos motoristas relatam lucro maior usando rotas curtas e janelas de pico.*
+              </p>
               <p className="text-[11px] text-primary/40 mt-2">
                 *Dados internos/regionais — os resultados variam por área, horário e performance.
               </p>
-            </aside>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href={DRIVER_CTA_HREF}
+                className="bg-accent text-background font-bold py-4 px-8 rounded-lg hover:brightness-110 transition-all duration-300 transform hover:scale-105 text-lg"
+              >
+                Começar Agora →
+              </a>
+              <a
+                href={DRIVER_DEMO_HREF}
+                className="border border-accent/30 text-accent font-bold py-4 px-8 rounded-lg hover:bg-accent/10 transition-all duration-300 text-lg"
+              >
+                Ver Como Funciona
+              </a>
+            </div>
           </div>
         </section>
 
@@ -178,7 +177,7 @@ const Drivers = () => {
           </div>
         </section>
 
-        {/* 6 QUADROS (3 + 3) */}
+        {/* 6 QUADROS (3 + 3) - TODOS IGUAIS AGORA */}
         <section id="benefits" className="container mx-auto px-6 py-16">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold mb-2">
@@ -187,8 +186,8 @@ const Drivers = () => {
             <p className="text-lg text-primary/80 max-w-3xl mx-auto">
               Mais pedidos, rotas mais curtas e ganhos constantes.{' '}
               <span className="text-primary/70">
-                                  Você não precisa esperar o pedido &quot;ficar pronto&quot; nem rodar a cidade procurando cliente — o app
-                  coloca você **onde toca**.
+                Você não precisa esperar o pedido &quot;ficar pronto&quot; nem rodar a cidade procurando cliente — o app
+                coloca você **onde toca**.
               </span>
             </p>
           </div>
@@ -281,10 +280,6 @@ const Drivers = () => {
                   <u>porque</u> o app já traz convite, distribuição e repasse prontos.
                 </p>
               </div>
-
-              <p className="text-[11px] text-primary/40 mt-4">
-                Exemplos ilustrativos — use seus números reais por cidade/horário quando disponível.
-              </p>
             </div>
           </div>
         </section>

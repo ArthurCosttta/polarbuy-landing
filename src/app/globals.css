@@ -1,34 +1,31 @@
-/* Configuração de fontes - Arial como padrão */
+/* src/app/globals.css */
+
+/* Estas 3 linhas SÃO OBRIGATÓRIAS e devem vir primeiro. Elas ativam o Tailwind. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Configuração de fontes personalizadas */
+/* Agora sim, suas personalizações */
 @layer base {
   html {
-    font-family: 'Arial', sans-serif;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Arial', sans-serif; /* Define Arial como fonte padrão */
   }
 }
 
-/* Scrollbar personalizada simples */
+/* Scrollbar personalizada para um visual mais profissional */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1B263B;
+  background: #1B263B; /* Cor do "trilho" da barra de rolagem */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FCA311;
+  background: #FCA311; /* Cor da própria barra de rolagem */
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #FCA311;
-  opacity: 0.8;
+  background: #fca211c4; /* Um pouco mais transparente ao passar o mouse */
 }

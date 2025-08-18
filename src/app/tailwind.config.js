@@ -15,10 +15,6 @@ module.exports = {
         accent: '#FCA311',         // Amarelo vibrante para destaque
         card: '#1B263B',           // Um azul um pouco mais claro para cards
       },
-      fontFamily: {
-        // Removi as fontes customizadas por enquanto para simplificar.
-        // O Next.js já importa uma boa fonte padrão (Inter).
-      },
     },
   },
   plugins: [],

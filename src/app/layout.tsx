@@ -3,7 +3,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 // ESTA LINHA É A SOLUÇÃO! ELA APLICA OS ESTILOS DO TAILWIND
-import './globals.css' 
+import '../../globals.css' 
 
 const inter = Inter({ subsets: ['latin'] })
 

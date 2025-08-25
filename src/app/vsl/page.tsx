@@ -14,7 +14,7 @@ export default function VSLPage() {
         <div className="max-w-4xl mx-auto text-center">
           {/* Headline */}
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-accent">
-            Como um Motorista Comum Descobriu um 'Hack' Dentro do Nosso App para Multiplicar Seus Ganhos em 30 Dias (Sem Trabalhar Mais Horas)
+            Como um Motorista Comum Descobriu um &apos;Hack&apos; Dentro do Nosso App para Multiplicar Seus Ganhos em 30 Dias (Sem Trabalhar Mais Horas)
           </h1>
           
           {/* Sub-headline */}
@@ -113,7 +113,7 @@ export default function VSLPage() {
                 </div>
               </div>
               <p className="text-primary/90 leading-relaxed">
-                "Aumentei meus ganhos em 3x em apenas 3 semanas usando o método. É incrível como algo tão simples pode fazer tanta diferença!"
+                &ldquo;Aumentei meus ganhos em 3x em apenas 3 semanas usando o método. É incrível como algo tão simples pode fazer tanta diferença!&rdquo;
               </p>
             </div>
             
@@ -129,7 +129,7 @@ export default function VSLPage() {
                 </div>
               </div>
               <p className="text-primary/90 leading-relaxed">
-                "Nunca imaginei que conseguiria dobrar minha renda sem trabalhar mais horas. O PolarBuy mudou minha vida completamente!"
+                &ldquo;Nunca imaginei que conseguiria dobrar minha renda sem trabalhar mais horas. O PolarBuy mudou minha vida completamente!&rdquo;
               </p>
             </div>
             
@@ -145,7 +145,7 @@ export default function VSLPage() {
                 </div>
               </div>
               <p className="text-primary/90 leading-relaxed">
-                "Em 30 dias, consegui pagar todas as minhas contas e ainda guardar dinheiro. O método é realmente revolucionário!"
+                &ldquo;Em 30 dias, consegui pagar todas as minhas contas e ainda guardar dinheiro. O método é realmente revolucionário!&rdquo;
               </p>
             </div>
           </div>

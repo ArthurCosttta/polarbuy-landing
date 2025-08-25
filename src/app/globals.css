@@ -1,0 +1,38 @@
+/* src/app/globals.css */
+
+/* Estas 3 linhas SÃO OBRIGATÓRIAS e devem vir primeiro. Elas ativam o Tailwind. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Agora sim, suas personalizações */
+@layer base {
+  html {
+    font-family: 'Arial', sans-serif; /* Define Arial como fonte padrão */
+  }
+}
+
+/* Adicionando a cor card que estava sendo usada */
+@layer utilities {
+  .bg-card {
+    background-color: #1B263B;
+  }
+}Q
+
+/* Scrollbar personalizada para um visual mais profissional */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1B263B; /* Cor do "trilho" da barra de rolagem */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FCA311; /* Cor da própria barra de rolagem */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #fca211c4; /* Um pouco mais transparente ao passar o mouse */
+}

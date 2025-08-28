@@ -352,13 +352,13 @@ export default function SkinQuizPage() {
                   ))}
                 </div>
               ) : (
-                // Layout com cards clicáveis
-                <div className="grid grid-cols-1 gap-4">
+                // Layout com cards clicáveis em grid 2x2
+                <div className="grid grid-cols-2 gap-4">
                   {(questions[currentQuestion].options as CardOption[]).map((option) => (
                     <div
                       key={option.value}
                       onClick={() => handleAnswer(questions[currentQuestion].id, option.value)}
-                      className={`p-6 border-2 rounded-xl cursor-pointer transition-all transform hover:scale-105 ${
+                      className={`p-4 border-2 rounded-xl cursor-pointer transition-all transform hover:scale-105 ${
                         questions[currentQuestion].type === 'checkbox' 
                           ? (answers[questions[currentQuestion].id as keyof Quiz] as string[])?.includes(option.value)
                             ? 'border-purple-500 bg-purple-50 shadow-lg'
@@ -368,11 +368,9 @@ export default function SkinQuizPage() {
                             : `${option.color} hover:border-purple-300`
                       }`}
                     >
-                      <div className="flex items-center justify-center mb-3">
-                        <span className="text-4xl">{option.emoji}</span>
-                      </div>
-                      <div className="text-center">
-                        <h4 className="font-semibold text-gray-800 text-lg">{option.label}</h4>
+                      <div className="flex flex-col items-center justify-center text-center">
+                        <span className="text-3xl mb-2">{option.emoji}</span>
+                        <h4 className="font-semibold text-gray-800 text-sm leading-tight">{option.label}</h4>
                       </div>
                     </div>
                   ))}
@@ -463,34 +461,63 @@ export default function SkinQuizPage() {
 
         {step === 'result' && resultado && (
           <div className="space-y-6">
-            {photo && (
-              <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
-                <div className="w-24 h-24 rounded-full border-4 border-purple-100 overflow-hidden mx-auto">
-                  <Image 
-                    src={photo} 
-                    alt="preview" 
-                    width={96}
-                    height={96}
-                    className="w-full h-full object-cover"
-                  />
+            {/* Header da Landing Page */}
+            <div className="bg-gradient-to-r from-purple-600 to-purple-800 rounded-2xl shadow-lg p-8 text-center text-white">
+              <div className="mb-4">
+                <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">✨</span>
                 </div>
+                <h1 className="text-3xl font-bold mb-2">
+                  Plano Personalizado
+                </h1>
+                <p className="text-purple-100 text-lg">
+                  Criado especialmente para você
+                </p>
               </div>
-            )}
-            
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
-                Seu Plano Personalizado
+              
+              {photo && (
+                <div className="mb-6">
+                  <div className="w-24 h-24 rounded-full border-4 border-white border-opacity-30 overflow-hidden mx-auto">
+                    <Image 
+                      src={photo} 
+                      alt="preview" 
+                      width={96}
+                      height={96}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Nome do Produto */}
+            <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                🧴 **Rotina da Pele Premium**
               </h2>
-              <p className="text-gray-600 text-center mb-6">
-                Baseado na sua análise e respostas
+              <p className="text-gray-600 mb-4">
+                Sua solução personalizada para uma pele mais saudável e radiante
               </p>
+              <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4">
+                <p className="text-purple-800 font-semibold">
+                  ✨ Baseado na sua análise personalizada ✨
+                </p>
+              </div>
+            </div>
+            
+            {/* Análise Personalizada */}
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+              <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">
+                📋 Sua Análise Personalizada
+              </h3>
               
               <div className="bg-purple-50 rounded-xl p-4 mb-6">
                 <p className="text-gray-800 text-sm leading-relaxed">{resultado.texto}</p>
               </div>
 
+              {/* Rotina Sugerida */}
               <div className="bg-gray-50 rounded-xl p-4">
-                <h3 className="font-semibold text-gray-800 mb-3 text-center">Rotina Sugerida</h3>
+                <h4 className="font-semibold text-gray-800 mb-3 text-center">🕐 Rotina Sugerida</h4>
                 <div className="space-y-3">
                   <div className="flex items-center">
                     <span className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
@@ -512,8 +539,24 @@ export default function SkinQuizPage() {
                   </div>
                 </div>
               </div>
+            </div>
 
-              <p className="text-xs text-gray-500 text-center mt-6">
+            {/* Call to Action */}
+            <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-2xl shadow-lg p-6 text-center text-white">
+              <h3 className="text-xl font-bold mb-3">
+                🚀 Comece Sua Transformação Hoje!
+              </h3>
+              <p className="text-green-100 mb-4">
+                Aproveite esta análise personalizada e transforme sua pele
+              </p>
+              <button className="bg-white text-green-600 font-bold py-3 px-8 rounded-xl hover:bg-green-50 transition-colors transform hover:scale-105">
+                Quero Meu Plano Completo
+              </button>
+            </div>
+
+            {/* Disclaimer */}
+            <div className="bg-white rounded-2xl shadow-lg p-4 text-center">
+              <p className="text-xs text-gray-500">
                 * Análise cosmética e educacional. Não substitui avaliação médica.
               </p>
             </div>

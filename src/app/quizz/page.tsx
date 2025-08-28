@@ -1,17 +1,23 @@
 'use client';
 
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import Image from 'next/image';
 
-const QuizSchema = z.object({
-  faixa: z.enum(['<25','25-34','35-44','45-54','55+']),
-  foco: z.array(z.enum(['flacidez','ressecada','rugas','murcha','manchas'])).min(1),
-  tipo: z.enum(['oleosa','seca','mista','sensível']),
-  rotina: z.enum(['nenhuma','básica','completa']),
-  objetivo: z.enum(['rugas','firmeza','hidratação','luminosidade']),
-});
-type Quiz = z.infer<typeof QuizSchema>;
+const QuizSchema = {
+  faixa: ['<25','25-34','35-44','45-54','55+'] as const,
+  foco: ['flacidez','ressecada','rugas','murcha','manchas'] as const,
+  tipo: ['oleosa','seca','mista','sensível'] as const,
+  rotina: ['nenhuma','básica','completa'] as const,
+  objetivo: ['rugas','firmeza','hidratação','luminosidade'] as const,
+};
+
+type Quiz = {
+  faixa: typeof QuizSchema.faixa[number];
+  foco: typeof QuizSchema.foco[number][];
+  tipo: typeof QuizSchema.tipo[number];
+  rotina: typeof QuizSchema.rotina[number];
+  objetivo: typeof QuizSchema.objetivo[number];
+};
 
 // Interfaces para as opções
 interface TextOption {
@@ -41,10 +47,6 @@ export default function SkinQuizPage() {
   const [photo, setPhoto] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Partial<Quiz>>({});
   const [analysisProgress, setAnalysisProgress] = useState(0);
-
-  const { register, handleSubmit, formState:{ errors } } = useForm<Quiz>({
-    defaultValues: { rotina:'nenhuma' }
-  });
 
   const questions: Question[] = [
     {
@@ -122,12 +124,12 @@ export default function SkinQuizPage() {
     reader.readAsDataURL(f);
   }
 
-  function handleAnswer(questionId: string, value: any) {
+  function handleAnswer(questionId: string, value: string) {
     if (questionId === 'foco') {
       const currentFoco = answers.foco || [];
-      const newFoco = currentFoco.includes(value) 
+      const newFoco = currentFoco.includes(value as Quiz['foco'][0]) 
         ? currentFoco.filter(v => v !== value)
-        : [...currentFoco, value];
+        : [...currentFoco, value as Quiz['foco'][0]];
       setAnswers({ ...answers, [questionId]: newFoco });
     } else {
       setAnswers({ ...answers, [questionId]: value });
@@ -172,7 +174,7 @@ export default function SkinQuizPage() {
   function canProceed() {
     const currentQ = questions[currentQuestion];
     if (currentQ.type === 'checkbox') {
-      return answers[currentQ.id as keyof Quiz] && (answers[currentQ.id as keyof Quiz] as any[])?.length > 0;
+      return answers[currentQ.id as keyof Quiz] && (answers[currentQ.id as keyof Quiz] as string[])?.length > 0;
     }
     return answers[currentQ.id as keyof Quiz];
   }
@@ -263,7 +265,15 @@ export default function SkinQuizPage() {
           <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
             {photo && (
               <div className="mb-6">
-                <img src={photo} alt="preview" className="w-32 h-32 rounded-full object-cover mx-auto border-4 border-purple-100" />
+                <div className="w-32 h-32 rounded-full border-4 border-purple-100 overflow-hidden mx-auto">
+                  <Image 
+                    src={photo} 
+                    alt="preview" 
+                    width={128}
+                    height={128}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             )}
             <div className="animate-pulse">
@@ -301,7 +311,15 @@ export default function SkinQuizPage() {
             {/* Photo preview */}
             {photo && (
               <div className="text-center mb-6">
-                <img src={photo} alt="preview" className="w-20 h-20 rounded-full object-cover mx-auto border-4 border-purple-100" />
+                <div className="w-20 h-20 rounded-full border-4 border-purple-100 overflow-hidden mx-auto">
+                  <Image 
+                    src={photo} 
+                    alt="preview" 
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             )}
 
@@ -322,7 +340,7 @@ export default function SkinQuizPage() {
                         value={option.value} 
                         checked={
                           questions[currentQuestion].type === 'checkbox' 
-                            ? (answers[questions[currentQuestion].id as keyof Quiz] as any[])?.includes(option.value)
+                            ? (answers[questions[currentQuestion].id as keyof Quiz] as string[])?.includes(option.value)
                             : answers[questions[currentQuestion].id as keyof Quiz] === option.value
                         }
                         onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
@@ -342,7 +360,7 @@ export default function SkinQuizPage() {
                       onClick={() => handleAnswer(questions[currentQuestion].id, option.value)}
                       className={`p-6 border-2 rounded-xl cursor-pointer transition-all transform hover:scale-105 ${
                         questions[currentQuestion].type === 'checkbox' 
-                          ? (answers[questions[currentQuestion].id as keyof Quiz] as any[])?.includes(option.value)
+                          ? (answers[questions[currentQuestion].id as keyof Quiz] as string[])?.includes(option.value)
                             ? 'border-purple-500 bg-purple-50 shadow-lg'
                             : `${option.color} hover:border-purple-300`
                           : answers[questions[currentQuestion].id as keyof Quiz] === option.value
@@ -413,7 +431,15 @@ export default function SkinQuizPage() {
             {/* Photo preview */}
             {photo && (
               <div className="mb-6">
-                <img src={photo} alt="preview" className="w-32 h-32 rounded-full object-cover mx-auto border-4 border-green-100" />
+                <div className="w-32 h-32 rounded-full border-4 border-green-100 overflow-hidden mx-auto">
+                  <Image 
+                    src={photo} 
+                    alt="preview" 
+                    width={128}
+                    height={128}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             )}
 
@@ -439,7 +465,15 @@ export default function SkinQuizPage() {
           <div className="space-y-6">
             {photo && (
               <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
-                <img src={photo} alt="preview" className="w-24 h-24 rounded-full object-cover mx-auto border-4 border-purple-100" />
+                <div className="w-24 h-24 rounded-full border-4 border-purple-100 overflow-hidden mx-auto">
+                  <Image 
+                    src={photo} 
+                    alt="preview" 
+                    width={96}
+                    height={96}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             )}
             

@@ -19,7 +19,7 @@ export default function SkinQuizPage() {
   const [answers, setAnswers] = useState<Quiz | null>(null);
 
   const { register, handleSubmit, formState:{ errors } } = useForm<Quiz>({
-    defaultValues: { rotina:'nenhuma' } as any
+    defaultValues: { rotina:'nenhuma' }
   });
 
   function onPhoto(e: React.ChangeEvent<HTMLInputElement>) {

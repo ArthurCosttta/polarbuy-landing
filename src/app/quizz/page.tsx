@@ -231,7 +231,7 @@ export default function SkinQuizPage() {
           </p>
         </div>
 
-        {step === 'upload' && (
+      {step === 'upload' && (
           <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
             <div className="mb-6">
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -258,10 +258,10 @@ export default function SkinQuizPage() {
                 Enviar Foto
               </div>
             </label>
-          </div>
-        )}
+        </div>
+      )}
 
-        {step === 'loading' && (
+      {step === 'loading' && (
           <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
             {photo && (
               <div className="mb-6">
@@ -289,10 +289,10 @@ export default function SkinQuizPage() {
                 Enquanto isso, responda algumas perguntas rápidas
               </p>
             </div>
-          </div>
-        )}
+        </div>
+      )}
 
-        {step === 'quiz' && (
+      {step === 'quiz' && (
           <div className="bg-white rounded-2xl shadow-lg p-8">
             {/* Progress bar */}
             <div className="mb-6">
@@ -306,7 +306,7 @@ export default function SkinQuizPage() {
                   style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
                 ></div>
               </div>
-            </div>
+          </div>
 
             {/* Photo preview */}
             {photo && (
@@ -348,8 +348,8 @@ export default function SkinQuizPage() {
                       />
                       <span className="text-lg mr-3">{option.emoji}</span>
                       <span className="font-medium text-gray-700">{option.label}</span>
-                    </label>
-                  ))}
+              </label>
+            ))}
                 </div>
               ) : (
                 // Layout com cards clicáveis em grid 2x2
@@ -376,7 +376,7 @@ export default function SkinQuizPage() {
                   ))}
                 </div>
               )}
-            </div>
+          </div>
 
             {/* Navigation buttons - só aparecem para layout de texto */}
             {questions[currentQuestion].layout === 'text' && (
@@ -441,14 +441,22 @@ export default function SkinQuizPage() {
               </div>
             )}
 
-            {/* Analysis text */}
+            {/* Analysis text - mais conversacional */}
             <div className="mb-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-2">
-                Analisando...
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                Sua análise está quase pronta! ✨
               </h2>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Estamos analisando suas respostas para criar o melhor plano de cuidados para você. 
-                Ao final, você poderá obter um plano detalhado, ajustado às suas necessidades.
+              
+              {/* Bullets conversacionais */}
+              <ul className="text-gray-600 text-lg mb-6 list-disc list-inside text-left mx-auto max-w-xs space-y-2">
+                <li>Seu rosto é muito bonito...</li>
+                <li>Estamos identificando os pontos chave</li>
+                <li>Quase lá para a sua receita personalizada!</li>
+              </ul>
+
+              {/* Mensagem personalizada */}
+              <p className="text-gray-700 text-base mb-4 leading-relaxed">
+                Identificamos o principal problema, estamos apenas fazendo os últimos ajustes para te dar a melhor receita.
               </p>
             </div>
 
@@ -459,7 +467,7 @@ export default function SkinQuizPage() {
           </div>
         )}
 
-        {step === 'result' && resultado && (
+      {step === 'result' && resultado && (
           <div className="space-y-6">
             {/* Header da Landing Page */}
             <div className="bg-gradient-to-r from-purple-600 to-purple-800 rounded-2xl shadow-lg p-8 text-center text-white">
@@ -552,16 +560,16 @@ export default function SkinQuizPage() {
               <button className="bg-white text-green-600 font-bold py-3 px-8 rounded-xl hover:bg-green-50 transition-colors transform hover:scale-105">
                 Quero Meu Plano Completo
               </button>
-            </div>
+          </div>
 
             {/* Disclaimer */}
             <div className="bg-white rounded-2xl shadow-lg p-4 text-center">
               <p className="text-xs text-gray-500">
-                * Análise cosmética e educacional. Não substitui avaliação médica.
-              </p>
+            * Análise cosmética e educacional. Não substitui avaliação médica.
+          </p>
             </div>
-          </div>
-        )}
+        </div>
+      )}
       </div>
     </main>
   );

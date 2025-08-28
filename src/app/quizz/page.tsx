@@ -6,7 +6,7 @@ import { z } from 'zod';
 
 const QuizSchema = z.object({
   faixa: z.enum(['<25','25-34','35-44','45-54','55+']),
-  foco: z.array(z.enum(['testa','olhos','boca','pescoço'])).min(1),
+  foco: z.array(z.enum(['flacidez','ressecada','rugas','murcha','manchas'])).min(1),
   tipo: z.enum(['oleosa','seca','mista','sensível']),
   rotina: z.enum(['nenhuma','básica','completa']),
   objetivo: z.enum(['rugas','firmeza','hidratação','luminosidade']),
@@ -15,12 +15,72 @@ type Quiz = z.infer<typeof QuizSchema>;
 
 export default function SkinQuizPage() {
   const [step, setStep] = useState<'upload'|'loading'|'quiz'|'result'>('upload');
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [photo, setPhoto] = useState<string | null>(null);
-  const [answers, setAnswers] = useState<Quiz | null>(null);
+  const [answers, setAnswers] = useState<Partial<Quiz>>({});
 
   const { register, handleSubmit, formState:{ errors } } = useForm<Quiz>({
     defaultValues: { rotina:'nenhuma' }
   });
+
+  const questions = [
+    {
+      id: 'faixa',
+      title: 'Qual é a sua faixa etária?',
+      type: 'radio',
+      options: [
+        { value: '<25', label: '18 a 25', emoji: '👶' },
+        { value: '25-34', label: '26 a 35', emoji: '👨‍💼' },
+        { value: '35-44', label: '36 a 45', emoji: '👩‍💼' },
+        { value: '45-54', label: '46 a 55', emoji: '👨‍🦳' },
+        { value: '55+', label: '55+', emoji: '👴' }
+      ]
+    },
+    {
+      id: 'foco',
+      title: 'O que mais te incomoda em sua pele atualmente?',
+      type: 'checkbox',
+      options: [
+        { value: 'flacidez', label: 'Flacidez', emoji: '😔' },
+        { value: 'ressecada', label: 'Pele ressecada, sem vida', emoji: '🌵' },
+        { value: 'rugas', label: 'Rugas', emoji: '👴' },
+        { value: 'murcha', label: 'Pele murcha', emoji: '🥀' },
+        { value: 'manchas', label: 'Manchas', emoji: '🔴' }
+      ]
+    },
+    {
+      id: 'tipo',
+      title: 'Qual é o seu tipo de pele?',
+      type: 'radio',
+      options: [
+        { value: 'oleosa', label: 'Oleosa', emoji: '💧' },
+        { value: 'seca', label: 'Seca', emoji: '🏜️' },
+        { value: 'mista', label: 'Mista', emoji: '⚖️' },
+        { value: 'sensível', label: 'Sensível', emoji: '🥺' }
+      ]
+    },
+    {
+      id: 'rotina',
+      title: 'Você já tem alguma rotina de cuidados?',
+      type: 'radio',
+      options: [
+        { value: 'nenhuma', label: 'Nenhuma', emoji: '❌' },
+        { value: 'básica', label: 'Básica', emoji: '🧴' },
+        { value: 'completa', label: 'Completa', emoji: '✨' }
+      ]
+    },
+    {
+      id: 'objetivo',
+      title: 'Qual é o seu principal objetivo?',
+      type: 'radio',
+      options: [
+        { value: 'rugas', label: 'Reduzir rugas', emoji: '👵' },
+        { value: 'firmeza', label: 'Firmeza', emoji: '💪' },
+        { value: 'hidratação', label: 'Hidratação', emoji: '💧' },
+        { value: 'luminosidade', label: 'Luminosidade', emoji: '✨' }
+      ]
+    }
+  ];
 
   function onPhoto(e: React.ChangeEvent<HTMLInputElement>) {
     const f = e.target.files?.[0];
@@ -34,11 +94,39 @@ export default function SkinQuizPage() {
     reader.readAsDataURL(f);
   }
 
-  function onSubmit(data: Quiz) {
-    const parsed = QuizSchema.safeParse(data);
-    if (!parsed.success) return;
-    setAnswers(parsed.data);
-    setStep('result');
+  function handleAnswer(questionId: string, value: any) {
+    if (questionId === 'foco') {
+      const currentFoco = answers.foco || [];
+      const newFoco = currentFoco.includes(value) 
+        ? currentFoco.filter(v => v !== value)
+        : [...currentFoco, value];
+      setAnswers({ ...answers, [questionId]: newFoco });
+    } else {
+      setAnswers({ ...answers, [questionId]: value });
+    }
+  }
+
+  function nextQuestion() {
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+    } else {
+      // Todas as perguntas respondidas, mostrar resultado
+      setStep('result');
+    }
+  }
+
+  function previousQuestion() {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+    }
+  }
+
+  function canProceed() {
+    const currentQ = questions[currentQuestion];
+    if (currentQ.type === 'checkbox') {
+      return answers[currentQ.id as keyof Quiz] && (answers[currentQ.id as keyof Quiz] as any[])?.length > 0;
+    }
+    return answers[currentQ.id as keyof Quiz];
   }
 
   function gerarFeedback(a: Quiz) {
@@ -50,10 +138,11 @@ export default function SkinQuizPage() {
       blocos.push('Em faixas mais jovens, foque em barreira e fotoproteção para retardar linhas futuras.');
     }
 
-    if (a.foco.includes('olhos')) blocos.push('Olhos: pele fina → hidratação + peptídeos; retinoide com cautela.');
-    if (a.foco.includes('testa')) blocos.push('Testa: linhas dinâmicas respondem bem a retinoide à noite e Vit C pela manhã.');
-    if (a.foco.includes('boca')) blocos.push('Lábios/sulco: hidratação oclusiva noturna e ativos firmadores ajudam na aparência.');
-    if (a.foco.includes('pescoço')) blocos.push('Pescoço: introdução gradual dos mesmos ativos do rosto, por ser área sensível.');
+    if (a.foco.includes('flacidez')) blocos.push('Flacidez: peptídeos e retinoide ajudam na firmeza.');
+    if (a.foco.includes('ressecada')) blocos.push('Pele ressecada: ceramidas e ácido hialurônico são essenciais.');
+    if (a.foco.includes('rugas')) blocos.push('Rugas: retinoide noturno + antioxidante pela manhã.');
+    if (a.foco.includes('murcha')) blocos.push('Pele murcha: hidratação profunda e ativos firmadores.');
+    if (a.foco.includes('manchas')) blocos.push('Manchas: Vitamina C e fotoproteção rigorosa.');
 
     const tipo = {
       oleosa: 'Textura/brilho: texturas leves e esfoliação química suave 1x/semana.',
@@ -77,7 +166,7 @@ export default function SkinQuizPage() {
     return { texto: blocos.join(' '), plano: { AM, PM, Semanal: ['Máscara hidratante 1–2x', a.tipo!=='sensível' ? 'Esfoliação química leve 1x' : '—'] } };
   }
 
-  const resultado = answers ? gerarFeedback(answers) : null;
+  const resultado = step === 'result' && answers ? gerarFeedback(answers as Quiz) : null;
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
@@ -146,59 +235,46 @@ export default function SkinQuizPage() {
         )}
 
         {step === 'quiz' && (
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            {photo && (
-              <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
-                <img src={photo} alt="preview" className="w-24 h-24 rounded-full object-cover mx-auto border-4 border-purple-100" />
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            {/* Progress bar */}
+            <div className="mb-6">
+              <div className="flex justify-between text-sm text-gray-600 mb-2">
+                <span>Pergunta {currentQuestion + 1} de {questions.length}</span>
+                <span>{Math.round(((currentQuestion + 1) / questions.length) * 100)}%</span>
               </div>
-            )}
-
-            {/* Faixa etária */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
-                Qual é a sua faixa etária?
-              </h3>
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { value: '<25', label: '18 a 25' },
-                  { value: '25-34', label: '26 a 35' },
-                  { value: '35-44', label: '36 a 45' },
-                  { value: '45-54', label: '46 a 55' },
-                  { value: '55+', label: '55+' }
-                ].map((option) => (
-                  <label key={option.value} className="relative">
-                    <input 
-                      type="radio" 
-                      value={option.value} 
-                      {...register('faixa')} 
-                      className="sr-only" 
-                    />
-                    <div className="w-full p-4 border-2 border-gray-200 rounded-xl text-center cursor-pointer transition-all hover:border-purple-300 peer-checked:border-purple-600 peer-checked:bg-purple-50">
-                      <span className="font-medium text-gray-700">{option.label}</span>
-                    </div>
-                  </label>
-                ))}
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div 
+                  className="bg-purple-600 h-2 rounded-full transition-all duration-300" 
+                  style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
+                ></div>
               </div>
             </div>
 
-            {/* Áreas de incômodo */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
-                O que mais te incomoda em sua pele atualmente?
+            {/* Photo preview */}
+            {photo && (
+              <div className="text-center mb-6">
+                <img src={photo} alt="preview" className="w-20 h-20 rounded-full object-cover mx-auto border-4 border-purple-100" />
+              </div>
+            )}
+
+            {/* Current question */}
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold text-gray-800 mb-6 text-center">
+                {questions[currentQuestion].title}
               </h3>
+              
               <div className="space-y-3">
-                {[
-                  { value: 'flacidez', label: 'Flacidez', emoji: '😔' },
-                  { value: 'ressecada', label: 'Pele ressecada, sem vida', emoji: '🌵' },
-                  { value: 'rugas', label: 'Rugas', emoji: '👴' },
-                  { value: 'murcha', label: 'Pele murcha', emoji: '🥀' },
-                  { value: 'manchas', label: 'Manchas', emoji: '🔴' }
-                ].map((option) => (
+                {questions[currentQuestion].options.map((option) => (
                   <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
                     <input 
-                      type="checkbox" 
+                      type={questions[currentQuestion].type} 
                       value={option.value} 
-                      {...register('foco')} 
+                      checked={
+                        questions[currentQuestion].type === 'checkbox' 
+                          ? (answers[questions[currentQuestion].id as keyof Quiz] as any[])?.includes(option.value)
+                          : answers[questions[currentQuestion].id as keyof Quiz] === option.value
+                      }
+                      onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
                       className="mr-3 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500" 
                     />
                     <span className="text-lg mr-3">{option.emoji}</span>
@@ -206,93 +282,34 @@ export default function SkinQuizPage() {
                   </label>
                 ))}
               </div>
-              {errors.foco && <p className="text-red-500 text-sm mt-2">Selecione ao menos uma área.</p>}
             </div>
 
-            {/* Tipo de pele */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
-                Qual é o seu tipo de pele?
-              </h3>
-              <div className="space-y-3">
-                {[
-                  { value: 'oleosa', label: 'Oleosa', emoji: '💧' },
-                  { value: 'seca', label: 'Seca', emoji: '🏜️' },
-                  { value: 'mista', label: 'Mista', emoji: '⚖️' },
-                  { value: 'sensível', label: 'Sensível', emoji: '🥺' }
-                ].map((option) => (
-                  <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
-                    <input 
-                      type="radio" 
-                      value={option.value} 
-                      {...register('tipo')} 
-                      className="mr-3 w-5 h-5 text-purple-600 border-gray-300 focus:ring-purple-500" 
-                    />
-                    <span className="text-lg mr-3">{option.emoji}</span>
-                    <span className="font-medium text-gray-700">{option.label}</span>
-                  </label>
-                ))}
-              </div>
+            {/* Navigation buttons */}
+            <div className="flex gap-3">
+              {currentQuestion > 0 && (
+                <button 
+                  type="button"
+                  onClick={previousQuestion}
+                  className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-6 rounded-xl transition-colors"
+                >
+                  Voltar
+                </button>
+              )}
+              
+              <button 
+                type="button"
+                onClick={nextQuestion}
+                disabled={!canProceed()}
+                className={`flex-1 font-semibold py-3 px-6 rounded-xl transition-all ${
+                  canProceed() 
+                    ? 'bg-purple-600 hover:bg-purple-700 text-white transform hover:scale-105' 
+                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                }`}
+              >
+                {currentQuestion === questions.length - 1 ? 'Ver Resultado' : 'Continuar'}
+              </button>
             </div>
-
-            {/* Rotina atual */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
-                Você já tem alguma rotina de cuidados?
-              </h3>
-              <div className="space-y-3">
-                {[
-                  { value: 'nenhuma', label: 'Nenhuma', emoji: '❌' },
-                  { value: 'básica', label: 'Básica', emoji: '🧴' },
-                  { value: 'completa', label: 'Completa', emoji: '✨' }
-                ].map((option) => (
-                  <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
-                    <input 
-                      type="radio" 
-                      value={option.value} 
-                      {...register('rotina')} 
-                      className="mr-3 w-5 h-5 text-purple-600 border-gray-300 focus:ring-purple-500" 
-                    />
-                    <span className="text-lg mr-3">{option.emoji}</span>
-                    <span className="font-medium text-gray-700">{option.label}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* Objetivo principal */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
-                Qual é o seu principal objetivo?
-              </h3>
-              <div className="space-y-3">
-                {[
-                  { value: 'rugas', label: 'Reduzir rugas', emoji: '👵' },
-                  { value: 'firmeza', label: 'Firmeza', emoji: '💪' },
-                  { value: 'hidratação', label: 'Hidratação', emoji: '💧' },
-                  { value: 'luminosidade', label: 'Luminosidade', emoji: '✨' }
-                ].map((option) => (
-                  <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
-                    <input 
-                      type="radio" 
-                      value={option.value} 
-                      {...register('objetivo')} 
-                      className="mr-3 w-5 h-5 text-purple-600 border-gray-300 focus:ring-purple-500" 
-                    />
-                    <span className="text-lg mr-3">{option.emoji}</span>
-                    <span className="font-medium text-gray-700">{option.label}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <button 
-              type="submit" 
-              className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:scale-105 shadow-lg"
-            >
-              Ver Minha Recomendação
-            </button>
-          </form>
+          </div>
         )}
 
         {step === 'result' && resultado && (

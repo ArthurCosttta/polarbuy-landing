@@ -13,21 +13,45 @@ const QuizSchema = z.object({
 });
 type Quiz = z.infer<typeof QuizSchema>;
 
+// Interfaces para as opções
+interface TextOption {
+  value: string;
+  label: string;
+  emoji: string;
+}
+
+interface CardOption {
+  value: string;
+  label: string;
+  emoji: string;
+  color: string;
+}
+
+interface Question {
+  id: string;
+  title: string;
+  type: 'radio' | 'checkbox';
+  layout: 'text' | 'cards';
+  options: TextOption[] | CardOption[];
+}
+
 export default function SkinQuizPage() {
-  const [step, setStep] = useState<'upload'|'loading'|'quiz'|'result'>('upload');
+  const [step, setStep] = useState<'upload'|'loading'|'quiz'|'analyzing'|'result'>('upload');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [photo, setPhoto] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Partial<Quiz>>({});
+  const [analysisProgress, setAnalysisProgress] = useState(0);
 
   const { register, handleSubmit, formState:{ errors } } = useForm<Quiz>({
     defaultValues: { rotina:'nenhuma' }
   });
 
-  const questions = [
+  const questions: Question[] = [
     {
       id: 'faixa',
       title: 'Qual é a sua faixa etária?',
       type: 'radio',
+      layout: 'text', // Layout com texto e botão continuar
       options: [
         { value: '<25', label: '18 a 25', emoji: '👶' },
         { value: '25-34', label: '26 a 35', emoji: '👨‍💼' },
@@ -40,18 +64,20 @@ export default function SkinQuizPage() {
       id: 'foco',
       title: 'O que mais te incomoda em sua pele atualmente?',
       type: 'checkbox',
+      layout: 'cards', // Layout com cards clicáveis
       options: [
-        { value: 'flacidez', label: 'Flacidez', emoji: '😔' },
-        { value: 'ressecada', label: 'Pele ressecada, sem vida', emoji: '🌵' },
-        { value: 'rugas', label: 'Rugas', emoji: '👴' },
-        { value: 'murcha', label: 'Pele murcha', emoji: '🥀' },
-        { value: 'manchas', label: 'Manchas', emoji: '🔴' }
+        { value: 'flacidez', label: 'Flacidez', emoji: '😔', color: 'bg-blue-100 border-blue-300' },
+        { value: 'ressecada', label: 'Pele ressecada, sem vida', emoji: '🌵', color: 'bg-green-100 border-green-300' },
+        { value: 'rugas', label: 'Rugas', emoji: '👴', color: 'bg-purple-100 border-purple-300' },
+        { value: 'murcha', label: 'Pele murcha', emoji: '🥀', color: 'bg-pink-100 border-pink-300' },
+        { value: 'manchas', label: 'Manchas', emoji: '🔴', color: 'bg-red-100 border-red-300' }
       ]
     },
     {
       id: 'tipo',
       title: 'Qual é o seu tipo de pele?',
       type: 'radio',
+      layout: 'text', // Layout com texto e botão continuar
       options: [
         { value: 'oleosa', label: 'Oleosa', emoji: '💧' },
         { value: 'seca', label: 'Seca', emoji: '🏜️' },
@@ -63,16 +89,18 @@ export default function SkinQuizPage() {
       id: 'rotina',
       title: 'Você já tem alguma rotina de cuidados?',
       type: 'radio',
+      layout: 'cards', // Layout com cards clicáveis
       options: [
-        { value: 'nenhuma', label: 'Nenhuma', emoji: '❌' },
-        { value: 'básica', label: 'Básica', emoji: '🧴' },
-        { value: 'completa', label: 'Completa', emoji: '✨' }
+        { value: 'nenhuma', label: 'Nenhuma', emoji: '❌', color: 'bg-gray-100 border-gray-300' },
+        { value: 'básica', label: 'Básica', emoji: '🧴', color: 'bg-blue-100 border-blue-300' },
+        { value: 'completa', label: 'Completa', emoji: '✨', color: 'bg-yellow-100 border-yellow-300' }
       ]
     },
     {
       id: 'objetivo',
       title: 'Qual é o seu principal objetivo?',
       type: 'radio',
+      layout: 'text', // Layout com texto e botão continuar
       options: [
         { value: 'rugas', label: 'Reduzir rugas', emoji: '👵' },
         { value: 'firmeza', label: 'Firmeza', emoji: '💪' },
@@ -104,15 +132,35 @@ export default function SkinQuizPage() {
     } else {
       setAnswers({ ...answers, [questionId]: value });
     }
+
+    // Se for layout de cards, vai direto para próxima pergunta
+    const currentQ = questions[currentQuestion];
+    if (currentQ.layout === 'cards') {
+      setTimeout(() => nextQuestion(), 300); // Pequeno delay para feedback visual
+    }
   }
 
   function nextQuestion() {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      // Todas as perguntas respondidas, mostrar resultado
-      setStep('result');
+      // Todas as perguntas respondidas, mostrar análise final
+      setStep('analyzing');
+      startFinalAnalysis();
     }
+  }
+
+  function startFinalAnalysis() {
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += Math.random() * 15 + 5; // Incremento variável para parecer mais real
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(interval);
+        setTimeout(() => setStep('result'), 1000);
+      }
+      setAnalysisProgress(Math.min(progress, 100));
+    }, 200);
   }
 
   function previousQuestion() {
@@ -263,51 +311,126 @@ export default function SkinQuizPage() {
                 {questions[currentQuestion].title}
               </h3>
               
-              <div className="space-y-3">
-                {questions[currentQuestion].options.map((option) => (
-                  <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
-                    <input 
-                      type={questions[currentQuestion].type} 
-                      value={option.value} 
-                      checked={
+              {/* Layout baseado no tipo de pergunta */}
+              {questions[currentQuestion].layout === 'text' ? (
+                // Layout com texto e botão continuar
+                <div className="space-y-3">
+                  {questions[currentQuestion].options.map((option) => (
+                    <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
+                      <input 
+                        type={questions[currentQuestion].type} 
+                        value={option.value} 
+                        checked={
+                          questions[currentQuestion].type === 'checkbox' 
+                            ? (answers[questions[currentQuestion].id as keyof Quiz] as any[])?.includes(option.value)
+                            : answers[questions[currentQuestion].id as keyof Quiz] === option.value
+                        }
+                        onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
+                        className="mr-3 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500" 
+                      />
+                      <span className="text-lg mr-3">{option.emoji}</span>
+                      <span className="font-medium text-gray-700">{option.label}</span>
+                    </label>
+                  ))}
+                </div>
+              ) : (
+                // Layout com cards clicáveis
+                <div className="grid grid-cols-1 gap-4">
+                  {(questions[currentQuestion].options as CardOption[]).map((option) => (
+                    <div
+                      key={option.value}
+                      onClick={() => handleAnswer(questions[currentQuestion].id, option.value)}
+                      className={`p-6 border-2 rounded-xl cursor-pointer transition-all transform hover:scale-105 ${
                         questions[currentQuestion].type === 'checkbox' 
                           ? (answers[questions[currentQuestion].id as keyof Quiz] as any[])?.includes(option.value)
+                            ? 'border-purple-500 bg-purple-50 shadow-lg'
+                            : `${option.color} hover:border-purple-300`
                           : answers[questions[currentQuestion].id as keyof Quiz] === option.value
-                      }
-                      onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
-                      className="mr-3 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500" 
-                    />
-                    <span className="text-lg mr-3">{option.emoji}</span>
-                    <span className="font-medium text-gray-700">{option.label}</span>
-                  </label>
-                ))}
+                            ? 'border-purple-500 bg-purple-50 shadow-lg'
+                            : `${option.color} hover:border-purple-300`
+                      }`}
+                    >
+                      <div className="flex items-center justify-center mb-3">
+                        <span className="text-4xl">{option.emoji}</span>
+                      </div>
+                      <div className="text-center">
+                        <h4 className="font-semibold text-gray-800 text-lg">{option.label}</h4>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Navigation buttons - só aparecem para layout de texto */}
+            {questions[currentQuestion].layout === 'text' && (
+              <div className="flex gap-3">
+                {currentQuestion > 0 && (
+                  <button 
+                    type="button"
+                    onClick={previousQuestion}
+                    className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-6 rounded-xl transition-colors"
+                  >
+                    Voltar
+                  </button>
+                )}
+                
+                <button 
+                  type="button"
+                  onClick={nextQuestion}
+                  disabled={!canProceed()}
+                  className={`flex-1 font-semibold py-3 px-6 rounded-xl transition-all ${
+                    canProceed() 
+                      ? 'bg-purple-600 hover:bg-purple-700 text-white transform hover:scale-105' 
+                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  }`}
+                >
+                  {currentQuestion === questions.length - 1 ? 'Ver Resultado' : 'Continuar'}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+
+        {step === 'analyzing' && (
+          <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
+            {/* Progress bar */}
+            <div className="mb-8">
+              <div className="w-full bg-gray-200 rounded-full h-3 mb-4">
+                <div 
+                  className="bg-green-500 h-3 rounded-full transition-all duration-300 flex items-center justify-center" 
+                  style={{ width: `${analysisProgress}%` }}
+                >
+                  {analysisProgress >= 15 && (
+                    <span className="text-white text-sm font-semibold">
+                      {Math.round(analysisProgress)}%
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
 
-            {/* Navigation buttons */}
-            <div className="flex gap-3">
-              {currentQuestion > 0 && (
-                <button 
-                  type="button"
-                  onClick={previousQuestion}
-                  className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-6 rounded-xl transition-colors"
-                >
-                  Voltar
-                </button>
-              )}
-              
-              <button 
-                type="button"
-                onClick={nextQuestion}
-                disabled={!canProceed()}
-                className={`flex-1 font-semibold py-3 px-6 rounded-xl transition-all ${
-                  canProceed() 
-                    ? 'bg-purple-600 hover:bg-purple-700 text-white transform hover:scale-105' 
-                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                }`}
-              >
-                {currentQuestion === questions.length - 1 ? 'Ver Resultado' : 'Continuar'}
-              </button>
+            {/* Photo preview */}
+            {photo && (
+              <div className="mb-6">
+                <img src={photo} alt="preview" className="w-32 h-32 rounded-full object-cover mx-auto border-4 border-green-100" />
+              </div>
+            )}
+
+            {/* Analysis text */}
+            <div className="mb-6">
+              <h2 className="text-xl font-semibold text-gray-800 mb-2">
+                Analisando...
+              </h2>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Estamos analisando suas respostas para criar o melhor plano de cuidados para você. 
+                Ao final, você poderá obter um plano detalhado, ajustado às suas necessidades.
+              </p>
+            </div>
+
+            {/* Loading animation */}
+            <div className="flex justify-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"></div>
             </div>
           </div>
         )}

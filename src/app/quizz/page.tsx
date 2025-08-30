@@ -557,9 +557,14 @@ export default function SkinQuizPage() {
               <p className="text-green-100 mb-4">
                 Aproveite esta análise personalizada e transforme sua pele
               </p>
-              <button className="bg-white text-green-600 font-bold py-3 px-8 rounded-xl hover:bg-green-50 transition-colors transform hover:scale-105">
+              <a 
+                href="https://pay.kiwify.com.br/JnxC3LG" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block bg-white text-green-600 font-bold py-3 px-8 rounded-xl hover:bg-green-50 transition-colors transform hover:scale-105"
+              >
                 Quero Meu Plano Completo
-              </button>
+              </a>
           </div>
 
             {/* Disclaimer */}

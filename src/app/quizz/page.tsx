@@ -561,7 +561,11 @@ export default function SkinQuizPage() {
                 href="https://pay.kiwify.com.br/JnxC3LG" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-block bg-white text-green-600 font-bold py-3 px-8 rounded-xl hover:bg-green-50 transition-colors transform hover:scale-105"
+                onClick={() => {
+                  console.log('Checkout link clicked');
+                  window.open('https://pay.kiwify.com.br/JnxC3LG', '_blank');
+                }}
+                className="inline-block bg-white text-green-600 font-bold py-3 px-8 rounded-xl hover:bg-green-50 transition-colors transform hover:scale-105 cursor-pointer"
               >
                 Quero Meu Plano Completo
               </a>

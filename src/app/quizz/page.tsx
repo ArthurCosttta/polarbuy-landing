@@ -627,61 +627,61 @@ export default function SkinQuizPage() {
                       {/* Testa - posicionado acima da testa */}
                       <button
                         onClick={() => handleAnswer(questions[currentQuestion].id, 'testa')}
-                        className={`absolute top-4 left-1/2 transform -translate-x-1/2 pointer-events-auto p-2 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
+                        className={`absolute top-8 left-1/2 transform -translate-x-1/2 pointer-events-auto px-3 py-1 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
                           selectedFaceAreas.includes('testa')
-                            ? 'border-red-500 bg-red-500 text-white'
-                            : 'border-gray-300 bg-white text-gray-700'
+                            ? 'border-red-500 bg-red-500 text-white shadow-lg'
+                            : 'border-gray-300 bg-white text-gray-700 shadow-md'
                         }`}
                       >
-                        <span className="text-xs font-medium">Testa</span>
+                        <span className="text-sm font-medium">Testa</span>
                       </button>
 
                       {/* Olhos - posicionado ao lado dos olhos */}
                       <button
                         onClick={() => handleAnswer(questions[currentQuestion].id, 'olhos')}
-                        className={`absolute top-1/3 left-4 pointer-events-auto p-2 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
+                        className={`absolute top-1/3 -left-2 pointer-events-auto px-3 py-1 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
                           selectedFaceAreas.includes('olhos')
-                            ? 'border-red-500 bg-red-500 text-white'
-                            : 'border-gray-300 bg-white text-gray-700'
+                            ? 'border-red-500 bg-red-500 text-white shadow-lg'
+                            : 'border-gray-300 bg-white text-gray-700 shadow-md'
                         }`}
                       >
-                        <span className="text-xs font-medium">Olhos</span>
+                        <span className="text-sm font-medium">Olhos</span>
                       </button>
 
                       {/* Bochechas - posicionado nas bochechas */}
                       <button
                         onClick={() => handleAnswer(questions[currentQuestion].id, 'bochechas')}
-                        className={`absolute top-1/2 left-1/4 pointer-events-auto p-2 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
+                        className={`absolute top-1/2 -right-2 pointer-events-auto px-3 py-1 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
                           selectedFaceAreas.includes('bochechas')
-                            ? 'border-red-500 bg-red-500 text-white'
-                            : 'border-gray-300 bg-white text-gray-700'
+                            ? 'border-red-500 bg-red-500 text-white shadow-lg'
+                            : 'border-gray-300 bg-white text-gray-700 shadow-md'
                         }`}
                       >
-                        <span className="text-xs font-medium">Bochechas</span>
+                        <span className="text-sm font-medium">Bochechas</span>
                       </button>
 
                       {/* Boca - posicionado na boca */}
                       <button
                         onClick={() => handleAnswer(questions[currentQuestion].id, 'boca')}
-                        className={`absolute top-2/3 left-1/2 transform -translate-x-1/2 pointer-events-auto p-2 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
+                        className={`absolute top-2/3 left-1/2 transform -translate-x-1/2 pointer-events-auto px-3 py-1 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
                           selectedFaceAreas.includes('boca')
-                            ? 'border-red-500 bg-red-500 text-white'
-                            : 'border-gray-300 bg-white text-gray-700'
+                            ? 'border-red-500 bg-red-500 text-white shadow-lg'
+                            : 'border-gray-300 bg-white text-gray-700 shadow-md'
                         }`}
                       >
-                        <span className="text-xs font-medium">Boca</span>
+                        <span className="text-sm font-medium">Boca</span>
                       </button>
 
                       {/* Pescoço - posicionado no pescoço */}
                       <button
                         onClick={() => handleAnswer(questions[currentQuestion].id, 'pescoco')}
-                        className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 pointer-events-auto p-2 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
+                        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 pointer-events-auto px-3 py-1 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
                           selectedFaceAreas.includes('pescoco')
-                            ? 'border-red-500 bg-red-500 text-white'
-                            : 'border-gray-300 bg-white text-gray-700'
+                            ? 'border-red-500 bg-red-500 text-white shadow-lg'
+                            : 'border-gray-300 bg-white text-gray-700 shadow-md'
                         }`}
                       >
-                        <span className="text-xs font-medium">Pescoço</span>
+                        <span className="text-sm font-medium">Pescoço</span>
                       </button>
                     </div>
                   </div>

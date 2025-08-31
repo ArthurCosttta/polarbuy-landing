@@ -556,15 +556,6 @@ export default function SkinQuizPage() {
               ) : questions[currentQuestion].layout === 'animation' ? (
                 // Layout com animação de envelhecimento
                 <div className="space-y-4">
-                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
-                    <div className="bg-gradient-to-b from-gray-100 to-gray-200 rounded-xl p-4 text-center">
-                      <div className="animate-pulse">
-                        <div className="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-2"></div>
-                        <div className="text-sm text-gray-600">Pele envelhecendo...</div>
-                      </div>
-                    </div>
-                  </div>
-                  
                   <div className="space-y-3">
                     {(questions[currentQuestion].options as AnimationOption[]).map((option) => (
                       <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">

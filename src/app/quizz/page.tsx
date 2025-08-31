@@ -531,13 +531,6 @@ export default function SkinQuizPage() {
                 {questions[currentQuestion].title}
               </h3>
               
-              {/* Instrução adicional para áreas do rosto */}
-              {questions[currentQuestion].layout === 'face-areas' && (
-                <p className="text-gray-600 text-sm text-center mb-6">
-                  Se você está feliz com sua aparência, então pressione Continue
-                </p>
-              )}
-              
               {/* Layout baseado no tipo de pergunta */}
               {questions[currentQuestion].layout === 'text' ? (
                 // Layout com texto e botão continuar

@@ -1058,7 +1058,7 @@ export default function SkinQuizPage() {
             {/* Resumo Pessoal - Layout das Imagens */}
             <div className="bg-white rounded-2xl shadow-lg p-6">
               <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-                Stop chasing & start attracting
+                Pare de perseguir e comece a atrair
               </h3>
               <p className="text-gray-600 mb-6 text-center">
                 Este plano vai ajudar você a descobrir seus verdadeiros desejos, desbloquear seus pontos fortes, alinhar sua energia e se tornar a mulher que você sabe que deveria ser.
@@ -1103,7 +1103,7 @@ export default function SkinQuizPage() {
             {/* Linha do Tempo do Resultado */}
             <div className="bg-white rounded-2xl shadow-lg p-6">
               <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-                How quickly can your plan make a change?
+                Quão rápido seu plano pode fazer uma mudança?
               </h3>
               <p className="text-gray-600 mb-6 text-center">
                 Com um plano criado unicamente para você, você começará a notar mudanças positivas já na primeira semana
@@ -1145,7 +1145,7 @@ export default function SkinQuizPage() {
             {/* O que está incluído no plano */}
             <div className="bg-white rounded-2xl shadow-lg p-6">
               <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-                What's inside?
+                O que está incluído?
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -1191,7 +1191,7 @@ export default function SkinQuizPage() {
             {/* Provas Sociais */}
             <div className="bg-white rounded-2xl shadow-lg p-6">
               <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-                But don't just take our word for it. Hear what others are saying about our plan.
+                Mas não acredite apenas na nossa palavra. Veja o que outras estão dizendo sobre nosso plano.
               </h3>
               
               <div className="space-y-4">

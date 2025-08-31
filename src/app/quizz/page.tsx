@@ -532,34 +532,16 @@ export default function SkinQuizPage() {
                 </svg>
               </button>
               
-              <div className="flex items-center">
-                <Image 
-                  src="/LogoPolarBuy.png" 
-                  alt="PolarBuy" 
-                  width={120}
-                  height={40}
-                  className="h-8 w-auto"
-                />
-              </div>
-              
-              <div className="text-sm text-gray-600 font-medium">
-                {currentQuestion + 1}/{questions.length}
+              <div className="flex-1 mx-4">
+                {/* Barra de progresso */}
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div 
+                    className="bg-purple-600 h-2 rounded-full transition-all duration-300" 
+                    style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
+                  ></div>
+                </div>
               </div>
             </div>
-
-            {/* Progress bar */}
-            <div className="mb-6">
-              <div className="flex justify-between text-sm text-gray-600 mb-2">
-                <span>Pergunta {currentQuestion + 1} de {questions.length}</span>
-                <span>{Math.round(((currentQuestion + 1) / questions.length) * 100)}%</span>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div 
-                  className="bg-purple-600 h-2 rounded-full transition-all duration-300" 
-                  style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
-                ></div>
-              </div>
-          </div>
 
             {/* Photo preview */}
             {photo && (
@@ -633,7 +615,11 @@ export default function SkinQuizPage() {
                           width={300}
                           height={400}
                           className="w-full h-auto absolute inset-0"
-                          style={{ mixBlendMode: 'multiply' }}
+                          style={{ 
+                            mixBlendMode: 'multiply',
+                            opacity: 0.8,
+                            filter: 'contrast(1.5) brightness(0.9)'
+                          }}
                         />
                       </div>
                     ))}
@@ -992,8 +978,8 @@ export default function SkinQuizPage() {
               </div>
             )}
 
-            {/* Botão Continue para layout de áreas do rosto */}
-            {questions[currentQuestion].layout === 'face-areas' && (
+            {/* Botão Continue para todos os outros layouts */}
+            {questions[currentQuestion].layout !== 'text' && (
               <div className="mt-6">
                 <button 
                   type="button"
@@ -1001,11 +987,11 @@ export default function SkinQuizPage() {
                   disabled={!canProceed()}
                   className={`w-full font-semibold py-4 px-6 rounded-xl transition-all ${
                     canProceed() 
-                      ? 'bg-red-600 hover:bg-red-700 text-white transform hover:scale-105' 
+                      ? 'bg-purple-600 hover:bg-purple-700 text-white transform hover:scale-105' 
                       : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                   }`}
                 >
-                  Continue
+                  {currentQuestion === questions.length - 1 ? 'Ver Resultado' : 'Continuar'}
                 </button>
               </div>
             )}

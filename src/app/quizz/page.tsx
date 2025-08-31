@@ -597,7 +597,7 @@ export default function SkinQuizPage() {
                 // Layout com áreas do rosto e overlay
                 <div className="relative">
                   {/* Imagem base da mulher em tela cheia */}
-                  <div className="relative w-full h-80 mb-6 overflow-hidden rounded-xl bg-gray-100">
+                  <div className="relative w-full h-96 mb-6 overflow-hidden rounded-xl">
                     <Image 
                       src="/IMAGEM BASE.png" 
                       alt="Mulher sorrindo" 
@@ -606,9 +606,9 @@ export default function SkinQuizPage() {
                       priority
                     />
                     
-                    {/* Overlays para cada área selecionada com animação */}
+                    {/* Overlays para cada área selecionada */}
                     {selectedFaceAreas.map((area) => (
-                      <div key={area} className="absolute inset-0 animate-fadeIn z-10">
+                      <div key={area} className="absolute inset-0 z-10">
                         <Image 
                           src={`/${area === 'testa' ? 'linhas de express' : area === 'olhos' ? 'OLHOS' : area === 'bochechas' ? 'RUGAS' : area === 'boca' ? 'bigodechines' : 'pescoçotatruga'}.png`}
                           alt={`Overlay ${area}`}
@@ -616,42 +616,38 @@ export default function SkinQuizPage() {
                           className="object-cover"
                           style={{ 
                             mixBlendMode: 'multiply',
-                            opacity: 1,
-                            filter: 'contrast(2) brightness(0.7) saturate(1.5)'
+                            opacity: 0.8
                           }}
                         />
                       </div>
                     ))}
                   </div>
 
-                  {/* Opções de áreas do rosto com animações */}
+                  {/* Opções de áreas do rosto */}
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-3">
                       {(questions[currentQuestion].options as FaceAreaOption[])
                         .filter(option => option.position === 'left')
                         .sort((a, b) => a.order - b.order)
-                        .map((option, index) => (
+                        .map((option) => (
                         <button
                           key={option.value}
                           onClick={() => handleAnswer(questions[currentQuestion].id, option.value)}
-                          className={`w-full p-3 border-2 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105 ${
+                          className={`w-full p-3 border-2 rounded-xl cursor-pointer transition-all hover:scale-105 ${
                             selectedFaceAreas.includes(option.value)
                               ? 'border-red-500 bg-red-50 shadow-lg'
                               : 'border-gray-300 bg-white hover:border-red-300'
                           }`}
-                          style={{ 
-                            animationDelay: `${index * 100}ms`
-                          }}
                         >
                           <div className="flex items-center justify-between">
                             <span className="font-medium text-gray-700 text-sm">{option.label}</span>
-                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
                               selectedFaceAreas.includes(option.value)
-                                ? 'border-red-500 bg-red-500 scale-110'
+                                ? 'border-red-500 bg-red-500'
                                 : 'border-gray-300 bg-white'
                             }`}>
                               {selectedFaceAreas.includes(option.value) && (
-                                <svg className="w-4 h-4 text-white animate-bounce" fill="currentColor" viewBox="0 0 20 20">
+                                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                 </svg>
                               )}
@@ -665,28 +661,25 @@ export default function SkinQuizPage() {
                       {(questions[currentQuestion].options as FaceAreaOption[])
                         .filter(option => option.position === 'right')
                         .sort((a, b) => a.order - b.order)
-                        .map((option, index) => (
+                        .map((option) => (
                         <button
                           key={option.value}
                           onClick={() => handleAnswer(questions[currentQuestion].id, option.value)}
-                          className={`w-full p-3 border-2 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105 ${
+                          className={`w-full p-3 border-2 rounded-xl cursor-pointer transition-all hover:scale-105 ${
                             selectedFaceAreas.includes(option.value)
                               ? 'border-red-500 bg-red-50 shadow-lg'
                               : 'border-gray-300 bg-white hover:border-red-300'
                           }`}
-                          style={{ 
-                            animationDelay: `${index * 100}ms`
-                          }}
                         >
                           <div className="flex items-center justify-between">
                             <span className="font-medium text-gray-700 text-sm">{option.label}</span>
-                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
                               selectedFaceAreas.includes(option.value)
-                                ? 'border-red-500 bg-red-500 scale-110'
+                                ? 'border-red-500 bg-red-500'
                                 : 'border-gray-300 bg-white'
                             }`}>
                               {selectedFaceAreas.includes(option.value) && (
-                                <svg className="w-4 h-4 text-white animate-bounce" fill="currentColor" viewBox="0 0 20 20">
+                                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                 </svg>
                               )}

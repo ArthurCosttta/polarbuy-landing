@@ -1119,6 +1119,404 @@ export default function SkinQuizPage() {
             * Análise cosmética e educacional. Não substitui avaliação médica.
           </p>
             </div>
+
+            {/* Landing Page Completa */}
+            <div className="space-y-6">
+              {/* 1. Barra Superior Timer - Sticky */}
+              <div className="sticky top-0 z-50 w-full h-14 bg-purple-100 flex items-center justify-between px-4 text-purple-700 font-semibold">
+                <div className="flex items-center">
+                  <span className="mr-2">⏰</span>
+                  <span>50% de desconto reservado para você</span>
+                </div>
+                <div className="text-lg font-bold">
+                  14:59
+                </div>
+              </div>
+
+              {/* 2. Hero Section */}
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                  {/* Coluna Esquerda (7/12) */}
+                  <div className="lg:col-span-7">
+                    <h1 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                      Conquiste uma pele visivelmente mais jovem com seu plano personalizado
+                    </h1>
+                    <p className="text-gray-600 mb-6">
+                      Mais de 1.705.370 planos já entregues • Avaliação média 4.8/5 ⭐
+                    </p>
+                    <div className="space-y-3">
+                      <div className="flex items-center">
+                        <span className="text-green-500 mr-3">✓</span>
+                        <span className="text-gray-700">Redução visível de rugas e linhas</span>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="text-green-500 mr-3">✓</span>
+                        <span className="text-gray-700">Firmeza e viço recuperados</span>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="text-green-500 mr-3">✓</span>
+                        <span className="text-gray-700">Rotina simples, personalizada para sua pele</span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Coluna Direita (5/12) */}
+                  <div className="lg:col-span-5 flex justify-center">
+                    <div className="relative">
+                      <div className="w-48 h-64 bg-gradient-to-b from-purple-100 to-purple-200 rounded-lg shadow-lg flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="text-4xl mb-2">📱</div>
+                          <div className="text-sm text-purple-700">Seu nome na capa</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 3. Seletor de Oferta */}
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="text-xl font-bold text-gray-800">Escolha sua melhor opção</h3>
+                  <div className="text-sm text-red-600 font-semibold">Termina em 14:59</div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                  {/* App */}
+                  <div className="border-2 border-gray-200 rounded-xl p-4">
+                    <div className="text-center mb-4">
+                      <div className="text-2xl mb-2">📱</div>
+                      <h4 className="font-bold text-gray-800 mb-2">App de Rejuvenescimento</h4>
+                      <span className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-semibold">GRÁTIS por 30 dias</span>
+                    </div>
+                    <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                      <li>• Afirmações diárias</li>
+                      <li>• Rotinas guiadas de cuidado</li>
+                      <li>• Lembretes inteligentes</li>
+                    </ul>
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-green-600">FREE</div>
+                      <div className="text-sm text-gray-500">R$ 29,90/mês (após 30 dias, cancela quando quiser)</div>
+                    </div>
+                  </div>
+
+                  {/* Plano Impresso - DESTACADO */}
+                  <div className="border-2 border-purple-500 rounded-xl p-4 shadow-lg relative">
+                    <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                      <span className="bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-bold">SALE 50% OFF</span>
+                    </div>
+                    <div className="text-center mb-4">
+                      <div className="text-2xl mb-2">📖</div>
+                      <h4 className="font-bold text-gray-800 mb-2">Plano Impresso Personalizado</h4>
+                    </div>
+                    <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                      <li>• Envio grátis</li>
+                      <li>• Capa com seu nome</li>
+                      <li>• Rotina feita para sua pele</li>
+                    </ul>
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-purple-600">R$ 79,90</div>
+                      <div className="text-sm text-gray-500 line-through">R$ 159,90</div>
+                      <div className="text-xs text-purple-600 font-semibold">E-book incluído gratuitamente</div>
+                    </div>
+                  </div>
+
+                  {/* E-book */}
+                  <div className="border-2 border-gray-200 rounded-xl p-4">
+                    <div className="text-center mb-4">
+                      <div className="text-2xl mb-2">📄</div>
+                      <h4 className="font-bold text-gray-800 mb-2">E-book Personalizado</h4>
+                    </div>
+                    <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                      <li>• Entrega digital por e-mail</li>
+                      <li>• 100% personalizado</li>
+                    </ul>
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-green-600">GRÁTIS</div>
+                      <div className="text-sm text-gray-500">com o impresso</div>
+                      <div className="text-sm text-gray-500">ou R$ 49,90</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Checkbox e Botão */}
+                <div className="space-y-4">
+                  <label className="flex items-center">
+                    <input type="checkbox" className="mr-3 w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500" />
+                    <span className="text-sm text-gray-700">Li e concordo com os Termos e Política de Privacidade</span>
+                  </label>
+                  <button className="w-full bg-purple-600 text-white font-bold py-4 px-8 rounded-xl text-lg hover:bg-purple-700 transition-all transform hover:scale-105">
+                    ORDER NOW
+                  </button>
+                  <p className="text-xs text-gray-500 text-center">
+                    Ao clicar em 'ORDER NOW', você concorda que, caso não cancele o teste do app antes do fim de 30 dias, será cobrada a mensalidade regular. Cancele a qualquer momento.
+                  </p>
+                </div>
+              </div>
+
+              {/* 4. O que vem no seu plano */}
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                  O que está dentro do seu plano personalizado?
+                </h3>
+                
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                  <div className="bg-purple-50 rounded-xl p-4 text-center">
+                    <div className="text-2xl font-bold text-purple-600 mb-2">276</div>
+                    <div className="text-sm text-gray-700">Páginas personalizadas com passo a passo</div>
+                  </div>
+                  <div className="bg-blue-50 rounded-xl p-4 text-center">
+                    <div className="text-2xl font-bold text-blue-600 mb-2">67</div>
+                    <div className="text-sm text-gray-700">Técnicas de rejuvenescimento selecionadas para você</div>
+                  </div>
+                  <div className="bg-green-50 rounded-xl p-4 text-center">
+                    <div className="text-2xl font-bold text-green-600 mb-2">72</div>
+                    <div className="text-sm text-gray-700">Templates práticos (rotinas, checklist, rastreadores)</div>
+                  </div>
+                  <div className="bg-yellow-50 rounded-xl p-4 text-center">
+                    <div className="text-2xl font-bold text-yellow-600 mb-2">100%</div>
+                    <div className="text-sm text-gray-700">Conteúdo adaptado à sua idade, pele e estilo de vida</div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <ul className="space-y-2">
+                    <li className="flex items-center">
+                      <span className="text-purple-500 mr-3">✓</span>
+                      <span className="text-gray-700">Rotinas anti-idade manhã/noite</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="text-purple-500 mr-3">✓</span>
+                      <span className="text-gray-700">Mapas de ativos por tipo de pele</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="text-purple-500 mr-3">✓</span>
+                      <span className="text-gray-700">Técnicas de massagem facial e drenagem</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="text-purple-500 mr-3">✓</span>
+                      <span className="text-gray-700">Protocolos para região dos olhos e pescoço</span>
+                    </li>
+                  </ul>
+                  <ul className="space-y-2">
+                    <li className="flex items-center">
+                      <span className="text-purple-500 mr-3">✓</span>
+                      <span className="text-gray-700">Hidratação inteligente e barreira cutânea</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="text-purple-500 mr-3">✓</span>
+                      <span className="text-gray-700">Nutrição que favorece colágeno</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="text-purple-500 mr-3">✓</span>
+                      <span className="text-gray-700">Hábitos e sono para pele jovem</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="text-purple-500 mr-3">✓</span>
+                      <span className="text-gray-700">Plano de 21 dias com ajustes semanais</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* 5. Projeções de resultado */}
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-bold text-gray-800 mb-4">Projeção de Resultados</h4>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">Luminosidade</span>
+                        <div className="w-24 h-2 bg-gray-200 rounded-full">
+                          <div className="w-3/4 h-2 bg-purple-500 rounded-full"></div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">Firmeza</span>
+                        <div className="w-24 h-2 bg-gray-200 rounded-full">
+                          <div className="w-4/5 h-2 bg-purple-500 rounded-full"></div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">Uniformidade</span>
+                        <div className="w-24 h-2 bg-gray-200 rounded-full">
+                          <div className="w-2/3 h-2 bg-purple-500 rounded-full"></div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">Hidratação</span>
+                        <div className="w-24 h-2 bg-gray-200 rounded-full">
+                          <div className="w-5/6 h-2 bg-purple-500 rounded-full"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-800 mb-4">Sua Transformação</h4>
+                    <div className="bg-gradient-to-r from-red-100 to-green-100 rounded-xl p-4">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-sm text-red-600">Zona cansada</span>
+                        <span className="text-sm text-green-600">Alta performance</span>
+                      </div>
+                      <div className="w-full h-3 bg-gray-200 rounded-full relative">
+                        <div className="absolute top-0 left-0 w-3/4 h-3 bg-gradient-to-r from-red-400 to-green-400 rounded-full"></div>
+                        <div className="absolute top-0 left-3/4 w-1 h-3 bg-green-600 rounded-full"></div>
+                      </div>
+                    </div>
+                    <div className="mt-4 space-y-2 text-sm text-gray-600">
+                      <p>1ª semana – você sente: pele mais hidratada e viçosa</p>
+                      <p>2ª semana – você vê: linhas finas menos aparentes</p>
+                      <p>3ª semana – os outros notam: elogios sobre sua pele</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 6. Depoimentos */}
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                  O que outras mulheres estão dizendo
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-purple-50 rounded-xl p-4">
+                    <div className="flex items-start">
+                      <div className="w-12 h-12 bg-purple-200 rounded-full flex items-center justify-center mr-4">
+                        <span className="text-purple-600 font-bold">M</span>
+                      </div>
+                      <div>
+                        <p className="text-gray-800 text-sm mb-2">
+                          "Em 3 semanas, meu marido disse que parecia lifting. Voltei a gostar do espelho."
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-purple-600 font-semibold text-sm">Marta, 54</span>
+                          <span className="text-green-500 text-xs">✓ Verificado</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-pink-50 rounded-xl p-4">
+                    <div className="flex items-start">
+                      <div className="w-12 h-12 bg-pink-200 rounded-full flex items-center justify-center mr-4">
+                        <span className="text-pink-600 font-bold">P</span>
+                      </div>
+                      <div>
+                        <p className="text-gray-800 text-sm mb-2">
+                          "Pele mais iluminada e olheiras sumindo. Comecei a receber elogios no trabalho."
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-pink-600 font-semibold text-sm">Patrícia, 49</span>
+                          <span className="text-green-500 text-xs">✓ Verificado</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-green-50 rounded-xl p-4">
+                    <div className="flex items-start">
+                      <div className="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center mr-4">
+                        <span className="text-green-600 font-bold">R</span>
+                      </div>
+                      <div>
+                        <p className="text-gray-800 text-sm mb-2">
+                          "Gastei horrores com cremes. Aqui senti firmeza em 15 dias. Minhas amigas pedem o segredo."
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-green-600 font-semibold text-sm">Renata, 46</span>
+                          <span className="text-green-500 text-xs">✓ Verificado</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-blue-50 rounded-xl p-4">
+                    <div className="flex items-start">
+                      <div className="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center mr-4">
+                        <span className="text-blue-600 font-bold">C</span>
+                      </div>
+                      <div>
+                        <p className="text-gray-800 text-sm mb-2">
+                          "Depois da menopausa, parecia 10 anos a mais. Hoje voltei a usar maquiagem leve."
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-blue-600 font-semibold text-sm">Cláudia, 58</span>
+                          <span className="text-green-500 text-xs">✓ Verificado</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 7. Upsell do App */}
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                  O app certo potencializa seus resultados
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="text-center p-4">
+                    <div className="text-3xl mb-3">💭</div>
+                    <h4 className="font-semibold text-gray-800 mb-2">Afirmações diárias</h4>
+                    <p className="text-sm text-gray-600">Para disciplina e foco</p>
+                  </div>
+                  <div className="text-center p-4">
+                    <div className="text-3xl mb-3">📝</div>
+                    <h4 className="font-semibold text-gray-800 mb-2">Journaling guiado</h4>
+                    <p className="text-sm text-gray-600">Para clareza de hábitos</p>
+                  </div>
+                  <div className="text-center p-4">
+                    <div className="text-3xl mb-3">🎵</div>
+                    <h4 className="font-semibold text-gray-800 mb-2">Áudios relaxantes</h4>
+                    <p className="text-sm text-gray-600">Para sono e recuperação da pele</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 8. FAQ */}
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                  Perguntas Frequentes
+                </h3>
+                <div className="space-y-4">
+                  <div className="border border-gray-200 rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-800 mb-2">Como meu plano é personalizado?</h4>
+                    <p className="text-sm text-gray-600">
+                      Usamos seu questionário (idade, pele, rotina, hábitos) para montar rotinas, ativos e ajustes semanais específicos para você.
+                    </p>
+                  </div>
+                  <div className="border border-gray-200 rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-800 mb-2">Em quanto tempo vejo resultados?</h4>
+                    <p className="text-sm text-gray-600">
+                      A maioria das mulheres sente diferença na primeira semana, vê mudanças visuais na segunda e recebe elogios na terceira semana.
+                    </p>
+                  </div>
+                  <div className="border border-gray-200 rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-800 mb-2">Serve para meu tipo de pele?</h4>
+                    <p className="text-sm text-gray-600">
+                      Sim! O plano é adaptado especificamente para seu tipo de pele, idade e necessidades individuais.
+                    </p>
+                  </div>
+                  <div className="border border-gray-200 rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-800 mb-2">Preciso comprar cremes caros?</h4>
+                    <p className="text-sm text-gray-600">
+                      Não! Focamos em ingredientes acessíveis e receitas caseiras que funcionam tão bem quanto produtos caros.
+                    </p>
+                  </div>
+                  <div className="border border-gray-200 rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-800 mb-2">Quanto tempo dura o acesso?</h4>
+                    <p className="text-sm text-gray-600">
+                      Acesso vitalício! Você pode usar o plano quantas vezes quiser e adaptar conforme sua pele evolui.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 9. Rodapé */}
+              <div className="bg-gray-50 rounded-2xl p-6 text-center">
+                <p className="text-xs text-gray-500 mb-2">
+                  Análise cosmética e educacional. Não substitui avaliação médica.
+                </p>
+                <p className="text-xs text-gray-400">
+                  © 2024 Plano de Rejuvenescimento Personalizado. Todos os direitos reservados.
+                </p>
+              </div>
+            </div>
         </div>
       )}
       </div>

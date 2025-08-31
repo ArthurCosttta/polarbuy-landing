@@ -1055,6 +1055,182 @@ export default function SkinQuizPage() {
               </div>
             </div>
             
+            {/* Resumo Pessoal - Layout das Imagens */}
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                Stop chasing & start attracting
+              </h3>
+              <p className="text-gray-600 mb-6 text-center">
+                Este plano vai ajudar você a descobrir seus verdadeiros desejos, desbloquear seus pontos fortes, alinhar sua energia e se tornar a mulher que você sabe que deveria ser.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div className="bg-red-50 rounded-xl p-6 text-center border-2 border-red-200">
+                  <div className="text-2xl font-bold text-red-700 mb-2">VOCÊ está aqui</div>
+                  <div className="w-full h-2 bg-gray-300 rounded-full mb-4">
+                    <div className="w-1/4 h-2 bg-red-500 rounded-full"></div>
+                  </div>
+                  <h4 className="font-bold text-red-700 mb-4 text-lg">Zona de pele cansada</h4>
+                  <ul className="text-sm text-red-600 space-y-2 text-left">
+                    <li>• Rugas e linhas de expressão</li>
+                    <li>• Ressecamento e falta de brilho</li>
+                    <li>• Aparência sem vitalidade</li>
+                    <li>• Baixa autoestima</li>
+                    <li>• Problemas de sono e fadiga</li>
+                    <li>• Ansiedade constante</li>
+                    <li>• Sensação de estar perdida</li>
+                  </ul>
+                </div>
+                <div className="bg-green-50 rounded-xl p-6 text-center border-2 border-green-200">
+                  <div className="text-2xl font-bold text-green-700 mb-2">Com Plano Personalizado</div>
+                  <div className="w-full h-2 bg-gray-300 rounded-full mb-4">
+                    <div className="w-3/4 h-2 bg-green-500 rounded-full"></div>
+                  </div>
+                  <h4 className="font-bold text-green-700 mb-4 text-lg">Zona de pele rejuvenescida</h4>
+                  <ul className="text-sm text-green-600 space-y-2 text-left">
+                    <li>• Amor e relacionamentos</li>
+                    <li>• Abundância financeira</li>
+                    <li>• Crescimento na carreira</li>
+                    <li>• Alta autoconfiança</li>
+                    <li>• Mais energia e foco</li>
+                    <li>• Felicidade e calma</li>
+                    <li>• Clareza e propósito</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Linha do Tempo do Resultado */}
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                How quickly can your plan make a change?
+              </h3>
+              <p className="text-gray-600 mb-6 text-center">
+                Com um plano criado unicamente para você, você começará a notar mudanças positivas já na primeira semana
+              </p>
+              
+              <div className="space-y-4">
+                <div className="flex items-start p-4 bg-blue-50 rounded-xl">
+                  <div className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center mr-4 mt-1">
+                    <span className="text-sm font-bold">1</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-blue-700 mb-1">1ª semana – você vai sentir</h4>
+                    <p className="text-gray-700 text-sm">Pele mais hidratada, viço natural voltando, sensação de conforto e maciez.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start p-4 bg-green-50 rounded-xl">
+                  <div className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center mr-4 mt-1">
+                    <span className="text-sm font-bold">2</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-green-700 mb-1">2ª semana – você vai ver</h4>
+                    <p className="text-gray-700 text-sm">Linhas finas suavizando, aparência mais firme no espelho, textura mais uniforme.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start p-4 bg-purple-50 rounded-xl">
+                  <div className="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center mr-4 mt-1">
+                    <span className="text-sm font-bold">3</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-purple-700 mb-1">3ª semana – os outros vão notar</h4>
+                    <p className="text-gray-700 text-sm">Elogios de amigas e familiares sobre seu rosto mais jovem, perguntas sobre o que você está fazendo.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* O que está incluído no plano */}
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                What's inside?
+              </h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div className="bg-yellow-50 rounded-xl p-4 flex items-center">
+                  <div className="w-16 h-16 bg-purple-500 text-white rounded-lg flex items-center justify-center mr-4 font-bold text-xl">
+                    276
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-800 mb-1">Páginas personalizadas</h4>
+                    <p className="text-sm text-gray-600">Com plano passo a passo personalizado para atrair sua vida dos sonhos.</p>
+                  </div>
+                </div>
+                <div className="bg-blue-50 rounded-xl p-4 flex items-center">
+                  <div className="w-16 h-16 bg-purple-500 text-white rounded-lg flex items-center justify-center mr-4 font-bold text-xl">
+                    67
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-800 mb-1">Técnicas de rejuvenescimento</h4>
+                    <p className="text-sm text-gray-600">Selecionadas para seus objetivos específicos e desejos.</p>
+                  </div>
+                </div>
+                <div className="bg-green-50 rounded-xl p-4 flex items-center">
+                  <div className="w-16 h-16 bg-purple-500 text-white rounded-lg flex items-center justify-center mr-4 font-bold text-xl">
+                    72
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-800 mb-1">Templates práticos</h4>
+                    <p className="text-sm text-gray-600">Para manter consistência com suas práticas e intenções.</p>
+                  </div>
+                </div>
+                <div className="bg-purple-50 rounded-xl p-4 flex items-center">
+                  <div className="w-16 h-16 bg-purple-500 text-white rounded-lg flex items-center justify-center mr-4 font-bold text-xl">
+                    100%
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-800 mb-1">Conteúdo personalizado</h4>
+                    <p className="text-sm text-gray-600">Baseado nos seus desejos, personalidade e estilo de vida.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Provas Sociais */}
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                But don't just take our word for it. Hear what others are saying about our plan.
+              </h3>
+              
+              <div className="space-y-4">
+                <div className="bg-purple-50 rounded-xl p-4">
+                  <div className="flex items-start">
+                    <div className="w-12 h-12 bg-purple-200 rounded-full flex items-center justify-center mr-4">
+                      <span className="text-purple-600 font-bold">M</span>
+                    </div>
+                    <div>
+                      <p className="text-gray-800 text-sm mb-2">
+                        "Achei que fosse só mais uma promessa... mas em 2 semanas minha pele estava tão firme que precisei mostrar minha identidade quando fui comprar vinho!"
+                      </p>
+                      <div className="flex items-center">
+                        <span className="text-purple-600 font-semibold text-sm">Maria S.</span>
+                        <span className="ml-2 text-green-500 text-xs">✓ Verificado</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bg-pink-50 rounded-xl p-4">
+                  <div className="flex items-start">
+                    <div className="w-12 h-12 bg-pink-200 rounded-full flex items-center justify-center mr-4">
+                      <span className="text-pink-600 font-bold">A</span>
+                    </div>
+                    <div>
+                      <p className="text-gray-800 text-sm mb-2">
+                        "Minhas amigas não param de perguntar o que eu fiz! Minha pele nunca esteve tão radiante e jovem."
+                      </p>
+                      <div className="flex items-center">
+                        <span className="text-pink-600 font-semibold text-sm">Ana L.</span>
+                        <span className="ml-2 text-green-500 text-xs">✓ Verificado</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
             {/* Análise Personalizada */}
             <div className="bg-white rounded-2xl shadow-lg p-6">
               <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">

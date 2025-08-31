@@ -597,7 +597,7 @@ export default function SkinQuizPage() {
                 // Layout com áreas do rosto e overlay
                 <div className="relative">
                   {/* Imagem base da mulher em tela cheia */}
-                  <div className="relative w-full h-96 mb-6 overflow-hidden rounded-xl">
+                  <div className="relative w-full h-80 mb-6 overflow-hidden rounded-xl bg-gray-100">
                     <Image 
                       src="/IMAGEM BASE.png" 
                       alt="Mulher sorrindo" 
@@ -608,7 +608,7 @@ export default function SkinQuizPage() {
                     
                     {/* Overlays para cada área selecionada com animação */}
                     {selectedFaceAreas.map((area) => (
-                      <div key={area} className="absolute inset-0 animate-fadeIn">
+                      <div key={area} className="absolute inset-0 animate-fadeIn z-10">
                         <Image 
                           src={`/${area === 'testa' ? 'linhas de express' : area === 'olhos' ? 'OLHOS' : area === 'bochechas' ? 'RUGAS' : area === 'boca' ? 'bigodechines' : 'pescoçotatruga'}.png`}
                           alt={`Overlay ${area}`}
@@ -616,8 +616,8 @@ export default function SkinQuizPage() {
                           className="object-cover"
                           style={{ 
                             mixBlendMode: 'multiply',
-                            opacity: 0.9,
-                            filter: 'contrast(1.8) brightness(0.8) saturate(1.2)'
+                            opacity: 1,
+                            filter: 'contrast(2) brightness(0.7) saturate(1.5)'
                           }}
                         />
                       </div>
@@ -634,11 +634,13 @@ export default function SkinQuizPage() {
                         <button
                           key={option.value}
                           onClick={() => handleAnswer(questions[currentQuestion].id, option.value)}
-                          className={`w-full p-3 border-2 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105 animate-slideInLeft`}
+                          className={`w-full p-3 border-2 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105 ${
+                            selectedFaceAreas.includes(option.value)
+                              ? 'border-red-500 bg-red-50 shadow-lg'
+                              : 'border-gray-300 bg-white hover:border-red-300'
+                          }`}
                           style={{ 
-                            animationDelay: `${index * 100}ms`,
-                            borderColor: selectedFaceAreas.includes(option.value) ? '#ef4444' : '#d1d5db',
-                            backgroundColor: selectedFaceAreas.includes(option.value) ? '#fef2f2' : '#ffffff'
+                            animationDelay: `${index * 100}ms`
                           }}
                         >
                           <div className="flex items-center justify-between">
@@ -667,11 +669,13 @@ export default function SkinQuizPage() {
                         <button
                           key={option.value}
                           onClick={() => handleAnswer(questions[currentQuestion].id, option.value)}
-                          className={`w-full p-3 border-2 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105 animate-slideInRight`}
+                          className={`w-full p-3 border-2 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105 ${
+                            selectedFaceAreas.includes(option.value)
+                              ? 'border-red-500 bg-red-50 shadow-lg'
+                              : 'border-gray-300 bg-white hover:border-red-300'
+                          }`}
                           style={{ 
-                            animationDelay: `${index * 100}ms`,
-                            borderColor: selectedFaceAreas.includes(option.value) ? '#ef4444' : '#d1d5db',
-                            backgroundColor: selectedFaceAreas.includes(option.value) ? '#fef2f2' : '#ffffff'
+                            animationDelay: `${index * 100}ms`
                           }}
                         >
                           <div className="flex items-center justify-between">

@@ -118,11 +118,13 @@ interface Question {
 }
 
 export default function SkinQuizPage() {
-  const [step, setStep] = useState<'upload'|'loading'|'quiz'|'analyzing'|'result'>('upload');
+  const [step, setStep] = useState<'upload'|'loading'|'quiz'|'analyzing'|'finalizing'|'result'>('upload');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [photo, setPhoto] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Partial<Quiz>>({});
   const [analysisProgress, setAnalysisProgress] = useState(0);
+  const [finalizingStep, setFinalizingStep] = useState(0);
+  const [skinVitality, setSkinVitality] = useState<'baixa'|'média'|'alta'>('média');
 
   const questions: Question[] = [
     {
@@ -352,10 +354,56 @@ export default function SkinQuizPage() {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        setTimeout(() => setStep('result'), 1000);
+        setTimeout(() => {
+          setStep('finalizing');
+          startFinalizingSequence();
+        }, 1000);
       }
       setAnalysisProgress(Math.min(progress, 100));
     }, 200);
+  }
+
+  function startFinalizingSequence() {
+    const steps = [
+      'Revisando suas respostas...',
+      'Avaliando sinais de envelhecimento da pele...',
+      'Analisando hábitos de rotina e fatores externos...',
+      'Montando plano de rejuvenescimento único para você...'
+    ];
+
+    let currentStep = 0;
+    const stepInterval = setInterval(() => {
+      if (currentStep < steps.length) {
+        setFinalizingStep(currentStep);
+        currentStep++;
+      } else {
+        clearInterval(stepInterval);
+        setTimeout(() => {
+          calculateSkinVitality();
+          setStep('result');
+        }, 2000);
+      }
+    }, 1500);
+  }
+
+  function calculateSkinVitality() {
+    // Lógica simples para calcular vitalidade baseada nas respostas
+    let score = 0;
+    
+    if (answers.faixa === '55+') score += 3;
+    else if (answers.faixa === '45-54') score += 2;
+    else if (answers.faixa === '35-44') score += 1;
+    
+    if (answers.foco?.includes('rugas')) score += 2;
+    if (answers.foco?.includes('flacidez')) score += 2;
+    if (answers.foco?.includes('ressecada')) score += 1;
+    
+    if (answers.tempo_mudanca === 'mais_5_anos') score += 2;
+    else if (answers.tempo_mudanca === '1_a_3_anos') score += 1;
+    
+    if (score >= 6) setSkinVitality('baixa');
+    else if (score >= 3) setSkinVitality('média');
+    else setSkinVitality('alta');
   }
 
   function previousQuestion() {
@@ -860,6 +908,103 @@ export default function SkinQuizPage() {
             {/* Loading animation */}
             <div className="flex justify-center">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"></div>
+            </div>
+          </div>
+        )}
+
+        {step === 'finalizing' && (
+          <div className="space-y-6">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-purple-600 to-purple-800 rounded-2xl shadow-lg p-8 text-center text-white">
+              <div className="mb-4">
+                <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">🔮</span>
+                </div>
+                <h1 className="text-3xl font-bold mb-2">
+                  Finalizando seu Plano
+                </h1>
+                <p className="text-purple-100 text-lg">
+                  Criando sua solução personalizada de rejuvenescimento
+                </p>
+              </div>
+            </div>
+
+            {/* Etapas de Finalização */}
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+              <div className="space-y-4">
+                {finalizingStep >= 0 && (
+                  <div className={`flex items-center p-4 rounded-xl transition-all duration-500 ${
+                    finalizingStep >= 0 ? 'bg-green-50 border-2 border-green-200' : 'bg-gray-50'
+                  }`}>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-4 ${
+                      finalizingStep >= 0 ? 'bg-green-500 text-white' : 'bg-gray-300'
+                    }`}>
+                      {finalizingStep >= 0 ? '✓' : '1'}
+                    </div>
+                    <span className={`font-medium ${
+                      finalizingStep >= 0 ? 'text-green-700' : 'text-gray-500'
+                    }`}>
+                      Revisando suas respostas...
+                    </span>
+                  </div>
+                )}
+
+                {finalizingStep >= 1 && (
+                  <div className={`flex items-center p-4 rounded-xl transition-all duration-500 ${
+                    finalizingStep >= 1 ? 'bg-green-50 border-2 border-green-200' : 'bg-gray-50'
+                  }`}>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-4 ${
+                      finalizingStep >= 1 ? 'bg-green-500 text-white' : 'bg-gray-300'
+                    }`}>
+                      {finalizingStep >= 1 ? '✓' : '2'}
+                    </div>
+                    <span className={`font-medium ${
+                      finalizingStep >= 1 ? 'text-green-700' : 'text-gray-500'
+                    }`}>
+                      Avaliando sinais de envelhecimento da pele...
+                    </span>
+                  </div>
+                )}
+
+                {finalizingStep >= 2 && (
+                  <div className={`flex items-center p-4 rounded-xl transition-all duration-500 ${
+                    finalizingStep >= 2 ? 'bg-green-50 border-2 border-green-200' : 'bg-gray-50'
+                  }`}>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-4 ${
+                      finalizingStep >= 2 ? 'bg-green-500 text-white' : 'bg-gray-300'
+                    }`}>
+                      {finalizingStep >= 2 ? '✓' : '3'}
+                    </div>
+                    <span className={`font-medium ${
+                      finalizingStep >= 2 ? 'text-green-700' : 'text-gray-500'
+                    }`}>
+                      Analisando hábitos de rotina e fatores externos...
+                    </span>
+                  </div>
+                )}
+
+                {finalizingStep >= 3 && (
+                  <div className={`flex items-center p-4 rounded-xl transition-all duration-500 ${
+                    finalizingStep >= 3 ? 'bg-green-50 border-2 border-green-200' : 'bg-gray-50'
+                  }`}>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-4 ${
+                      finalizingStep >= 3 ? 'bg-green-500 text-white' : 'bg-gray-300'
+                    }`}>
+                      {finalizingStep >= 3 ? '✓' : '4'}
+                    </div>
+                    <span className={`font-medium ${
+                      finalizingStep >= 3 ? 'text-green-700' : 'text-gray-500'
+                    }`}>
+                      Montando plano de rejuvenescimento único para você...
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* Loading animation */}
+              <div className="flex justify-center mt-6">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
+              </div>
             </div>
           </div>
         )}

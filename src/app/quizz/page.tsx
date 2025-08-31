@@ -575,13 +575,6 @@ export default function SkinQuizPage() {
               ) : questions[currentQuestion].layout === 'visual' ? (
                 // Layout com expressões faciais
                 <div className="space-y-4">
-                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
-                    <div className="bg-gradient-to-b from-blue-100 to-blue-200 rounded-xl p-4 text-center">
-                      <div className="text-4xl mb-2">😊</div>
-                      <div className="text-sm text-gray-600">Expressão facial</div>
-                    </div>
-                  </div>
-                  
                   <div className="space-y-3">
                     {(questions[currentQuestion].options as VisualOption[]).map((option) => (
                       <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
@@ -605,17 +598,6 @@ export default function SkinQuizPage() {
               ) : questions[currentQuestion].layout === 'timeline' ? (
                 // Layout com linha do tempo
                 <div className="space-y-4">
-                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
-                    <div className="bg-gradient-to-b from-green-100 to-green-200 rounded-xl p-4 text-center">
-                      <div className="flex justify-between items-center mb-2">
-                        <div className="w-8 h-8 bg-green-500 rounded-full"></div>
-                        <div className="w-8 h-8 bg-green-500 rounded-full"></div>
-                        <div className="w-8 h-8 bg-green-500 rounded-full"></div>
-                      </div>
-                      <div className="text-sm text-gray-600">Linha do tempo de cuidados</div>
-                    </div>
-                  </div>
-                  
                   <div className="space-y-3">
                     {(questions[currentQuestion].options as TimelineOption[]).map((option) => (
                       <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
@@ -635,19 +617,6 @@ export default function SkinQuizPage() {
               ) : questions[currentQuestion].layout === 'before-after' ? (
                 // Layout antes e depois
                 <div className="space-y-4">
-                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
-                    <div className="grid grid-cols-2 gap-2">
-                      <div className="bg-gradient-to-b from-gray-100 to-gray-200 rounded-xl p-4 text-center">
-                        <div className="text-2xl mb-2">😔</div>
-                        <div className="text-xs text-gray-600">Antes</div>
-                      </div>
-                      <div className="bg-gradient-to-b from-purple-100 to-purple-200 rounded-xl p-4 text-center">
-                        <div className="text-2xl mb-2">😊</div>
-                        <div className="text-xs text-gray-600">Depois</div>
-                      </div>
-                    </div>
-                  </div>
-                  
                   <div className="space-y-3">
                     {(questions[currentQuestion].options as BeforeAfterOption[]).map((option) => (
                       <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
@@ -667,13 +636,6 @@ export default function SkinQuizPage() {
               ) : questions[currentQuestion].layout === 'occasion' ? (
                 // Layout para ocasiões especiais
                 <div className="space-y-4">
-                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
-                    <div className="bg-gradient-to-b from-pink-100 to-pink-200 rounded-xl p-4 text-center">
-                      <div className="text-3xl mb-2">🎭</div>
-                      <div className="text-sm text-gray-600">Máscaras específicas</div>
-                    </div>
-                  </div>
-                  
                   <div className="space-y-3">
                     {(questions[currentQuestion].options as OccasionOption[]).map((option) => (
                       <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
@@ -693,13 +655,6 @@ export default function SkinQuizPage() {
               ) : questions[currentQuestion].layout === 'texture' ? (
                 // Layout para texturas de pele
                 <div className="space-y-4">
-                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
-                    <div className="bg-gradient-to-b from-yellow-100 to-yellow-200 rounded-xl p-4 text-center">
-                      <div className="text-3xl mb-2">✨</div>
-                      <div className="text-sm text-gray-600">Texturas de pele</div>
-                    </div>
-                  </div>
-                  
                   <div className="space-y-3">
                     {(questions[currentQuestion].options as TextureOption[]).map((option) => (
                       <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">

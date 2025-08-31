@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 const QuizSchema = {
-  areas_rosto: ['testa','olhos','bochechas','boca','pescoco'] as const,
   tempo_mudanca: ['menos_1_ano','1_a_3_anos','mais_5_anos','desde_sempre'] as const,
   sentimento_espelho: ['triste_rugas','irritada_velha','envergonhada_fotos','indiferente'] as const,
   sinais_adicionais: ['queda_cabelo','unhas_fracas','pele_ressecada','todas_anteriores'] as const,
@@ -23,10 +22,9 @@ const QuizSchema = {
 } as const;
 
 type Quiz = {
-  areas_rosto: typeof QuizSchema.areas_rosto[number][];
   tempo_mudanca: typeof QuizSchema.tempo_mudanca[number];
   sentimento_espelho: typeof QuizSchema.sentimento_espelho[number];
-  sinais_adicionais: typeof QuizSchema.sinais_adicionais[number];
+  sinais_adicionais: typeof QuizSchema.sinais_adicionais[number][];
   sensibilidade_cosmeticos: typeof QuizSchema.sensibilidade_cosmeticos[number];
   tempo_cuidado: typeof QuizSchema.tempo_cuidado[number];
   resultado_rapido: typeof QuizSchema.resultado_rapido[number];
@@ -53,13 +51,6 @@ interface CardOption {
   label: string;
   emoji: string;
   color: string;
-}
-
-interface FaceAreaOption {
-  value: string;
-  label: string;
-  position: 'left' | 'right';
-  order: number;
 }
 
 interface AnimationOption {
@@ -122,8 +113,8 @@ interface Question {
   id: string;
   title: string;
   type: 'radio' | 'checkbox';
-  layout: 'text' | 'cards' | 'face-areas' | 'animation' | 'visual' | 'timeline' | 'before-after' | 'occasion' | 'texture' | 'compliment' | 'money';
-  options: TextOption[] | CardOption[] | FaceAreaOption[] | AnimationOption[] | VisualOption[] | TimelineOption[] | BeforeAfterOption[] | OccasionOption[] | TextureOption[] | ComplimentOption[] | MoneyOption[];
+  layout: 'text' | 'cards' | 'animation' | 'visual' | 'timeline' | 'before-after' | 'occasion' | 'texture' | 'compliment' | 'money';
+  options: TextOption[] | CardOption[] | AnimationOption[] | VisualOption[] | TimelineOption[] | BeforeAfterOption[] | OccasionOption[] | TextureOption[] | ComplimentOption[] | MoneyOption[];
 }
 
 export default function SkinQuizPage() {
@@ -132,22 +123,8 @@ export default function SkinQuizPage() {
   const [photo, setPhoto] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Partial<Quiz>>({});
   const [analysisProgress, setAnalysisProgress] = useState(0);
-  const [selectedFaceAreas, setSelectedFaceAreas] = useState<string[]>([]);
 
   const questions: Question[] = [
-    {
-      id: 'areas_rosto',
-      title: 'Qual parte do seu rosto mais incomoda hoje?',
-      type: 'checkbox',
-      layout: 'face-areas',
-      options: [
-        { value: 'testa', label: 'Testa (linhas de expressão)', position: 'left', order: 1 },
-        { value: 'olhos', label: 'Olhos (pés de galinha, olheiras)', position: 'left', order: 2 },
-        { value: 'bochechas', label: 'Bochechas (flacidez, sulcos)', position: 'left', order: 3 },
-        { value: 'boca', label: 'Boca (código de barras, linhas finas)', position: 'right', order: 1 },
-        { value: 'pescoco', label: 'Pescoço/Colo (pele caída)', position: 'right', order: 2 }
-      ]
-    },
     {
       id: 'tempo_mudanca',
       title: 'Há quanto tempo sente que sua pele mudou dessa forma?',
@@ -341,14 +318,7 @@ export default function SkinQuizPage() {
   }
 
   function handleAnswer(questionId: string, value: string) {
-    if (questionId === 'areas_rosto') {
-      const currentAreas = answers.areas_rosto || [];
-      const newAreas = currentAreas.includes(value as Quiz['areas_rosto'][0]) 
-        ? currentAreas.filter(v => v !== value)
-        : [...currentAreas, value as Quiz['areas_rosto'][0]];
-      setAnswers({ ...answers, [questionId]: newAreas });
-      setSelectedFaceAreas(newAreas);
-    } else if (questionId === 'foco') {
+    if (questionId === 'foco') {
       const currentFoco = answers.foco || [];
       const newFoco = currentFoco.includes(value as Quiz['foco'][0]) 
         ? currentFoco.filter(v => v !== value)
@@ -396,9 +366,6 @@ export default function SkinQuizPage() {
 
   function canProceed() {
     const currentQ = questions[currentQuestion];
-    if (currentQ.id === 'areas_rosto') {
-      return answers.areas_rosto && answers.areas_rosto.length > 0;
-    }
     if (currentQ.type === 'checkbox') {
       return answers[currentQ.id as keyof Quiz] && (answers[currentQ.id as keyof Quiz] as string[])?.length > 0;
     }
@@ -592,99 +559,6 @@ export default function SkinQuizPage() {
                       <span className="font-medium text-gray-700">{option.label}</span>
               </label>
             ))}
-                </div>
-              ) : questions[currentQuestion].layout === 'face-areas' ? (
-                // Layout com áreas do rosto e overlay
-                <div className="relative">
-                  {/* Imagem base da mulher em tela cheia com botões posicionados */}
-                  <div className="relative w-full h-96 mb-6 overflow-hidden rounded-xl">
-                    <Image 
-                      src="/IMAGEM BASE.png" 
-                      alt="Mulher sorrindo" 
-                      fill
-                      className="object-cover"
-                      priority
-                    />
-                    
-                    {/* Overlays para cada área selecionada */}
-                    {selectedFaceAreas.map((area) => (
-                      <div key={area} className="absolute inset-0 z-10">
-                        <Image 
-                          src={`/${area === 'testa' ? 'linhas de express' : area === 'olhos' ? 'OLHOS' : area === 'bochechas' ? 'RUGAS' : area === 'boca' ? 'bigodechines' : 'pescoçotatruga'}.png`}
-                          alt={`Overlay ${area}`}
-                          fill
-                          className="object-cover"
-                          style={{ 
-                            mixBlendMode: 'multiply',
-                            opacity: 0.8
-                          }}
-                        />
-                      </div>
-                    ))}
-
-                    {/* Botões posicionados ao redor da imagem */}
-                    <div className="absolute inset-0 pointer-events-none">
-                      {/* Testa - posicionado acima da testa */}
-                      <button
-                        onClick={() => handleAnswer(questions[currentQuestion].id, 'testa')}
-                        className={`absolute top-8 left-1/2 transform -translate-x-1/2 pointer-events-auto px-3 py-1 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
-                          selectedFaceAreas.includes('testa')
-                            ? 'border-red-500 bg-red-500 text-white shadow-lg'
-                            : 'border-gray-300 bg-white text-gray-700 shadow-md'
-                        }`}
-                      >
-                        <span className="text-sm font-medium">Testa</span>
-                      </button>
-
-                      {/* Olhos - posicionado ao lado dos olhos */}
-                      <button
-                        onClick={() => handleAnswer(questions[currentQuestion].id, 'olhos')}
-                        className={`absolute top-1/3 -left-2 pointer-events-auto px-3 py-1 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
-                          selectedFaceAreas.includes('olhos')
-                            ? 'border-red-500 bg-red-500 text-white shadow-lg'
-                            : 'border-gray-300 bg-white text-gray-700 shadow-md'
-                        }`}
-                      >
-                        <span className="text-sm font-medium">Olhos</span>
-                      </button>
-
-                      {/* Bochechas - posicionado nas bochechas */}
-                      <button
-                        onClick={() => handleAnswer(questions[currentQuestion].id, 'bochechas')}
-                        className={`absolute top-1/2 -right-2 pointer-events-auto px-3 py-1 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
-                          selectedFaceAreas.includes('bochechas')
-                            ? 'border-red-500 bg-red-500 text-white shadow-lg'
-                            : 'border-gray-300 bg-white text-gray-700 shadow-md'
-                        }`}
-                      >
-                        <span className="text-sm font-medium">Bochechas</span>
-                      </button>
-
-                      {/* Boca - posicionado na boca */}
-                      <button
-                        onClick={() => handleAnswer(questions[currentQuestion].id, 'boca')}
-                        className={`absolute top-2/3 left-1/2 transform -translate-x-1/2 pointer-events-auto px-3 py-1 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
-                          selectedFaceAreas.includes('boca')
-                            ? 'border-red-500 bg-red-500 text-white shadow-lg'
-                            : 'border-gray-300 bg-white text-gray-700 shadow-md'
-                        }`}
-                      >
-                        <span className="text-sm font-medium">Boca</span>
-                      </button>
-
-                      {/* Pescoço - posicionado no pescoço */}
-                      <button
-                        onClick={() => handleAnswer(questions[currentQuestion].id, 'pescoco')}
-                        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 pointer-events-auto px-3 py-1 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
-                          selectedFaceAreas.includes('pescoco')
-                            ? 'border-red-500 bg-red-500 text-white shadow-lg'
-                            : 'border-gray-300 bg-white text-gray-700 shadow-md'
-                        }`}
-                      >
-                        <span className="text-sm font-medium">Pescoço</span>
-                      </button>
-                    </div>
-                  </div>
                 </div>
               ) : questions[currentQuestion].layout === 'animation' ? (
                 // Layout com animação de envelhecimento

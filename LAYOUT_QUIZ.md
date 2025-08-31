@@ -1,341 +1,242 @@
-# 📋 Layout do Quiz - Documentação Completa
+# 📋 Layout do Quiz - Guia Completo
 
-## 🎯 Visão Geral
-Este documento descreve o layout e estrutura de cada página do quiz de análise da pele, permitindo fácil personalização das perguntas e conteúdo.
-
----
-
-## 📱 **PÁGINA 1: UPLOAD DE FOTO**
-
-### **Estrutura Visual:**
-- **Background:** Gradiente sutil (gray-50 → white)
-- **Container:** Card branco com sombra e bordas arredondadas
-- **Layout:** Centralizado com espaçamento generoso
-
-### **Elementos:**
-```tsx
-// Ícone da câmera (16x16, fundo roxo claro)
-<div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-  <svg className="w-8 h-8 text-purple-600">...</svg>
-</div>
-
-// Título principal
-<h2 className="text-xl font-semibold text-gray-800 mb-2">
-  Vamos criar um Plano Personalizado
-</h2>
-
-// Descrição
-<p className="text-gray-600 text-sm">
-  Envie uma foto frontal, bem iluminada para começarmos
-</p>
-
-// Botão de upload
-<div className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-4 px-6 rounded-xl cursor-pointer transition-colors">
-  Enviar Foto
-</div>
-```
-
-### **Personalização:**
-- **Título:** "Vamos criar um Plano Personalizado"
-- **Descrição:** "Envie uma foto frontal, bem iluminada para começarmos"
-- **Botão:** "Enviar Foto"
+Este documento descreve o layout e estrutura de cada página do quiz, facilitando a customização e criação de novas perguntas.
 
 ---
 
-## ⏳ **PÁGINA 2: LOADING/ANÁLISE**
+## 🎯 **Estrutura Geral do Quiz**
 
-### **Estrutura Visual:**
-- **Background:** Card branco com sombra
-- **Layout:** Centralizado com animação de pulse
-
-### **Elementos:**
-```tsx
-// Foto do usuário (32x32, circular com borda roxa)
-<img src={photo} alt="preview" className="w-32 h-32 rounded-full object-cover mx-auto border-4 border-purple-100" />
-
-// Ícone de loading (16x16, fundo roxo claro)
-<div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-  <svg className="w-8 h-8 text-purple-600">...</svg>
-</div>
-
-// Título animado
-<h2 className="text-xl font-semibold text-gray-800 mb-2">
-  Analisando sua pele...
-</h2>
-
-// Descrição
-<p className="text-gray-600 text-sm">
-  Enquanto isso, responda algumas perguntas rápidas
-</p>
-```
-
-### **Personalização:**
-- **Título:** "Analisando sua pele..."
-- **Descrição:** "Enquanto isso, responda algumas perguntas rápidas"
+O quiz possui **5 etapas principais**:
+1. **Upload** - Envio da foto
+2. **Loading** - Análise inicial da foto
+3. **Quiz** - Perguntas sequenciais
+4. **Analyzing** - Análise final personalizada
+5. **Result** - Landing page com resultado
 
 ---
 
-## ❓ **PÁGINA 3: QUIZ (PERGUNTAS SEQUENCIAIS)**
+## 📝 **Bloco 1: Quiz com Perguntas (Layout Texto)**
 
-### **Estrutura Visual:**
-- **Background:** Card branco com sombra
-- **Layout:** Uma pergunta por vez com barra de progresso
+### **Características:**
+- ✅ **Tipo:** `layout: 'text'`
+- ✅ **Navegação:** Botões "Voltar" e "Continuar"
+- ✅ **Opções:** Lista vertical com radio/checkbox
+- ✅ **Validação:** Só avança após seleção
 
-### **Elementos Principais:**
-
-#### **1. Barra de Progresso:**
-```tsx
-// Indicador de progresso
-<div className="flex justify-between text-sm text-gray-600 mb-2">
-  <span>Pergunta {currentQuestion + 1} de {questions.length}</span>
-  <span>{Math.round(((currentQuestion + 1) / questions.length) * 100)}%</span>
-</div>
-
-// Barra visual
-<div className="w-full bg-gray-200 rounded-full h-2">
-  <div className="bg-purple-600 h-2 rounded-full transition-all duration-300" 
-       style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}>
-  </div>
-</div>
+### **Estrutura das Opções:**
+```typescript
+{
+  value: 'valor_interno',
+  label: 'Texto visível para o usuário',
+  emoji: '😊'
+}
 ```
 
-#### **2. Foto Preview:**
-```tsx
-// Foto circular pequena (20x20)
-<img src={photo} alt="preview" className="w-20 h-20 rounded-full object-cover mx-auto border-4 border-purple-100" />
+### **Exemplo de Pergunta:**
+```typescript
+{
+  id: 'faixa',
+  title: 'Qual é a sua faixa etária?',
+  type: 'radio',
+  layout: 'text',
+  options: [
+    { value: '<25', label: '18 a 25', emoji: '👶' },
+    { value: '25-34', label: '26 a 35', emoji: '👨‍💼' },
+    { value: '35-44', label: '36 a 45', emoji: '👩‍💼' }
+  ]
+}
 ```
 
-#### **3. Pergunta Atual:**
-```tsx
-// Título da pergunta
-<h3 className="text-xl font-semibold text-gray-800 mb-6 text-center">
-  {questions[currentQuestion].title}
-</h3>
-
-// Opções de resposta
-<div className="space-y-3">
-  {questions[currentQuestion].options.map((option) => (
-    <label className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
-      <input type={questions[currentQuestion].type} ... />
-      <span className="text-lg mr-3">{option.emoji}</span>
-      <span className="font-medium text-gray-700">{option.label}</span>
-    </label>
-  ))}
-</div>
+### **📋 Prompt para Criação:**
 ```
-
-#### **4. Botões de Navegação:**
-```tsx
-// Botão Voltar (só aparece se não for a primeira pergunta)
-{currentQuestion > 0 && (
-  <button className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-6 rounded-xl transition-colors">
-    Voltar
-  </button>
-)}
-
-// Botão Continuar/Ver Resultado
-<button className={`flex-1 font-semibold py-3 px-6 rounded-xl transition-all ${
-  canProceed() 
-    ? 'bg-purple-600 hover:bg-purple-700 text-white transform hover:scale-105' 
-    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-}`}>
-  {currentQuestion === questions.length - 1 ? 'Ver Resultado' : 'Continuar'}
-</button>
+Crie uma nova pergunta de texto para o quiz:
+- ID da pergunta: [ex: 'genero', 'estilo_vida']
+- Título da pergunta: [ex: 'Qual é o seu gênero?']
+- Tipo de resposta: [radio OU checkbox]
+- Opções (mínimo 2, máximo 6):
+  * Valor: [ex: 'masculino']
+  * Label: [ex: 'Masculino']
+  * Emoji: [ex: '👨']
 ```
 
 ---
 
-## 📝 **ESTRUTURA DAS PERGUNTAS**
+## 🖼️ **Bloco 2: Quiz com Imagens (Layout Cards)**
 
-### **Formato da Array de Perguntas:**
-```tsx
-const questions = [
-  {
-    id: 'faixa',                    // Identificador único
-    title: 'Qual é a sua faixa etária?',  // Título da pergunta
-    type: 'radio',                  // Tipo: 'radio' ou 'checkbox'
-    options: [                      // Array de opções
-      { 
-        value: '<25',               // Valor interno
-        label: '18 a 25',           // Texto visível
-        emoji: '👶'                 // Emoji decorativo
-      },
-      // ... mais opções
-    ]
-  },
-  // ... mais perguntas
-];
+### **Características:**
+- ✅ **Tipo:** `layout: 'cards'`
+- ✅ **Navegação:** Avanço automático após clique
+- ✅ **Opções:** Grid 2x2 com cards coloridos
+- ✅ **Cores:** Cada card tem cor personalizada
+
+### **Estrutura das Opções:**
+```typescript
+{
+  value: 'valor_interno',
+  label: 'Texto visível',
+  emoji: '😊',
+  color: 'bg-blue-100 border-blue-300'
+}
 ```
 
-### **Tipos de Pergunta:**
-- **`radio`:** Seleção única (ex: faixa etária, tipo de pele)
-- **`checkbox`:** Seleção múltipla (ex: áreas de incômodo)
+### **Paleta de Cores Disponíveis:**
+- 🔵 **Azul:** `bg-blue-100 border-blue-300`
+- 🟢 **Verde:** `bg-green-100 border-green-300`
+- 🟣 **Roxo:** `bg-purple-100 border-purple-300`
+- 🟡 **Amarelo:** `bg-yellow-100 border-yellow-300`
+- 🟠 **Laranja:** `bg-orange-100 border-orange-300`
+- 🔴 **Vermelho:** `bg-red-100 border-red-300`
+- 🟤 **Marrom:** `bg-amber-100 border-amber-300`
+- ⚪ **Cinza:** `bg-gray-100 border-gray-300`
 
----
-
-## 🎯 **PÁGINA 4: RESULTADO**
-
-### **Estrutura Visual:**
-- **Background:** Múltiplos cards brancos com sombras
-- **Layout:** Informações organizadas em seções
-
-### **Elementos:**
-
-#### **1. Foto do Usuário:**
-```tsx
-<img src={photo} alt="preview" className="w-24 h-24 rounded-full object-cover mx-auto border-4 border-purple-100" />
+### **Exemplo de Pergunta:**
+```typescript
+{
+  id: 'foco',
+  title: 'O que mais te incomoda em sua pele?',
+  type: 'checkbox',
+  layout: 'cards',
+  options: [
+    { value: 'flacidez', label: 'Flacidez', emoji: '😔', color: 'bg-blue-100 border-blue-300' },
+    { value: 'rugas', label: 'Rugas', emoji: '👴', color: 'bg-purple-100 border-purple-300' }
+  ]
+}
 ```
 
-#### **2. Título do Resultado:**
-```tsx
-<h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
-  Seu Plano Personalizado
-</h2>
-<p className="text-gray-600 text-center mb-6">
-  Baseado na sua análise e respostas
-</p>
+### **📋 Prompt para Criação:**
 ```
-
-#### **3. Análise Personalizada:**
-```tsx
-<div className="bg-purple-50 rounded-xl p-4 mb-6">
-  <p className="text-gray-800 text-sm leading-relaxed">{resultado.texto}</p>
-</div>
-```
-
-#### **4. Rotina Sugerida:**
-```tsx
-<div className="bg-gray-50 rounded-xl p-4">
-  <h3 className="font-semibold text-gray-800 mb-3 text-center">Rotina Sugerida</h3>
-  
-  {/* Manhã */}
-  <div className="flex items-center">
-    <span className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
-      <span className="text-yellow-600 text-xs font-bold">AM</span>
-    </span>
-    <span className="text-sm text-gray-700">{resultado.plano.AM.join(' → ')}</span>
-  </div>
-  
-  {/* Noite */}
-  <div className="flex items-center">
-    <span className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-      <span className="text-blue-600 text-xs font-bold">PM</span>
-    </span>
-    <span className="text-sm text-gray-700">{resultado.plano.PM.join(' → ')}</span>
-  </div>
-  
-  {/* Semanal */}
-  <div className="flex items-center">
-    <span className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
-      <span className="text-green-600 text-xs font-bold">S</span>
-    </span>
-    <span className="text-sm text-gray-700">{resultado.plano.Semanal.join(' / ')}</span>
-  </div>
-</div>
-```
-
-#### **5. Disclaimer:**
-```tsx
-<p className="text-xs text-gray-500 text-center mt-6">
-  * Análise cosmética e educacional. Não substitui avaliação médica.
-</p>
+Crie uma nova pergunta com cards para o quiz:
+- ID da pergunta: [ex: 'tipo_pele', 'objetivo_tratamento']
+- Título da pergunta: [ex: 'Qual é o seu tipo de pele?']
+- Tipo de resposta: [radio OU checkbox]
+- Opções (mínimo 2, máximo 4 para grid 2x2):
+  * Valor: [ex: 'oleosa']
+  * Label: [ex: 'Pele Oleosa']
+  * Emoji: [ex: '💧']
+  * Cor: [escolha da paleta disponível]
 ```
 
 ---
 
-## 🎨 **PALETA DE CORES**
+## 🎉 **Bloco 3: Quiz Final (Resultado)**
 
-### **Cores Principais:**
-- **Roxo:** `purple-600`, `purple-700` (botões principais)
-- **Roxo Claro:** `purple-100`, `purple-50` (fundos e bordas)
-- **Cinza:** `gray-50`, `gray-100`, `gray-200` (fundos e bordas)
-- **Texto:** `gray-800` (títulos), `gray-700` (texto), `gray-600` (descrições)
+### **Características:**
+- ✅ **Tipo:** Landing page completa
+- ✅ **Conteúdo:** Análise personalizada + plano de rotina
+- ✅ **Call to Action:** Botão para conversão
+- ✅ **Design:** Gradientes e elementos visuais atrativos
 
-### **Cores dos Badges:**
-- **AM (Manhã):** `yellow-100` (fundo), `yellow-600` (texto)
-- **PM (Noite):** `blue-100` (fundo), `blue-600` (texto)
-- **S (Semanal):** `green-100` (fundo), `green-600` (texto)
+### **Estrutura do Resultado:**
+```typescript
+{
+  texto: "Análise personalizada baseada nas respostas...",
+  plano: {
+    AM: ["Limpeza", "Hidratante", "Protetor"],
+    PM: ["Limpeza", "Sérum", "Creme"],
+    Semanal: ["Máscara", "Esfoliação"]
+  }
+}
+```
 
----
-
-## 📱 **RESPONSIVIDADE**
-
-### **Breakpoints:**
-- **Mobile:** `max-w-md` (container principal)
-- **Padding:** `p-6` (espaçamento geral)
-- **Cards:** `p-8` (upload/loading), `p-6` (quiz/resultado)
-
-### **Elementos Responsivos:**
-- **Grid:** `grid-cols-2` para opções de faixa etária
-- **Botões:** `flex-1` para distribuição igual
-- **Imagens:** Tamanhos fixos para consistência
-
----
-
-## 🔧 **FUNÇÕES PRINCIPAIS**
-
-### **Navegação:**
-- `nextQuestion()`: Avança para próxima pergunta
-- `previousQuestion()`: Volta para pergunta anterior
-- `canProceed()`: Verifica se pode avançar
-
-### **Gerenciamento de Estado:**
-- `currentQuestion`: Índice da pergunta atual
-- `answers`: Respostas coletadas
-- `step`: Etapa atual do processo
+### **📋 Prompt para Criação:**
+```
+Crie uma nova lógica de resultado para o quiz:
+- Condições baseadas nas respostas: [ex: se faixa > 35, mostrar X]
+- Análise personalizada: [texto explicativo]
+- Rotina matinal (AM): [array de 3-4 passos]
+- Rotina noturna (PM): [array de 2-3 passos]
+- Rotina semanal: [array de 1-2 tratamentos]
+```
 
 ---
 
-## 📝 **COMO PERSONALIZAR**
+## 🔧 **Como Adicionar Novas Perguntas**
 
-### **1. Alterar Perguntas:**
-Modifique o array `questions` no arquivo `page.tsx`:
-```tsx
-const questions = [
+### **1. Adicione a pergunta no array `questions`:**
+```typescript
+const questions: Question[] = [
+  // ... perguntas existentes ...
   {
     id: 'nova_pergunta',
-    title: 'Sua nova pergunta aqui?',
+    title: 'Título da nova pergunta?',
     type: 'radio', // ou 'checkbox'
+    layout: 'text', // ou 'cards'
     options: [
-      { value: 'valor1', label: 'Opção 1', emoji: '😊' },
-      { value: 'valor2', label: 'Opção 2', emoji: '😎' }
+      // ... opções ...
     ]
   }
 ];
 ```
 
-### **2. Alterar Textos:**
-Modifique os textos diretamente nos elementos JSX:
-```tsx
-<h1 className="text-3xl font-bold text-gray-800 mb-2">
-  Seu Novo Título
-</h1>
+### **2. Atualize o tipo `Quiz` se necessário:**
+```typescript
+type Quiz = {
+  // ... campos existentes ...
+  nova_pergunta: typeof QuizSchema.nova_pergunta[number];
+};
 ```
 
-### **3. Alterar Cores:**
-Substitua as classes de cor do Tailwind:
-```tsx
-// De:
-className="bg-purple-600"
-// Para:
-className="bg-blue-600"
+### **3. Atualize o `QuizSchema`:**
+```typescript
+const QuizSchema = {
+  // ... campos existentes ...
+  nova_pergunta: ['opcao1', 'opcao2', 'opcao3'] as const,
+};
 ```
-
-### **4. Adicionar Novas Páginas:**
-Crie novos casos no switch de `step` e adicione a lógica correspondente.
 
 ---
 
-## 🚀 **PRÓXIMOS PASSOS SUGERIDOS**
+## 🎨 **Personalização Visual**
 
-1. **Personalizar perguntas** para seu nicho específico
-2. **Adicionar validações** mais robustas
-3. **Implementar persistência** de dados
-4. **Adicionar animações** de transição entre perguntas
-5. **Criar sistema de pontuação** para resultados mais precisos
-6. **Integrar com backend** para salvar respostas
-7. **Adicionar analytics** para acompanhar conversões
+### **Cores e Gradientes:**
+- **Header:** `from-purple-600 to-purple-800`
+- **CTA:** `from-green-500 to-green-600`
+- **Cards:** Paleta de cores pastéis
+- **Progress:** `bg-purple-600` (quiz) / `bg-green-500` (análise)
+
+### **Espaçamentos:**
+- **Cards:** `p-4` (interno) / `gap-4` (entre cards)
+- **Seções:** `mb-6` ou `mb-8` (entre elementos)
+- **Padding geral:** `p-8` (conteúdo principal)
+
+### **Responsividade:**
+- **Mobile:** `max-w-md` (container principal)
+- **Grid:** `grid-cols-2` (cards lado a lado)
+- **Texto:** `text-sm` a `text-2xl` (hierarquia)
 
 ---
 
-*Este documento foi criado para facilitar a personalização e manutenção do quiz. Para dúvidas técnicas, consulte o código fonte em `src/app/quizz/page.tsx`.*
+## 📱 **Fluxo de Navegação**
+
+1. **Upload** → **Loading** (automático após 1.4s)
+2. **Loading** → **Quiz** (automático após 1.4s)
+3. **Quiz** → **Quiz** (próxima pergunta)
+4. **Quiz** → **Analyzing** (última pergunta respondida)
+5. **Analyzing** → **Result** (automático após 100%)
+
+### **Navegação no Quiz:**
+- **Layout 'text':** Botões "Voltar" e "Continuar"
+- **Layout 'cards':** Avanço automático após clique (300ms delay)
+
+---
+
+## 🚀 **Dicas para Criação**
+
+1. **Mantenha consistência** no tom das perguntas
+2. **Use emojis** para tornar as opções mais atrativas
+3. **Limite opções** a 4 para layout 'cards' (grid 2x2)
+4. **Valide respostas** antes de permitir avanço
+5. **Teste o fluxo** completo após adicionar perguntas
+
+---
+
+## 📞 **Suporte para Criação**
+
+Para criar novas perguntas ou modificar o quiz, use os prompts acima ou me envie uma mensagem com:
+
+```
+"Quero criar uma nova pergunta para o quiz:
+[descreva a pergunta, opções e tipo de layout desejado]"
+```
+
+Vou implementar a pergunta seguindo exatamente suas especificações! 🎯✨

@@ -4,6 +4,17 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 const QuizSchema = {
+  areas_rosto: ['testa','olhos','bochechas','boca','pescoco'] as const,
+  tempo_mudanca: ['menos_1_ano','1_a_3_anos','mais_5_anos','desde_sempre'] as const,
+  sentimento_espelho: ['triste_rugas','irritada_velha','envergonhada_fotos','indiferente'] as const,
+  sinais_adicionais: ['queda_cabelo','unhas_fracas','pele_ressecada','todas_anteriores'] as const,
+  sensibilidade_cosmeticos: ['sim_irrita','nao_uso_tudo','alguns_produtos'] as const,
+  tempo_cuidado: ['5_minutos','15_minutos','30_mais'] as const,
+  resultado_rapido: ['reduzir_rugas','firmar_pele','clarear_manchas','brilho_jovem'] as const,
+  ocasiao_especial: ['casamento','reuniao_amigas','praia_ferias','nao_especial'] as const,
+  pele_desejada: ['macia_bebe','firme_20_anos','iluminada_uniforme','todas_anteriores'] as const,
+  ultimo_elogio: ['esta_semana','mes_passado','mais_6_meses','nem_lembro'] as const,
+  gasto_tentativas: ['menos_500','500_2000','mais_5000'] as const,
   faixa: ['<25','25-34','35-44','45-54','55+'] as const,
   foco: ['flacidez','ressecada','rugas','murcha','manchas'] as const,
   tipo: ['oleosa','seca','mista','sensível'] as const,
@@ -12,6 +23,17 @@ const QuizSchema = {
 };
 
 type Quiz = {
+  areas_rosto: typeof QuizSchema.areas_rosto[number][];
+  tempo_mudanca: typeof QuizSchema.tempo_mudanca[number];
+  sentimento_espelho: typeof QuizSchema.sentimento_espelho[number];
+  sinais_adicionais: typeof QuizSchema.sinais_adicionais[number];
+  sensibilidade_cosmeticos: typeof QuizSchema.sensibilidade_cosmeticos[number];
+  tempo_cuidado: typeof QuizSchema.tempo_cuidado[number];
+  resultado_rapido: typeof QuizSchema.resultado_rapido[number];
+  ocasiao_especial: typeof QuizSchema.ocasiao_especial[number];
+  pele_desejada: typeof QuizSchema.pele_desejada[number];
+  ultimo_elogio: typeof QuizSchema.ultimo_elogio[number];
+  gasto_tentativas: typeof QuizSchema.gasto_tentativas[number];
   faixa: typeof QuizSchema.faixa[number];
   foco: typeof QuizSchema.foco[number][];
   tipo: typeof QuizSchema.tipo[number];
@@ -33,12 +55,75 @@ interface CardOption {
   color: string;
 }
 
+interface FaceAreaOption {
+  value: string;
+  label: string;
+  position: 'left' | 'right';
+  order: number;
+}
+
+interface AnimationOption {
+  value: string;
+  label: string;
+  emoji: string;
+  animation: string;
+}
+
+interface VisualOption {
+  value: string;
+  label: string;
+  emoji: string;
+  visual: string;
+}
+
+interface TimelineOption {
+  value: string;
+  label: string;
+  emoji: string;
+  timeline: string;
+}
+
+interface BeforeAfterOption {
+  value: string;
+  label: string;
+  emoji: string;
+  beforeAfter: string;
+}
+
+interface OccasionOption {
+  value: string;
+  label: string;
+  emoji: string;
+  occasion: string;
+}
+
+interface TextureOption {
+  value: string;
+  label: string;
+  emoji: string;
+  texture: string;
+}
+
+interface ComplimentOption {
+  value: string;
+  label: string;
+  emoji: string;
+  compliment: string;
+}
+
+interface MoneyOption {
+  value: string;
+  label: string;
+  emoji: string;
+  money: string;
+}
+
 interface Question {
   id: string;
   title: string;
   type: 'radio' | 'checkbox';
-  layout: 'text' | 'cards';
-  options: TextOption[] | CardOption[];
+  layout: 'text' | 'cards' | 'face-areas' | 'animation' | 'visual' | 'timeline' | 'before-after' | 'occasion' | 'texture' | 'compliment' | 'money';
+  options: TextOption[] | CardOption[] | FaceAreaOption[] | AnimationOption[] | VisualOption[] | TimelineOption[] | BeforeAfterOption[] | OccasionOption[] | TextureOption[] | ComplimentOption[] | MoneyOption[];
 }
 
 export default function SkinQuizPage() {
@@ -47,8 +132,139 @@ export default function SkinQuizPage() {
   const [photo, setPhoto] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Partial<Quiz>>({});
   const [analysisProgress, setAnalysisProgress] = useState(0);
+  const [selectedFaceAreas, setSelectedFaceAreas] = useState<string[]>([]);
 
   const questions: Question[] = [
+    {
+      id: 'areas_rosto',
+      title: 'Qual parte do seu rosto mais incomoda hoje?',
+      type: 'checkbox',
+      layout: 'face-areas',
+      options: [
+        { value: 'testa', label: 'Testa (linhas de expressão)', position: 'left', order: 1 },
+        { value: 'olhos', label: 'Olhos (pés de galinha, olheiras)', position: 'left', order: 2 },
+        { value: 'bochechas', label: 'Bochechas (flacidez, sulcos)', position: 'left', order: 3 },
+        { value: 'boca', label: 'Boca (código de barras, linhas finas)', position: 'right', order: 1 },
+        { value: 'pescoco', label: 'Pescoço/Colo (pele caída)', position: 'right', order: 2 }
+      ]
+    },
+    {
+      id: 'tempo_mudanca',
+      title: 'Há quanto tempo sente que sua pele mudou dessa forma?',
+      type: 'radio',
+      layout: 'animation',
+      options: [
+        { value: 'menos_1_ano', label: 'Menos de 1 ano', emoji: '📅', animation: 'aging-timelapse' },
+        { value: '1_a_3_anos', label: '1 a 3 anos', emoji: '📆', animation: 'aging-timelapse' },
+        { value: 'mais_5_anos', label: 'Mais de 5 anos', emoji: '⏰', animation: 'aging-timelapse' },
+        { value: 'desde_sempre', label: 'Desde sempre', emoji: '🕰️', animation: 'aging-timelapse' }
+      ]
+    },
+    {
+      id: 'sentimento_espelho',
+      title: 'Como você se sente ao olhar no espelho?',
+      type: 'radio',
+      layout: 'visual',
+      options: [
+        { value: 'triste_rugas', label: 'Triste com as rugas', emoji: '😔', visual: 'sad-expression' },
+        { value: 'irritada_velha', label: 'Irritada por parecer mais velha que a idade', emoji: '😤', visual: 'angry-expression' },
+        { value: 'envergonhada_fotos', label: 'Envergonhada em fotos', emoji: '😳', visual: 'embarrassed-expression' },
+        { value: 'indiferente', label: 'Indiferente (mas gostaria de melhorar)', emoji: '😐', visual: 'neutral-expression' }
+      ]
+    },
+    {
+      id: 'sinais_adicionais',
+      title: 'Você também sente algum desses sinais?',
+      type: 'checkbox',
+      layout: 'visual',
+      options: [
+        { value: 'queda_cabelo', label: 'Queda de cabelo', emoji: '💇‍♀️', visual: 'collagen-damage' },
+        { value: 'unhas_fracas', label: 'Unhas fracas', emoji: '💅', visual: 'collagen-damage' },
+        { value: 'pele_ressecada', label: 'Pele ressecada', emoji: '🏜️', visual: 'collagen-damage' },
+        { value: 'todas_anteriores', label: 'Todas as anteriores', emoji: '😰', visual: 'collagen-damage' }
+      ]
+    },
+    {
+      id: 'sensibilidade_cosmeticos',
+      title: 'Sua pele é sensível a cosméticos?',
+      type: 'radio',
+      layout: 'visual',
+      options: [
+        { value: 'sim_irrita', label: 'Sim, quase tudo irrita', emoji: '😖', visual: 'sensitive-skin' },
+        { value: 'nao_uso_tudo', label: 'Não, uso de tudo', emoji: '😊', visual: 'calm-skin' },
+        { value: 'alguns_produtos', label: 'Só alguns produtos causam reação', emoji: '🤔', visual: 'mixed-skin' }
+      ]
+    },
+    {
+      id: 'tempo_cuidado',
+      title: 'Quanto tempo tem por dia para se cuidar?',
+      type: 'radio',
+      layout: 'timeline',
+      options: [
+        { value: '5_minutos', label: '5 minutos', emoji: '⏱️', timeline: 'quick-routine' },
+        { value: '15_minutos', label: '15 minutos', emoji: '⏰', timeline: 'medium-routine' },
+        { value: '30_mais', label: '30 minutos ou mais', emoji: '🕐', timeline: 'full-routine' }
+      ]
+    },
+    {
+      id: 'resultado_rapido',
+      title: 'Que tipo de resultado você gostaria mais rápido?',
+      type: 'radio',
+      layout: 'before-after',
+      options: [
+        { value: 'reduzir_rugas', label: 'Reduzir rugas', emoji: '👵', beforeAfter: 'wrinkles-transformation' },
+        { value: 'firmar_pele', label: 'Firmar pele flácida', emoji: '💪', beforeAfter: 'firmness-transformation' },
+        { value: 'clarear_manchas', label: 'Clarear manchas', emoji: '✨', beforeAfter: 'spots-transformation' },
+        { value: 'brilho_jovem', label: 'Ter brilho jovem', emoji: '🌟', beforeAfter: 'glow-transformation' }
+      ]
+    },
+    {
+      id: 'ocasiao_especial',
+      title: 'Alguma ocasião especial chegando?',
+      type: 'radio',
+      layout: 'occasion',
+      options: [
+        { value: 'casamento', label: 'Casamento', emoji: '💒', occasion: 'wedding-mask' },
+        { value: 'reuniao_amigas', label: 'Reunião de amigas', emoji: '👭', occasion: 'friends-mask' },
+        { value: 'praia_ferias', label: 'Praia/férias', emoji: '🏖️', occasion: 'beach-mask' },
+        { value: 'nao_especial', label: 'Não, só quero melhorar mesmo', emoji: '🎯', occasion: 'general-mask' }
+      ]
+    },
+    {
+      id: 'pele_desejada',
+      title: 'Como gostaria que sua pele ficasse?',
+      type: 'radio',
+      layout: 'texture',
+      options: [
+        { value: 'macia_bebe', label: 'Macia como pele de bebê', emoji: '👶', texture: 'baby-skin' },
+        { value: 'firme_20_anos', label: 'Firme como aos 20 anos', emoji: '💪', texture: 'firm-skin' },
+        { value: 'iluminada_uniforme', label: 'Iluminada e uniforme', emoji: '✨', texture: 'glowing-skin' },
+        { value: 'todas_anteriores', label: 'Todas as anteriores', emoji: '🎯', texture: 'all-textures' }
+      ]
+    },
+    {
+      id: 'ultimo_elogio',
+      title: 'Qual foi a última vez que recebeu um elogio pela pele?',
+      type: 'radio',
+      layout: 'compliment',
+      options: [
+        { value: 'esta_semana', label: 'Esta semana', emoji: '😊', compliment: 'recent-compliment' },
+        { value: 'mes_passado', label: 'Mês passado', emoji: '😌', compliment: 'month-ago-compliment' },
+        { value: 'mais_6_meses', label: 'Mais de 6 meses', emoji: '😔', compliment: 'long-ago-compliment' },
+        { value: 'nem_lembro', label: 'Nem lembro…', emoji: '😢', compliment: 'no-compliment' }
+      ]
+    },
+    {
+      id: 'gasto_tentativas',
+      title: 'Quanto já gastou tentando resolver?',
+      type: 'radio',
+      layout: 'money',
+      options: [
+        { value: 'menos_500', label: 'Menos de R$500', emoji: '💰', money: 'low-spending' },
+        { value: '500_2000', label: 'Entre R$500 e R$2.000', emoji: '💸', money: 'medium-spending' },
+        { value: 'mais_5000', label: 'Mais de R$5.000', emoji: '💸', money: 'high-spending' }
+      ]
+    },
     {
       id: 'faixa',
       title: 'Qual é a sua faixa etária?',
@@ -125,7 +341,14 @@ export default function SkinQuizPage() {
   }
 
   function handleAnswer(questionId: string, value: string) {
-    if (questionId === 'foco') {
+    if (questionId === 'areas_rosto') {
+      const currentAreas = answers.areas_rosto || [];
+      const newAreas = currentAreas.includes(value as Quiz['areas_rosto'][0]) 
+        ? currentAreas.filter(v => v !== value)
+        : [...currentAreas, value as Quiz['areas_rosto'][0]];
+      setAnswers({ ...answers, [questionId]: newAreas });
+      setSelectedFaceAreas(newAreas);
+    } else if (questionId === 'foco') {
       const currentFoco = answers.foco || [];
       const newFoco = currentFoco.includes(value as Quiz['foco'][0]) 
         ? currentFoco.filter(v => v !== value)
@@ -173,6 +396,9 @@ export default function SkinQuizPage() {
 
   function canProceed() {
     const currentQ = questions[currentQuestion];
+    if (currentQ.id === 'areas_rosto') {
+      return answers.areas_rosto && answers.areas_rosto.length > 0;
+    }
     if (currentQ.type === 'checkbox') {
       return answers[currentQ.id as keyof Quiz] && (answers[currentQ.id as keyof Quiz] as string[])?.length > 0;
     }
@@ -294,6 +520,33 @@ export default function SkinQuizPage() {
 
       {step === 'quiz' && (
           <div className="bg-white rounded-2xl shadow-lg p-8">
+            {/* Header com logo e navegação */}
+            <div className="flex items-center justify-between mb-6">
+              <button 
+                type="button"
+                onClick={previousQuestion}
+                className="text-gray-600 hover:text-gray-800"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              
+              <div className="flex items-center">
+                <Image 
+                  src="/LogoPolarBuy.png" 
+                  alt="PolarBuy" 
+                  width={120}
+                  height={40}
+                  className="h-8 w-auto"
+                />
+              </div>
+              
+              <div className="text-sm text-gray-600 font-medium">
+                {currentQuestion + 1}/{questions.length}
+              </div>
+            </div>
+
             {/* Progress bar */}
             <div className="mb-6">
               <div className="flex justify-between text-sm text-gray-600 mb-2">
@@ -329,11 +582,18 @@ export default function SkinQuizPage() {
                 {questions[currentQuestion].title}
               </h3>
               
+              {/* Instrução adicional para áreas do rosto */}
+              {questions[currentQuestion].layout === 'face-areas' && (
+                <p className="text-gray-600 text-sm text-center mb-6">
+                  Se você está feliz com sua aparência, então pressione Continue
+                </p>
+              )}
+              
               {/* Layout baseado no tipo de pergunta */}
               {questions[currentQuestion].layout === 'text' ? (
                 // Layout com texto e botão continuar
                 <div className="space-y-3">
-                  {questions[currentQuestion].options.map((option) => (
+                  {(questions[currentQuestion].options as TextOption[]).map((option) => (
                     <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
                       <input 
                         type={questions[currentQuestion].type} 
@@ -350,6 +610,332 @@ export default function SkinQuizPage() {
                       <span className="font-medium text-gray-700">{option.label}</span>
               </label>
             ))}
+                </div>
+              ) : questions[currentQuestion].layout === 'face-areas' ? (
+                // Layout com áreas do rosto e overlay
+                <div className="relative">
+                  {/* Imagem base da mulher */}
+                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
+                    <Image 
+                      src="/IMAGEM BASE.png" 
+                      alt="Mulher sorrindo" 
+                      width={300}
+                      height={400}
+                      className="w-full h-auto"
+                    />
+                    
+                    {/* Overlays para cada área selecionada */}
+                    {selectedFaceAreas.map((area) => (
+                      <div key={area} className="absolute inset-0">
+                        <Image 
+                          src={`/${area === 'testa' ? 'linhas de express' : area === 'olhos' ? 'OLHOS' : area === 'bochechas' ? 'RUGAS' : area === 'boca' ? 'bigodechines' : 'pescoçotatruga'}.png`}
+                          alt={`Overlay ${area}`}
+                          width={300}
+                          height={400}
+                          className="w-full h-auto absolute inset-0"
+                          style={{ mixBlendMode: 'multiply' }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Opções de áreas do rosto */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-3">
+                      {(questions[currentQuestion].options as FaceAreaOption[])
+                        .filter(option => option.position === 'left')
+                        .sort((a, b) => a.order - b.order)
+                        .map((option) => (
+                        <button
+                          key={option.value}
+                          onClick={() => handleAnswer(questions[currentQuestion].id, option.value)}
+                          className={`w-full p-3 border-2 rounded-xl cursor-pointer transition-all transform hover:scale-105 ${
+                            selectedFaceAreas.includes(option.value)
+                              ? 'border-red-500 bg-red-50 shadow-lg'
+                              : 'border-gray-300 bg-white hover:border-red-300'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="font-medium text-gray-700 text-sm">{option.label}</span>
+                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                              selectedFaceAreas.includes(option.value)
+                                ? 'border-red-500 bg-red-500'
+                                : 'border-gray-300 bg-white'
+                            }`}>
+                              {selectedFaceAreas.includes(option.value) && (
+                                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                              )}
+                            </div>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                    
+                    <div className="space-y-3">
+                      {(questions[currentQuestion].options as FaceAreaOption[])
+                        .filter(option => option.position === 'right')
+                        .sort((a, b) => a.order - b.order)
+                        .map((option) => (
+                        <button
+                          key={option.value}
+                          onClick={() => handleAnswer(questions[currentQuestion].id, option.value)}
+                          className={`w-full p-3 border-2 rounded-xl cursor-pointer transition-all transform hover:scale-105 ${
+                            selectedFaceAreas.includes(option.value)
+                              ? 'border-red-500 bg-red-50 shadow-lg'
+                              : 'border-gray-300 bg-white hover:border-red-300'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="font-medium text-gray-700 text-sm">{option.label}</span>
+                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                              selectedFaceAreas.includes(option.value)
+                                ? 'border-red-500 bg-red-500'
+                                : 'border-gray-300 bg-white'
+                            }`}>
+                              {selectedFaceAreas.includes(option.value) && (
+                                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                              )}
+                            </div>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : questions[currentQuestion].layout === 'animation' ? (
+                // Layout com animação de envelhecimento
+                <div className="space-y-4">
+                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
+                    <div className="bg-gradient-to-b from-gray-100 to-gray-200 rounded-xl p-4 text-center">
+                      <div className="animate-pulse">
+                        <div className="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-2"></div>
+                        <div className="text-sm text-gray-600">Pele envelhecendo...</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {(questions[currentQuestion].options as AnimationOption[]).map((option) => (
+                      <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
+                        <input 
+                          type={questions[currentQuestion].type} 
+                          value={option.value} 
+                          checked={answers[questions[currentQuestion].id as keyof Quiz] === option.value}
+                          onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
+                          className="mr-3 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500" 
+                        />
+                        <span className="text-lg mr-3">{option.emoji}</span>
+                        <span className="font-medium text-gray-700">{option.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              ) : questions[currentQuestion].layout === 'visual' ? (
+                // Layout com expressões faciais
+                <div className="space-y-4">
+                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
+                    <div className="bg-gradient-to-b from-blue-100 to-blue-200 rounded-xl p-4 text-center">
+                      <div className="text-4xl mb-2">😊</div>
+                      <div className="text-sm text-gray-600">Expressão facial</div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {(questions[currentQuestion].options as VisualOption[]).map((option) => (
+                      <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
+                        <input 
+                          type={questions[currentQuestion].type} 
+                          value={option.value} 
+                          checked={
+                            questions[currentQuestion].type === 'checkbox' 
+                              ? (answers[questions[currentQuestion].id as keyof Quiz] as string[])?.includes(option.value)
+                              : answers[questions[currentQuestion].id as keyof Quiz] === option.value
+                          }
+                          onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
+                          className="mr-3 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500" 
+                        />
+                        <span className="text-lg mr-3">{option.emoji}</span>
+                        <span className="font-medium text-gray-700">{option.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              ) : questions[currentQuestion].layout === 'timeline' ? (
+                // Layout com linha do tempo
+                <div className="space-y-4">
+                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
+                    <div className="bg-gradient-to-b from-green-100 to-green-200 rounded-xl p-4 text-center">
+                      <div className="flex justify-between items-center mb-2">
+                        <div className="w-8 h-8 bg-green-500 rounded-full"></div>
+                        <div className="w-8 h-8 bg-green-500 rounded-full"></div>
+                        <div className="w-8 h-8 bg-green-500 rounded-full"></div>
+                      </div>
+                      <div className="text-sm text-gray-600">Linha do tempo de cuidados</div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {(questions[currentQuestion].options as TimelineOption[]).map((option) => (
+                      <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
+                        <input 
+                          type={questions[currentQuestion].type} 
+                          value={option.value} 
+                          checked={answers[questions[currentQuestion].id as keyof Quiz] === option.value}
+                          onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
+                          className="mr-3 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500" 
+                        />
+                        <span className="text-lg mr-3">{option.emoji}</span>
+                        <span className="font-medium text-gray-700">{option.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              ) : questions[currentQuestion].layout === 'before-after' ? (
+                // Layout antes e depois
+                <div className="space-y-4">
+                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="bg-gradient-to-b from-gray-100 to-gray-200 rounded-xl p-4 text-center">
+                        <div className="text-2xl mb-2">😔</div>
+                        <div className="text-xs text-gray-600">Antes</div>
+                      </div>
+                      <div className="bg-gradient-to-b from-purple-100 to-purple-200 rounded-xl p-4 text-center">
+                        <div className="text-2xl mb-2">😊</div>
+                        <div className="text-xs text-gray-600">Depois</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {(questions[currentQuestion].options as BeforeAfterOption[]).map((option) => (
+                      <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
+                        <input 
+                          type={questions[currentQuestion].type} 
+                          value={option.value} 
+                          checked={answers[questions[currentQuestion].id as keyof Quiz] === option.value}
+                          onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
+                          className="mr-3 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500" 
+                        />
+                        <span className="text-lg mr-3">{option.emoji}</span>
+                        <span className="font-medium text-gray-700">{option.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              ) : questions[currentQuestion].layout === 'occasion' ? (
+                // Layout para ocasiões especiais
+                <div className="space-y-4">
+                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
+                    <div className="bg-gradient-to-b from-pink-100 to-pink-200 rounded-xl p-4 text-center">
+                      <div className="text-3xl mb-2">🎭</div>
+                      <div className="text-sm text-gray-600">Máscaras específicas</div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {(questions[currentQuestion].options as OccasionOption[]).map((option) => (
+                      <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
+                        <input 
+                          type={questions[currentQuestion].type} 
+                          value={option.value} 
+                          checked={answers[questions[currentQuestion].id as keyof Quiz] === option.value}
+                          onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
+                          className="mr-3 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500" 
+                        />
+                        <span className="text-lg mr-3">{option.emoji}</span>
+                        <span className="font-medium text-gray-700">{option.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              ) : questions[currentQuestion].layout === 'texture' ? (
+                // Layout para texturas de pele
+                <div className="space-y-4">
+                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
+                    <div className="bg-gradient-to-b from-yellow-100 to-yellow-200 rounded-xl p-4 text-center">
+                      <div className="text-3xl mb-2">✨</div>
+                      <div className="text-sm text-gray-600">Texturas de pele</div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {(questions[currentQuestion].options as TextureOption[]).map((option) => (
+                      <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
+                        <input 
+                          type={questions[currentQuestion].type} 
+                          value={option.value} 
+                          checked={answers[questions[currentQuestion].id as keyof Quiz] === option.value}
+                          onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
+                          className="mr-3 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500" 
+                        />
+                        <span className="text-lg mr-3">{option.emoji}</span>
+                        <span className="font-medium text-gray-700">{option.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              ) : questions[currentQuestion].layout === 'compliment' ? (
+                // Layout para elogios
+                <div className="space-y-4">
+                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
+                    <div className="bg-gradient-to-b from-blue-100 to-blue-200 rounded-xl p-4 text-center relative">
+                      <div className="text-3xl mb-2">😊</div>
+                      <div className="absolute -top-2 -right-2 bg-yellow-400 rounded-full p-2">
+                        <div className="text-xs">"Que pele linda!"</div>
+                      </div>
+                      <div className="text-sm text-gray-600">Recebendo elogio</div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {(questions[currentQuestion].options as ComplimentOption[]).map((option) => (
+                      <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
+                        <input 
+                          type={questions[currentQuestion].type} 
+                          value={option.value} 
+                          checked={answers[questions[currentQuestion].id as keyof Quiz] === option.value}
+                          onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
+                          className="mr-3 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500" 
+                        />
+                        <span className="text-lg mr-3">{option.emoji}</span>
+                        <span className="font-medium text-gray-700">{option.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              ) : questions[currentQuestion].layout === 'money' ? (
+                // Layout para gastos
+                <div className="space-y-4">
+                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
+                    <div className="bg-gradient-to-b from-red-100 to-red-200 rounded-xl p-4 text-center">
+                      <div className="flex justify-center items-center mb-2">
+                        <div className="text-2xl mr-2">💸</div>
+                        <div className="text-2xl">→</div>
+                        <div className="text-2xl ml-2">✨</div>
+                      </div>
+                      <div className="text-sm text-gray-600">Dinheiro → Resultado</div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {(questions[currentQuestion].options as MoneyOption[]).map((option) => (
+                      <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
+                        <input 
+                          type={questions[currentQuestion].type} 
+                          value={option.value} 
+                          checked={answers[questions[currentQuestion].id as keyof Quiz] === option.value}
+                          onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
+                          className="mr-3 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500" 
+                        />
+                        <span className="text-lg mr-3">{option.emoji}</span>
+                        <span className="font-medium text-gray-700">{option.label}</span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
               ) : (
                 // Layout com cards clicáveis em grid 2x2
@@ -402,6 +988,24 @@ export default function SkinQuizPage() {
                   }`}
                 >
                   {currentQuestion === questions.length - 1 ? 'Ver Resultado' : 'Continuar'}
+                </button>
+              </div>
+            )}
+
+            {/* Botão Continue para layout de áreas do rosto */}
+            {questions[currentQuestion].layout === 'face-areas' && (
+              <div className="mt-6">
+                <button 
+                  type="button"
+                  onClick={nextQuestion}
+                  disabled={!canProceed()}
+                  className={`w-full font-semibold py-4 px-6 rounded-xl transition-all ${
+                    canProceed() 
+                      ? 'bg-red-600 hover:bg-red-700 text-white transform hover:scale-105' 
+                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  }`}
+                >
+                  Continue
                 </button>
               </div>
             )}

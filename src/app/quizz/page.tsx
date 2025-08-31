@@ -596,7 +596,7 @@ export default function SkinQuizPage() {
               ) : questions[currentQuestion].layout === 'face-areas' ? (
                 // Layout com áreas do rosto e overlay
                 <div className="relative">
-                  {/* Imagem base da mulher em tela cheia */}
+                  {/* Imagem base da mulher em tela cheia com botões posicionados */}
                   <div className="relative w-full h-96 mb-6 overflow-hidden rounded-xl">
                     <Image 
                       src="/IMAGEM BASE.png" 
@@ -621,72 +621,68 @@ export default function SkinQuizPage() {
                         />
                       </div>
                     ))}
-                  </div>
 
-                  {/* Opções de áreas do rosto */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-3">
-                      {(questions[currentQuestion].options as FaceAreaOption[])
-                        .filter(option => option.position === 'left')
-                        .sort((a, b) => a.order - b.order)
-                        .map((option) => (
-                        <button
-                          key={option.value}
-                          onClick={() => handleAnswer(questions[currentQuestion].id, option.value)}
-                          className={`w-full p-3 border-2 rounded-xl cursor-pointer transition-all hover:scale-105 ${
-                            selectedFaceAreas.includes(option.value)
-                              ? 'border-red-500 bg-red-50 shadow-lg'
-                              : 'border-gray-300 bg-white hover:border-red-300'
-                          }`}
-                        >
-                          <div className="flex items-center justify-between">
-                            <span className="font-medium text-gray-700 text-sm">{option.label}</span>
-                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
-                              selectedFaceAreas.includes(option.value)
-                                ? 'border-red-500 bg-red-500'
-                                : 'border-gray-300 bg-white'
-                            }`}>
-                              {selectedFaceAreas.includes(option.value) && (
-                                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                </svg>
-                              )}
-                            </div>
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                    
-                    <div className="space-y-3">
-                      {(questions[currentQuestion].options as FaceAreaOption[])
-                        .filter(option => option.position === 'right')
-                        .sort((a, b) => a.order - b.order)
-                        .map((option) => (
-                        <button
-                          key={option.value}
-                          onClick={() => handleAnswer(questions[currentQuestion].id, option.value)}
-                          className={`w-full p-3 border-2 rounded-xl cursor-pointer transition-all hover:scale-105 ${
-                            selectedFaceAreas.includes(option.value)
-                              ? 'border-red-500 bg-red-50 shadow-lg'
-                              : 'border-gray-300 bg-white hover:border-red-300'
-                          }`}
-                        >
-                          <div className="flex items-center justify-between">
-                            <span className="font-medium text-gray-700 text-sm">{option.label}</span>
-                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
-                              selectedFaceAreas.includes(option.value)
-                                ? 'border-red-500 bg-red-500'
-                                : 'border-gray-300 bg-white'
-                            }`}>
-                              {selectedFaceAreas.includes(option.value) && (
-                                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                </svg>
-                              )}
-                            </div>
-                          </div>
-                        </button>
-                      ))}
+                    {/* Botões posicionados ao redor da imagem */}
+                    <div className="absolute inset-0 pointer-events-none">
+                      {/* Testa - posicionado acima da testa */}
+                      <button
+                        onClick={() => handleAnswer(questions[currentQuestion].id, 'testa')}
+                        className={`absolute top-4 left-1/2 transform -translate-x-1/2 pointer-events-auto p-2 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
+                          selectedFaceAreas.includes('testa')
+                            ? 'border-red-500 bg-red-500 text-white'
+                            : 'border-gray-300 bg-white text-gray-700'
+                        }`}
+                      >
+                        <span className="text-xs font-medium">Testa</span>
+                      </button>
+
+                      {/* Olhos - posicionado ao lado dos olhos */}
+                      <button
+                        onClick={() => handleAnswer(questions[currentQuestion].id, 'olhos')}
+                        className={`absolute top-1/3 left-4 pointer-events-auto p-2 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
+                          selectedFaceAreas.includes('olhos')
+                            ? 'border-red-500 bg-red-500 text-white'
+                            : 'border-gray-300 bg-white text-gray-700'
+                        }`}
+                      >
+                        <span className="text-xs font-medium">Olhos</span>
+                      </button>
+
+                      {/* Bochechas - posicionado nas bochechas */}
+                      <button
+                        onClick={() => handleAnswer(questions[currentQuestion].id, 'bochechas')}
+                        className={`absolute top-1/2 left-1/4 pointer-events-auto p-2 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
+                          selectedFaceAreas.includes('bochechas')
+                            ? 'border-red-500 bg-red-500 text-white'
+                            : 'border-gray-300 bg-white text-gray-700'
+                        }`}
+                      >
+                        <span className="text-xs font-medium">Bochechas</span>
+                      </button>
+
+                      {/* Boca - posicionado na boca */}
+                      <button
+                        onClick={() => handleAnswer(questions[currentQuestion].id, 'boca')}
+                        className={`absolute top-2/3 left-1/2 transform -translate-x-1/2 pointer-events-auto p-2 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
+                          selectedFaceAreas.includes('boca')
+                            ? 'border-red-500 bg-red-500 text-white'
+                            : 'border-gray-300 bg-white text-gray-700'
+                        }`}
+                      >
+                        <span className="text-xs font-medium">Boca</span>
+                      </button>
+
+                      {/* Pescoço - posicionado no pescoço */}
+                      <button
+                        onClick={() => handleAnswer(questions[currentQuestion].id, 'pescoco')}
+                        className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 pointer-events-auto p-2 border-2 rounded-full cursor-pointer transition-all hover:scale-105 ${
+                          selectedFaceAreas.includes('pescoco')
+                            ? 'border-red-500 bg-red-500 text-white'
+                            : 'border-gray-300 bg-white text-gray-700'
+                        }`}
+                      >
+                        <span className="text-xs font-medium">Pescoço</span>
+                      </button>
                     </div>
                   </div>
                 </div>

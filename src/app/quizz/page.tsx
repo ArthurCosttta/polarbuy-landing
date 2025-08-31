@@ -20,7 +20,7 @@ const QuizSchema = {
   tipo: ['oleosa','seca','mista','sensível'] as const,
   rotina: ['nenhuma','básica','completa'] as const,
   objetivo: ['rugas','firmeza','hidratação','luminosidade'] as const,
-};
+} as const;
 
 type Quiz = {
   areas_rosto: typeof QuizSchema.areas_rosto[number][];
@@ -885,7 +885,7 @@ export default function SkinQuizPage() {
                     <div className="bg-gradient-to-b from-blue-100 to-blue-200 rounded-xl p-4 text-center relative">
                       <div className="text-3xl mb-2">😊</div>
                       <div className="absolute -top-2 -right-2 bg-yellow-400 rounded-full p-2">
-                        <div className="text-xs">"Que pele linda!"</div>
+                        <div className="text-xs">&ldquo;Que pele linda!&rdquo;</div>
                       </div>
                       <div className="text-sm text-gray-600">Recebendo elogio</div>
                     </div>

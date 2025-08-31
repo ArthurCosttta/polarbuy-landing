@@ -1248,7 +1248,7 @@ export default function SkinQuizPage() {
                     ORDER NOW
                   </button>
                   <p className="text-xs text-gray-500 text-center">
-                    Ao clicar em 'ORDER NOW', você concorda que, caso não cancele o teste do app antes do fim de 30 dias, será cobrada a mensalidade regular. Cancele a qualquer momento.
+                    Ao clicar em &apos;ORDER NOW&apos;, você concorda que, caso não cancele o teste do app antes do fim de 30 dias, será cobrada a mensalidade regular. Cancele a qualquer momento.
                   </p>
                 </div>
               </div>
@@ -1384,7 +1384,7 @@ export default function SkinQuizPage() {
                       </div>
                       <div>
                         <p className="text-gray-800 text-sm mb-2">
-                          "Em 3 semanas, meu marido disse que parecia lifting. Voltei a gostar do espelho."
+                          &ldquo;Em 3 semanas, meu marido disse que parecia lifting. Voltei a gostar do espelho.&rdquo;
                         </p>
                         <div className="flex items-center justify-between">
                           <span className="text-purple-600 font-semibold text-sm">Marta, 54</span>
@@ -1400,7 +1400,7 @@ export default function SkinQuizPage() {
                       </div>
                       <div>
                         <p className="text-gray-800 text-sm mb-2">
-                          "Pele mais iluminada e olheiras sumindo. Comecei a receber elogios no trabalho."
+                          &ldquo;Pele mais iluminada e olheiras sumindo. Comecei a receber elogios no trabalho.&rdquo;
                         </p>
                         <div className="flex items-center justify-between">
                           <span className="text-pink-600 font-semibold text-sm">Patrícia, 49</span>
@@ -1416,7 +1416,7 @@ export default function SkinQuizPage() {
                       </div>
                       <div>
                         <p className="text-gray-800 text-sm mb-2">
-                          "Gastei horrores com cremes. Aqui senti firmeza em 15 dias. Minhas amigas pedem o segredo."
+                          &ldquo;Gastei horrores com cremes. Aqui senti firmeza em 15 dias. Minhas amigas pedem o segredo.&rdquo;
                         </p>
                         <div className="flex items-center justify-between">
                           <span className="text-green-600 font-semibold text-sm">Renata, 46</span>
@@ -1432,7 +1432,7 @@ export default function SkinQuizPage() {
                       </div>
                       <div>
                         <p className="text-gray-800 text-sm mb-2">
-                          "Depois da menopausa, parecia 10 anos a mais. Hoje voltei a usar maquiagem leve."
+                          &ldquo;Depois da menopausa, parecia 10 anos a mais. Hoje voltei a usar maquiagem leve.&rdquo;
                         </p>
                         <div className="flex items-center justify-between">
                           <span className="text-blue-600 font-semibold text-sm">Cláudia, 58</span>

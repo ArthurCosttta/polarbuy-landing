@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import TestimonialCard from '../../components/TestimonialCard';
 
 const QuizSchema = {
   tempo_mudanca: ['menos_1_ano','1_a_3_anos','mais_5_anos','desde_sempre'] as const,
@@ -118,13 +119,67 @@ interface Question {
 }
 
 export default function SkinQuizPage() {
-  const [step, setStep] = useState<'upload'|'loading'|'quiz'|'analyzing'|'finalizing'|'result'>('upload');
+  const [step, setStep] = useState<'upload'|'loading'|'quiz'|'testimonial'|'analyzing'|'finalizing'|'result'>('upload');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [photo, setPhoto] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Partial<Quiz>>({});
   const [analysisProgress, setAnalysisProgress] = useState(0);
   const [finalizingStep, setFinalizingStep] = useState(0);
   const [skinVitality, setSkinVitality] = useState<'baixa'|'média'|'alta'>('média');
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  // Array de depoimentos com as imagens disponíveis
+  const testimonials = [
+    {
+      id: 1,
+      title: "Mais de 1.7 milhões de mulheres",
+      subtitle: "em seus 30s, 40s e 50s já experimentaram nossos planos de rejuvenescimento",
+      image: "/IMAGEM1REJUV.webp",
+      ctaText: "Continuar"
+    },
+    {
+      id: 2,
+      title: "Transformações reais em 21 dias",
+      subtitle: "mulheres que recuperaram a firmeza e o brilho da pele",
+      image: "/IMAGEM2REJUV.jpeg",
+      ctaText: "Continuar"
+    },
+    {
+      id: 3,
+      title: "Resultados comprovados",
+      subtitle: "mais de 95% das usuárias relatam melhora visível",
+      image: "/IMAGEM3REJUV.webp",
+      ctaText: "Continuar"
+    },
+    {
+      id: 4,
+      title: "Pele rejuvenescida naturalmente",
+      subtitle: "sem procedimentos invasivos ou produtos químicos agressivos",
+      image: "/IMAGEM4REJUV.webp",
+      ctaText: "Continuar"
+    },
+    {
+      id: 5,
+      title: "Confiança renovada",
+      subtitle: "mulheres que voltaram a se sentir bonitas e confiantes",
+      image: "/IMAGEM5REJUV.jpeg",
+      ctaText: "Continuar"
+    },
+    {
+      id: 6,
+      title: "Rotinas personalizadas que funcionam",
+      subtitle: "adaptadas para cada tipo de pele e estilo de vida",
+      image: "/IMAGE6REJUV.webp",
+      ctaText: "Continuar"
+    },
+    {
+      id: 7,
+      title: "Transformação completa",
+      subtitle: "da pele ao bem-estar emocional",
+      image: "/IMAGEM 7 REJUV.avif",
+      ctaText: "Continuar"
+    }
+  ];
 
   const questions: Question[] = [
     {
@@ -340,11 +395,37 @@ export default function SkinQuizPage() {
   function nextQuestion() {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
+      
+      // Verificar se deve mostrar depoimento após esta pergunta
+      if (shouldShowTestimonial(currentQuestion + 1)) {
+        setStep('testimonial');
+        return;
+      }
     } else {
       // Todas as perguntas respondidas, mostrar análise final
       setStep('analyzing');
       startFinalAnalysis();
     }
+  }
+
+  function shouldShowTestimonial(questionIndex: number): boolean {
+    // Mostrar depoimento após a primeira pergunta (índice 0)
+    if (questionIndex === 1) return true;
+    
+    // Mostrar depoimento a cada 2 perguntas (após perguntas 3, 5, 7, etc.)
+    if (questionIndex > 1 && questionIndex % 2 === 1) return true;
+    
+    return false;
+  }
+
+  function handleTestimonialContinue() {
+    setStep('quiz');
+  }
+
+  function getCurrentTestimonial() {
+    // Determinar qual depoimento mostrar baseado na pergunta atual
+    const testimonialIndex = Math.floor(currentQuestion / 2);
+    return testimonials[testimonialIndex % testimonials.length];
   }
 
   function startFinalAnalysis() {
@@ -850,6 +931,15 @@ export default function SkinQuizPage() {
                 </button>
               </div>
             )}
+          </div>
+        )}
+
+        {step === 'testimonial' && (
+          <div className="mx-auto max-w-md">
+            <TestimonialCard
+              testimonial={getCurrentTestimonial()}
+              onContinue={handleTestimonialContinue}
+            />
           </div>
         )}
 

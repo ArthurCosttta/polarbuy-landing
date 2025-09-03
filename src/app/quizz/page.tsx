@@ -802,62 +802,37 @@ export default function SkinQuizPage() {
                 </div>
               ) : questions[currentQuestion].layout === 'compliment' ? (
                 // Layout para elogios
-                <div className="space-y-4">
-                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
-                    <div className="bg-gradient-to-b from-blue-100 to-blue-200 rounded-xl p-4 text-center relative">
-                      <div className="text-3xl mb-2">😊</div>
-                      <div className="absolute -top-2 -right-2 bg-yellow-400 rounded-full p-2">
-                        <div className="text-xs">&ldquo;Que pele linda!&rdquo;</div>
-                      </div>
-                      <div className="text-sm text-gray-600">Recebendo elogio</div>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    {(questions[currentQuestion].options as ComplimentOption[]).map((option) => (
-                      <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
-                        <input 
-                          type={questions[currentQuestion].type} 
-                          value={option.value} 
-                          checked={answers[questions[currentQuestion].id as keyof Quiz] === option.value}
-                          onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
-                          className="mr-3 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500" 
-                        />
-                        <span className="text-lg mr-3">{option.emoji}</span>
-                        <span className="font-medium text-gray-700">{option.label}</span>
-                      </label>
-                    ))}
-                  </div>
+                <div className="space-y-3">
+                  {(questions[currentQuestion].options as ComplimentOption[]).map((option) => (
+                    <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
+                      <input 
+                        type={questions[currentQuestion].type} 
+                        value={option.value} 
+                        checked={answers[questions[currentQuestion].id as keyof Quiz] === option.value}
+                        onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
+                        className="mr-3 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500" 
+                      />
+                      <span className="text-lg mr-3">{option.emoji}</span>
+                      <span className="font-medium text-gray-700">{option.label}</span>
+                    </label>
+                  ))}
                 </div>
               ) : questions[currentQuestion].layout === 'money' ? (
                 // Layout para gastos
-                <div className="space-y-4">
-                  <div className="relative mx-auto mb-6" style={{ maxWidth: '300px' }}>
-                    <div className="bg-gradient-to-b from-red-100 to-red-200 rounded-xl p-4 text-center">
-                      <div className="flex justify-center items-center mb-2">
-                        <div className="text-2xl mr-2">💸</div>
-                        <div className="text-2xl">→</div>
-                        <div className="text-2xl ml-2">✨</div>
-                      </div>
-                      <div className="text-sm text-gray-600">Dinheiro → Resultado</div>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    {(questions[currentQuestion].options as MoneyOption[]).map((option) => (
-                      <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
-                        <input 
-                          type={questions[currentQuestion].type} 
-                          value={option.value} 
-                          checked={answers[questions[currentQuestion].id as keyof Quiz] === option.value}
-                          onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
-                          className="mr-3 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500" 
-                        />
-                        <span className="text-lg mr-3">{option.emoji}</span>
-                        <span className="font-medium text-gray-700">{option.label}</span>
-                      </label>
-                    ))}
-                  </div>
+                <div className="space-y-3">
+                  {(questions[currentQuestion].options as MoneyOption[]).map((option) => (
+                    <label key={option.value} className="flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer transition-all hover:border-purple-300">
+                      <input 
+                        type={questions[currentQuestion].type} 
+                        value={option.value} 
+                        checked={answers[questions[currentQuestion].id as keyof Quiz] === option.value}
+                        onChange={() => handleAnswer(questions[currentQuestion].id, option.value)}
+                        className="mr-3 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500" 
+                      />
+                      <span className="text-lg mr-3">{option.emoji}</span>
+                      <span className="font-medium text-gray-700">{option.label}</span>
+                    </label>
+                  ))}
                 </div>
               ) : (
                 // Layout com cards clicáveis em grid 2x2

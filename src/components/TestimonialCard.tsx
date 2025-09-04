@@ -32,7 +32,7 @@ export default function TestimonialCard({ testimonial, onContinue }: Testimonial
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
             {testimonial.title}
           </h2>
-          <p className="text-gray-700 text-lg font-bold">
+          <p className="text-2xl font-bold text-gray-700">
             {testimonial.subtitle}
           </p>
         </div>

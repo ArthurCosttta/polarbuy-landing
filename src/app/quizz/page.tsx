@@ -126,7 +126,6 @@ export default function SkinQuizPage() {
   const [analysisProgress, setAnalysisProgress] = useState(0);
   const [finalizingStep, setFinalizingStep] = useState(0);
   const [skinVitality, setSkinVitality] = useState<'baixa'|'média'|'alta'>('média');
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   // Array de depoimentos com as imagens disponíveis
   const testimonials = [
@@ -539,7 +538,7 @@ export default function SkinQuizPage() {
     return { texto: blocos.join(' '), plano: { AM, PM, Semanal: ['Máscara hidratante 1–2x', a.tipo!=='sensível' ? 'Esfoliação química leve 1x' : '—'] } };
   }
 
-  const resultado = step === 'result' && answers ? gerarFeedback(answers as Quiz) : null;
+  // const resultado = step === 'result' && answers ? gerarFeedback(answers as Quiz) : null;
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
@@ -1170,7 +1169,7 @@ export default function SkinQuizPage() {
                           <Image src="/polarbuy-logo.png" alt="avatar" width={48} height={48} className="w-full h-full object-cover" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <p className="text-gray-700 mb-2 break-words">"{d.t}"</p>
+                          <p className="text-gray-700 mb-2 break-words">&ldquo;{d.t}&rdquo;</p>
                           <div className="text-xs font-semibold text-gray-600 break-words">{d.n}</div>
                         </div>
                       </div>

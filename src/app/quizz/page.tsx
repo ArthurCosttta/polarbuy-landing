@@ -409,12 +409,20 @@ export default function SkinQuizPage() {
   }
 
   function shouldShowTestimonial(questionIndex: number): boolean {
+    console.log('Verificando depoimento para pergunta:', questionIndex);
     // Mostrar depoimento após a primeira pergunta (índice 0)
-    if (questionIndex === 1) return true;
+    if (questionIndex === 1) {
+      console.log('Mostrando depoimento após primeira pergunta');
+      return true;
+    }
     
     // Mostrar depoimento a cada 2 perguntas (após perguntas 3, 5, 7, etc.)
-    if (questionIndex > 1 && questionIndex % 2 === 1) return true;
+    if (questionIndex > 1 && questionIndex % 2 === 1) {
+      console.log('Mostrando depoimento a cada 2 perguntas');
+      return true;
+    }
     
+    console.log('Não mostrando depoimento');
     return false;
   }
 

@@ -1085,10 +1085,10 @@ export default function SkinQuizPage() {
                   <span>⏳</span>
                   <span>50% de desconto reservado por tempo limitado</span>
                 </div>
-                <h2 className="mt-4 text-2xl md:text-3xl font-extrabold text-gray-900">
-                  Adquira o e-book 5XColágeno e recupere a juventude da sua pele naturalmente
+                <h2 className="mt-4 text-2xl md:text-3xl font-extrabold text-gray-800">
+                  Adquira o e-book 5X Mais Colágeno e recupere a juventude da sua pele naturalmente
                 </h2>
-                <p className="mt-2 text-gray-600">
+                <p className="mt-2 text-gray-700">
                   Mais de 17.500 mulheres já transformaram a pele com nossas receitas caseiras exclusivas
                 </p>
               </div>
@@ -1103,7 +1103,7 @@ export default function SkinQuizPage() {
 
                 <div>
                   {/* Bullets */}
-                  <ul className="space-y-3 text-sm">
+                  <ul className="space-y-3 text-sm text-gray-800">
                     <li className="flex gap-2"><span className="text-green-600">✅</span><span>30 receitas naturais para suavizar até 87% das rugas e linhas finas sem gastar com clínicas ou cremes caros.</span></li>
                     <li className="flex gap-2"><span className="text-green-600">✅</span><span>Pele mais firme, iluminada e com aparência jovem já nas primeiras semanas.</span></li>
                     <li className="flex gap-2"><span className="text-green-600">✅</span><span>Estímulo natural de até 3x mais colágeno, devolvendo elasticidade e brilho.</span></li>
@@ -1123,7 +1123,7 @@ export default function SkinQuizPage() {
                     <div className="flex items-start gap-4">
                       <div className="text-3xl">📘</div>
                       <div className="flex-1">
-                        <h3 className="font-bold">E-book Digital 5XColágeno</h3>
+                        <h3 className="font-bold text-gray-800">E-book Digital 5X Mais Colágeno</h3>
                         <ul className="mt-2 text-sm text-gray-700 space-y-1">
                           <li>• Entrega imediata por e-mail</li>
                           <li>• Conteúdo 100% focado no rejuvenescimento feminino</li>
@@ -1135,7 +1135,7 @@ export default function SkinQuizPage() {
 
                   {/* CTA */}
                   <a href="https://pay.kiwify.com.br/JnxC3LG" target="_blank" rel="noopener noreferrer" className="mt-6 block w-full rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-center py-4 font-semibold">
-                    Quero garantir meu e-book 5XColágeno agora!
+                    Quero garantir meu e-book 5X Mais Colágeno agora!
                   </a>
                   <div className="text-center text-xs text-gray-500 mt-2">Oferta exclusiva, disponível apenas hoje</div>
                 </div>
@@ -1143,8 +1143,8 @@ export default function SkinQuizPage() {
 
               {/* O que você vai encontrar */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h3 className="text-xl font-extrabold text-center mb-6">O que você vai encontrar dentro</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <h3 className="text-xl font-extrabold text-center mb-6 text-gray-800">O que você vai encontrar dentro</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-800">
                   <ul className="space-y-2">
                     <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>276 páginas com receitas práticas para rejuvenescimento.</span></li>
                     <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>30 máscaras que estimulam o colágeno naturalmente.</span></li>
@@ -1159,19 +1159,19 @@ export default function SkinQuizPage() {
 
               {/* Depoimentos */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h3 className="text-xl font-extrabold text-center mb-6">Depoimentos Reais</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <h3 className="text-xl font-extrabold text-center mb-6 text-gray-800">Depoimentos Reais</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-800">
                   {[{n:'Maria, 52 anos',t:'Achei que era impossível rejuvenescer sem gastar em clínica, mas em 3 semanas minha pele já estava mais firme e luminosa.'},
                     {n:'Claudia, 44 anos',t:'Respondi ao quiz e descobri a receita certa. Foi a primeira vez em anos que elogiaram minha pele.'},
                     {n:'Renata, 39 anos',t:'Pele mais lisa, firme e iluminada. Natural, barato e fácil de fazer em casa.'}].map((d, i) => (
-                    <div key={i} className="border rounded-2xl p-4">
+                    <div key={i} className="border rounded-2xl p-4 overflow-hidden max-w-full">
                       <div className="flex items-start gap-3">
-                        <div className="w-12 h-12 rounded-full bg-gray-200 overflow-hidden">
+                        <div className="w-12 h-12 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
                           <Image src="/polarbuy-logo.png" alt="avatar" width={48} height={48} className="w-full h-full object-cover" />
                         </div>
-                        <div>
-                          <p className="text-gray-700 mb-2">“{d.t}”</p>
-                          <div className="text-xs font-semibold text-gray-600">{d.n}</div>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-gray-700 mb-2 break-words">"{d.t}"</p>
+                          <div className="text-xs font-semibold text-gray-600 break-words">{d.n}</div>
                         </div>
                       </div>
                     </div>
@@ -1189,7 +1189,7 @@ export default function SkinQuizPage() {
                     </p>
                   </div>
                   <a href="https://pay.kiwify.com.br/JnxC3LG" target="_blank" rel="noopener noreferrer" className="inline-flex justify-center items-center rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3">
-                    Quero garantir meu e-book 5XColágeno agora!
+                    Quero garantir meu e-book 5X Mais Colágeno agora!
                   </a>
                 </div>
               </div>

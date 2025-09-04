@@ -17,6 +17,14 @@
   .bg-card {
     background-color: #1B263B;
   }
+  /* Auxilia a quebrar palavras longas e manter texto dentro dos cards */
+  .wrap-balance {
+    text-wrap: balance;
+  }
+  .wrap-anywhere {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
 }
 
 /* Animações personalizadas para o quiz */

@@ -160,20 +160,13 @@ export default function SkinQuizPage() {
     },
     {
       id: 5,
-      title: "Recuperação da elasticidade",
-      subtitle: "mulheres que voltaram a ter pele firme e elástica naturalmente",
-      image: "/IMAGEM5REJUV.jpeg",
-      ctaText: "Continuar"
-    },
-    {
-      id: 6,
       title: "Brilho e luminosidade restaurados",
       subtitle: "em 90% das mulheres que seguiram nosso método",
       image: "/IMAGE6REJUV.webp",
       ctaText: "Continuar"
     },
     {
-      id: 7,
+      id: 6,
       title: "Transformação completa em 30 dias",
       subtitle: "da pele ao bem-estar emocional e autoestima",
       image: "/IMAGEM 7 REJUV.avif",

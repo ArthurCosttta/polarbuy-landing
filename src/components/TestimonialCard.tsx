@@ -23,13 +23,6 @@ export default function TestimonialCard({ testimonial, onContinue }: Testimonial
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        
-        <div className="flex items-center">
-          <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-2">
-            <span className="text-green-600 text-sm">✨</span>
-          </div>
-          <span className="text-gray-500 text-sm font-medium">rejuvenescimento</span>
-        </div>
       </div>
 
       {/* Content */}
@@ -39,7 +32,7 @@ export default function TestimonialCard({ testimonial, onContinue }: Testimonial
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
             {testimonial.title}
           </h2>
-          <p className="text-gray-700 text-lg">
+          <p className="text-gray-700 text-lg font-bold">
             {testimonial.subtitle}
           </p>
         </div>

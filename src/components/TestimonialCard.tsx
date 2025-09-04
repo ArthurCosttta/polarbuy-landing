@@ -29,12 +29,9 @@ export default function TestimonialCard({ testimonial, onContinue }: Testimonial
       <div className="p-6">
         {/* Social Proof Text */}
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">
-            {testimonial.title}
+          <h2 className="text-2xl font-bold text-gray-800">
+            {testimonial.title} {testimonial.subtitle}
           </h2>
-          <p className="text-2xl font-bold text-gray-700">
-            {testimonial.subtitle}
-          </p>
         </div>
 
         {/* Main Image */}

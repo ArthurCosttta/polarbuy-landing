@@ -133,49 +133,49 @@ export default function SkinQuizPage() {
     {
       id: 1,
       title: "Mais de 1.7 milhões de mulheres",
-      subtitle: "em seus 30s, 40s e 50s já experimentaram nossos planos de rejuvenescimento",
+      subtitle: "conseguiram deixar o rosto 10 anos mais jovem com nossas máscaras",
       image: "/IMAGEM1REJUV.webp",
       ctaText: "Continuar"
     },
     {
       id: 2,
-      title: "Transformações reais em 21 dias",
-      subtitle: "mulheres que recuperaram a firmeza e o brilho da pele",
+      title: "95% das usuárias relatam",
+      subtitle: "melhora visível na firmeza da pele em apenas 21 dias",
       image: "/IMAGEM2REJUV.jpeg",
       ctaText: "Continuar"
     },
     {
       id: 3,
-      title: "Resultados comprovados",
-      subtitle: "mais de 95% das usuárias relatam melhora visível",
+      title: "Redução de 80% nas rugas",
+      subtitle: "com nossa rotina personalizada de rejuvenescimento",
       image: "/IMAGEM3REJUV.webp",
       ctaText: "Continuar"
     },
     {
       id: 4,
-      title: "Pele rejuvenescida naturalmente",
+      title: "Pele 15 anos mais jovem",
       subtitle: "sem procedimentos invasivos ou produtos químicos agressivos",
       image: "/IMAGEM4REJUV.webp",
       ctaText: "Continuar"
     },
     {
       id: 5,
-      title: "Confiança renovada",
-      subtitle: "mulheres que voltaram a se sentir bonitas e confiantes",
+      title: "Recuperação da elasticidade",
+      subtitle: "mulheres que voltaram a ter pele firme e elástica naturalmente",
       image: "/IMAGEM5REJUV.jpeg",
       ctaText: "Continuar"
     },
     {
       id: 6,
-      title: "Rotinas personalizadas que funcionam",
-      subtitle: "adaptadas para cada tipo de pele e estilo de vida",
+      title: "Brilho e luminosidade restaurados",
+      subtitle: "em 90% das mulheres que seguiram nosso método",
       image: "/IMAGE6REJUV.webp",
       ctaText: "Continuar"
     },
     {
       id: 7,
-      title: "Transformação completa",
-      subtitle: "da pele ao bem-estar emocional",
+      title: "Transformação completa em 30 dias",
+      subtitle: "da pele ao bem-estar emocional e autoestima",
       image: "/IMAGEM 7 REJUV.avif",
       ctaText: "Continuar"
     }

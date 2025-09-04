@@ -37,10 +37,10 @@ export default function TestimonialCard({ testimonial, onContinue }: Testimonial
         {/* Social Proof Text */}
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
-            Mais de <span className="text-green-600 font-bold">1.7 milhões</span> de mulheres
+            {testimonial.title}
           </h2>
           <p className="text-gray-700 text-lg">
-            <span className="font-bold">em seus 30s, 40s e 50s</span> já experimentaram nossos planos de rejuvenescimento
+            {testimonial.subtitle}
           </p>
         </div>
 

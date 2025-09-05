@@ -1,8 +1,7 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import Image from 'next/image';
-import TestimonialCard from '../../components/TestimonialCard';
 
 const QuizSchema = {
   tempo_mudanca: ['menos_1_ano','1_a_3_anos','mais_5_anos','desde_sempre'] as const,
@@ -119,7 +118,8 @@ interface Question {
 }
 
 export default function SkinQuizPage() {
-  const [step, setStep] = useState<'upload'|'loading'|'quiz'|'testimonial'|'analyzing'|'finalizing'|'result'>('upload');
+  // Start directly on the checkout (result) step to skip the quiz flow
+  const [step, setStep] = useState<'upload'|'loading'|'quiz'|'testimonial'|'analyzing'|'finalizing'|'result'>('result');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [photo, setPhoto] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Partial<Quiz>>({});
@@ -911,10 +911,35 @@ export default function SkinQuizPage() {
 
         {step === 'testimonial' && (
           <div className="mx-auto max-w-md">
-            <TestimonialCard
-              testimonial={getCurrentTestimonial()}
-              onContinue={handleTestimonialContinue}
-            />
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div className="p-6">
+                <div className="text-center mb-6">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                    {getCurrentTestimonial().title}
+                  </h2>
+                  <p className="text-gray-600">
+                    {getCurrentTestimonial().subtitle}
+                  </p>
+                </div>
+                <div className="flex justify-center mb-6">
+                  <div className="relative">
+                    <Image
+                      src={getCurrentTestimonial().image}
+                      alt="Depoimento de cliente"
+                      width={300}
+                      height={200}
+                      className="rounded-lg shadow-md"
+                    />
+                  </div>
+                </div>
+                <button
+                  onClick={handleTestimonialContinue}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-xl transition-colors transform hover:scale-105"
+                >
+                  {getCurrentTestimonial().ctaText}
+                </button>
+              </div>
+             </div>
           </div>
         )}
 
@@ -1080,15 +1105,15 @@ export default function SkinQuizPage() {
             <div className="space-y-8">
               {/* Header compacto */}
               <div className="text-center">
-                <div className="inline-flex items-center gap-2 rounded-full bg-rose-50 px-4 py-2 text-rose-700 text-sm font-semibold">
+                <div className="inline-flex items-center gap-2 rounded-full bg-rose-50 px-4 py-2 text-rose-700 text-sm font-semibold max-w-full overflow-hidden">
                   <span>⏳</span>
-                  <span>50% de desconto reservado por tempo limitado</span>
+                  <span className="truncate">50% de desconto reservado por tempo limitado</span>
                 </div>
                 <h2 className="mt-4 text-2xl md:text-3xl font-extrabold text-gray-800">
-                  Adquira o e-book 5X Mais Colágeno e recupere a juventude da sua pele naturalmente
+                  Adquira o PLANO PERSONALIZADO 5X Mais Colágeno e recupere a juventude da sua pele naturalmente
                 </h2>
                 <p className="mt-2 text-gray-700">
-                  Mais de 17.500 mulheres já transformaram a pele com nossas receitas caseiras exclusivas
+                  Com base na análise da sua pele, criamos um plano exclusivo para restaurar sua produção de colágeno naturalmente
                 </p>
               </div>
 
@@ -1096,45 +1121,31 @@ export default function SkinQuizPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                 <div className="md:sticky md:top-24">
                   <div className="border rounded-2xl p-4 bg-rose-50">
-                    <Image src="/ChatGPT Image 29 de ago. de 2025, 21_41_54.png" alt="Capa do e-book 5XColágeno" width={540} height={760} className="w-full h-auto rounded-xl" />
+                    <Image src="/ChatGPT Image 29 de ago. de 2025, 21_41_54.png" alt="Capa do 5X Mais Colágeno" width={540} height={760} className="w-full h-auto rounded-xl" />
                   </div>
                 </div>
 
                 <div>
                   {/* Bullets */}
                   <ul className="space-y-3 text-sm text-gray-800">
-                    <li className="flex gap-2"><span className="text-green-600">✅</span><span>30 receitas naturais para suavizar até 87% das rugas e linhas finas sem gastar com clínicas ou cremes caros.</span></li>
-                    <li className="flex gap-2"><span className="text-green-600">✅</span><span>Pele mais firme, iluminada e com aparência jovem já nas primeiras semanas.</span></li>
-                    <li className="flex gap-2"><span className="text-green-600">✅</span><span>Estímulo natural de até 3x mais colágeno, devolvendo elasticidade e brilho.</span></li>
-                    <li className="flex gap-2"><span className="text-green-600">✅</span><span>Resultados rápidos: amigas perguntando o segredo e pedindo a identidade.</span></li>
-                    <li className="flex gap-2"><span className="text-green-600">✅</span><span>Fórmulas simples, seguras e caseiras para fazer em casa.</span></li>
+                    <li className="flex gap-2"><span className="text-green-600">✅</span><span>Receitas naturais personalizadas para sua pele, com máscaras coreanas, japonesas e francesas que estimulam a produção de colágeno.</span></li>
+                    <li className="flex gap-2"><span className="text-green-600">✅</span><span>Pele mais firme, iluminada e com aparência jovem já nas primeiras semanas de uso.</span></li>
+                    <li className="flex gap-2"><span className="text-green-600">✅</span><span>Solução natural e econômica que especialistas cobrariam fortunas para revelar.</span></li>
+                    <li className="flex gap-2"><span className="text-green-600">✅</span><span>Resultados rápidos: amigas perguntando qual o segredo da sua transformação.</span></li>
+                    <li className="flex gap-2"><span className="text-green-600">✅</span><span>Fórmulas simples, seguras e caseiras adaptadas especificamente para o seu tipo de pele.</span></li>
                   </ul>
 
                   {/* Preço */}
                   <div className="mt-6">
                     <div className="text-sm text-gray-500">De <span className="line-through text-red-600">R$47,90</span></div>
                     <div className="text-4xl font-extrabold text-emerald-700">R$17,14</div>
-                    <div className="text-gray-500 text-sm mt-2">Pagamento único, acesso vitalício e entrega imediata por e-mail</div>
+                    <div className="text-gray-500 text-sm mt-2 break-words">Pagamento único, acesso vitalício e entrega imediata do seu plano personalizado</div>
                   </div>
 
                   {/* Card produto */}
-                  <div className="mt-5 border rounded-2xl p-4">
-                    <div className="flex items-start gap-4">
-                      <div className="text-3xl">📘</div>
-                      <div className="flex-1">
-                        <h3 className="font-bold text-gray-800">E-book Digital 5X Mais Colágeno</h3>
-                        <ul className="mt-2 text-sm text-gray-700 space-y-1">
-                          <li>• Entrega imediata por e-mail</li>
-                          <li>• Conteúdo 100% focado no rejuvenescimento feminino</li>
-                        </ul>
-                      </div>
-                      <div className="text-right font-extrabold text-emerald-700">R$17,14</div>
-                    </div>
-                  </div>
-
                   {/* CTA */}
                   <a href="https://pay.kiwify.com.br/JnxC3LG" target="_blank" rel="noopener noreferrer" className="mt-6 block w-full rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-center py-4 font-semibold">
-                    Quero garantir meu e-book 5X Mais Colágeno agora!
+                    Quero garantir meu plano personalizado agora!
                   </a>
                   <div className="text-center text-xs text-gray-500 mt-2">Oferta exclusiva, disponível apenas hoje</div>
                 </div>
@@ -1142,16 +1153,16 @@ export default function SkinQuizPage() {
 
               {/* O que você vai encontrar */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h3 className="text-xl font-extrabold text-center mb-6 text-gray-800">O que você vai encontrar dentro</h3>
+                <h3 className="text-xl font-extrabold text-center mb-6 text-gray-800">O que você vai receber no seu plano personalizado</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-800">
                   <ul className="space-y-2">
-                    <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>276 páginas com receitas práticas para rejuvenescimento.</span></li>
-                    <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>30 máscaras que estimulam o colágeno naturalmente.</span></li>
-                    <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>Planos semanais simples e consistentes.</span></li>
+                    <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>Kit de receitas com máscaras coreanas, japonesas e francesas para produção de colágeno.</span></li>
+                    <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>Fórmulas exclusivas para estimular a produção natural de colágeno.</span></li>
+                    <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>Plano semanal personalizado para seu tipo de pele.</span></li>
                   </ul>
                   <ul className="space-y-2">
-                    <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>Segredos caseiros validados por especialistas em estética natural.</span></li>
-                    <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>100% personalizado para mulheres que desejam pele mais jovem e firme.</span></li>
+                    <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>Segredos caseiros que especialistas cobrariam fortunas.</span></li>
+                    <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>Guia completo adaptado às necessidades específicas da sua pele.</span></li>
                   </ul>
                 </div>
               </div>
@@ -1159,20 +1170,16 @@ export default function SkinQuizPage() {
               {/* Depoimentos */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
                 <h3 className="text-xl font-extrabold text-center mb-6 text-gray-800">Depoimentos Reais</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-800">
-                  {[{n:'Maria, 52 anos',t:'Achei que era impossível rejuvenescer sem gastar em clínica, mas em 3 semanas minha pele já estava mais firme e luminosa.'},
-                    {n:'Claudia, 44 anos',t:'Respondi ao quiz e descobri a receita certa. Foi a primeira vez em anos que elogiaram minha pele.'},
-                    {n:'Renata, 39 anos',t:'Pele mais lisa, firme e iluminada. Natural, barato e fácil de fazer em casa.'}].map((d, i) => (
-                    <div key={i} className="border rounded-2xl p-4 overflow-hidden max-w-full">
-                      <div className="flex items-start gap-3">
-                        <div className="w-12 h-12 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
-                          <Image src="/polarbuy-logo.png" alt="avatar" width={48} height={48} className="w-full h-full object-cover" />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <p className="text-gray-700 mb-2 break-words">&ldquo;{d.t}&rdquo;</p>
-                          <div className="text-xs font-semibold text-gray-600 break-words">{d.n}</div>
-                        </div>
+                <div className="space-y-4 text-sm text-gray-800">
+                  {[{n:'Maria Costa, 45 anos, Advogada',t:'Vivia reclamando de rugas profundas ao redor dos olhos. Com o plano personalizado, em apenas 3 semanas já notei uma diferença incrível na firmeza da minha pele.',img:'/IMAGEMDECHECKOU1.jpeg'},
+                    {n:'Claudia Ferreira, 52 anos, Professora',t:'Sofria com flacidez no pescoço que me deixava insegura. Após seguir o plano personalizado, recuperei a firmeza e autoestima que não tinha há anos.',img:'/IMAMGEMDECHECKOUT2.jpeg'},
+                    {n:'Renata Oliveira, 48 anos, Empresária',t:'As manchas e a textura irregular da minha pele me incomodavam muito. O plano personalizado restaurou minha produção de colágeno e hoje recebo elogios pela aparência jovial.',img:'/IMAGEMDECHECKOU3.jpeg'}].map((d, i) => (
+                    <div key={i} className="border rounded-2xl p-4 bg-rose-50 shadow">
+                      <div className="relative w-full h-48 mb-3 rounded-lg overflow-hidden">
+                        <Image src={d.img} alt={`Foto de ${d.n}`} fill style={{objectFit: 'cover'}} />
                       </div>
+                      <p className="text-gray-700 mb-2 leading-relaxed">&ldquo;{d.t}&rdquo;</p>
+                      <div className="text-xs font-semibold text-gray-600">{d.n}</div>
                     </div>
                   ))}
                 </div>
@@ -1188,7 +1195,7 @@ export default function SkinQuizPage() {
                     </p>
                   </div>
                   <a href="https://pay.kiwify.com.br/JnxC3LG" target="_blank" rel="noopener noreferrer" className="inline-flex justify-center items-center rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3">
-                    Quero garantir meu e-book 5X Mais Colágeno agora!
+                    Quero garantir meu plano personalizado agora!
                   </a>
                 </div>
               </div>

@@ -29,7 +29,7 @@ export default function TestimonialCard({ testimonial, onContinue }: Testimonial
       <div className="p-6">
         {/* Social Proof Text */}
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-800">
+          <h2 className="text-lg font-bold text-gray-800 mb-2">
             {testimonial.title} {testimonial.subtitle}
           </h2>
         </div>
@@ -50,7 +50,7 @@ export default function TestimonialCard({ testimonial, onContinue }: Testimonial
         {/* Call to Action */}
         <button
           onClick={onContinue}
-          className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-xl transition-colors transform hover:scale-105"
+          className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-6 rounded-xl transition-colors transform hover:scale-105"
         >
           {testimonial.ctaText}
         </button>

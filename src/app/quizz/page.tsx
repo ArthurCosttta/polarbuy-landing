@@ -131,16 +131,9 @@ export default function SkinQuizPage() {
   const testimonials = [
     {
       id: 1,
-      title: "Mais de 1.7 milhões de mulheres",
-      subtitle: "conseguiram deixar o rosto 10 anos mais jovem com nossas máscaras",
+      title: "Deixe seu rosto 15 anos mais jovem",
+      subtitle: "em apenas algumas semanas com nosso método revolucionário",
       image: "/IMAGEM1REJUV.webp",
-      ctaText: "Continuar"
-    },
-    {
-      id: 2,
-      title: "95% das usuárias relatam",
-      subtitle: "melhora visível na firmeza da pele em apenas 21 dias",
-      image: "/IMAGEM2REJUV.jpeg",
       ctaText: "Continuar"
     },
     {
@@ -166,8 +159,8 @@ export default function SkinQuizPage() {
     },
     {
       id: 6,
-      title: "Transformação completa em 30 dias",
-      subtitle: "da pele ao bem-estar emocional e autoestima",
+      title: "Custa menos de 7 reais para preparar",
+      subtitle: "máscaras que entopem seu rosto com colágeno",
       image: "/IMAGEM 7 REJUV.avif",
       ctaText: "Continuar"
     }
@@ -907,12 +900,9 @@ export default function SkinQuizPage() {
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="p-6">
                 <div className="text-center mb-6">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-2">
-                    {getCurrentTestimonial().title}
+                  <h2 className="text-lg font-bold text-gray-800 mb-2">
+                    {getCurrentTestimonial().title} {getCurrentTestimonial().subtitle}
                   </h2>
-                  <p className="text-gray-600">
-                    {getCurrentTestimonial().subtitle}
-                  </p>
                 </div>
                 <div className="flex justify-center mb-6">
                   <div className="relative">
@@ -927,7 +917,7 @@ export default function SkinQuizPage() {
                 </div>
                 <button
                   onClick={handleTestimonialContinue}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-xl transition-colors transform hover:scale-105"
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-6 rounded-xl transition-colors transform hover:scale-105"
                 >
                   {getCurrentTestimonial().ctaText}
                 </button>

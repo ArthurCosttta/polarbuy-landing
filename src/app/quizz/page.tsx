@@ -118,8 +118,8 @@ interface Question {
 }
 
 export default function SkinQuizPage() {
-  // Start directly on the checkout (result) step to skip the quiz flow
-  const [step, setStep] = useState<'upload'|'loading'|'quiz'|'testimonial'|'analyzing'|'finalizing'|'result'>('result');
+  // Start with the upload step to begin the quiz flow
+  const [step, setStep] = useState<'upload'|'loading'|'quiz'|'testimonial'|'analyzing'|'finalizing'|'result'>('upload');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [photo, setPhoto] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Partial<Quiz>>({});

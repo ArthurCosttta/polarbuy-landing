@@ -544,14 +544,7 @@ export default function SkinQuizPage() {
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       <div className="mx-auto max-w-md p-6">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            Análise da Pele
-          </h1>
-          <p className="text-gray-600">
-            Descubra em 3 minutos como cuidar da sua pele
-          </p>
-        </div>
+
 
       {step === 'upload' && (
           <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
@@ -1105,34 +1098,69 @@ export default function SkinQuizPage() {
             <div className="space-y-8">
               {/* Header compacto */}
               <div className="text-center">
-                <div className="inline-flex items-center gap-2 rounded-full bg-rose-50 px-4 py-2 text-rose-700 text-sm font-semibold max-w-full overflow-hidden">
-                  <span>⏳</span>
-                  <span className="truncate">50% de desconto reservado por tempo limitado</span>
-                </div>
+
+                
+
                 <h2 className="mt-4 text-2xl md:text-3xl font-extrabold text-gray-800">
-                  Adquira o PLANO PERSONALIZADO 5X Mais Colágeno e recupere a juventude da sua pele naturalmente
+                  Com base na análise da sua pele, criamos um plano exclusivo para restaurar sua produção de colágeno naturalmente
                 </h2>
                 <p className="mt-2 text-gray-700">
-                  Com base na análise da sua pele, criamos um plano exclusivo para restaurar sua produção de colágeno naturalmente
+                  Resultados comprovados em apenas 3 semanas de uso do nosso 5x Mais Colágeno
                 </p>
               </div>
 
               {/* Grid: imagem fixa + conteúdo */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                 <div className="md:sticky md:top-24">
-                  <div className="border rounded-2xl p-4 bg-rose-50">
-                    <Image src="/ChatGPT Image 29 de ago. de 2025, 21_41_54.png" alt="Capa do 5X Mais Colágeno" width={540} height={760} className="w-full h-auto rounded-xl" />
+                  <div className="border rounded-2xl p-4 bg-purple-100">
+                    {/* Imagem do produto 5x Mais Colágeno */}
+                    <Image src="/ChatGPT Image 29 de ago. de 2025, 21_41_54.png" alt="5x Mais Colágeno para produção de colágeno" width={540} height={760} className="w-full h-auto rounded-xl mb-4" />
+                    
+                    {/* Seção removida conforme solicitado */}
+                      <div className="mt-4">
+                        {/* Elementos removidos */}
+                      </div>
                   </div>
                 </div>
 
                 <div>
-                  {/* Bullets */}
-                  <ul className="space-y-3 text-sm text-gray-800">
-                    <li className="flex gap-2"><span className="text-green-600">✅</span><span>Receitas naturais personalizadas para sua pele, com máscaras coreanas, japonesas e francesas que estimulam a produção de colágeno.</span></li>
-                    <li className="flex gap-2"><span className="text-green-600">✅</span><span>Pele mais firme, iluminada e com aparência jovem já nas primeiras semanas de uso.</span></li>
-                    <li className="flex gap-2"><span className="text-green-600">✅</span><span>Solução natural e econômica que especialistas cobrariam fortunas para revelar.</span></li>
-                    <li className="flex gap-2"><span className="text-green-600">✅</span><span>Resultados rápidos: amigas perguntando qual o segredo da sua transformação.</span></li>
-                    <li className="flex gap-2"><span className="text-green-600">✅</span><span>Fórmulas simples, seguras e caseiras adaptadas especificamente para o seu tipo de pele.</span></li>
+                  {/* Bullets com ícones mais chamativos */}
+                  <ul className="space-y-4 text-sm text-gray-800">
+                    <li className="flex gap-3 items-start">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">🧴</div>
+                      <div>
+                        <span className="font-semibold block mb-1">Fórmula Exclusiva</span>
+                        <span>Receitas naturais personalizadas para sua pele, com máscaras coreanas, japonesas e francesas que estimulam a produção de colágeno.</span>
+                      </div>
+                    </li>
+                    <li className="flex gap-3 items-start">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">✨</div>
+                      <div>
+                        <span className="font-semibold block mb-1">Resultados Visíveis</span>
+                        <span>Pele mais firme, iluminada e com aparência jovem já nas primeiras semanas de uso.</span>
+                      </div>
+                    </li>
+                    <li className="flex gap-3 items-start">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">💰</div>
+                      <div>
+                        <span className="font-semibold block mb-1">Economia Garantida</span>
+                        <span>Solução natural e econômica que especialistas cobrariam fortunas para revelar.</span>
+                      </div>
+                    </li>
+                    <li className="flex gap-3 items-start">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">⏱️</div>
+                      <div>
+                        <span className="font-semibold block mb-1">Transformação Rápida</span>
+                        <span>Resultados rápidos: amigas perguntando qual o segredo da sua transformação.</span>
+                      </div>
+                    </li>
+                    <li className="flex gap-3 items-start">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">🛡️</div>
+                      <div>
+                        <span className="font-semibold block mb-1">Segurança Total</span>
+                        <span>Fórmulas simples, seguras e caseiras adaptadas especificamente para o seu tipo de pele.</span>
+                      </div>
+                    </li>
                   </ul>
 
                   {/* Preço */}
@@ -1144,8 +1172,8 @@ export default function SkinQuizPage() {
 
                   {/* Card produto */}
                   {/* CTA */}
-                  <a href="https://pay.kiwify.com.br/JnxC3LG" target="_blank" rel="noopener noreferrer" className="mt-6 block w-full rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-center py-4 font-semibold">
-                    Quero garantir meu plano personalizado agora!
+                  <a href="https://pay.kiwify.com.br/JnxC3LG" target="_blank" rel="noopener noreferrer" className="mt-6 block w-full rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-center py-4 font-semibold">
+                    Quero garantir meu 5x Mais Colágeno agora!
                   </a>
                   <div className="text-center text-xs text-gray-500 mt-2">Oferta exclusiva, disponível apenas hoje</div>
                 </div>
@@ -1153,17 +1181,25 @@ export default function SkinQuizPage() {
 
               {/* O que você vai encontrar */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h3 className="text-xl font-extrabold text-center mb-6 text-gray-800">O que você vai receber no seu plano personalizado</h3>
+                <h3 className="text-xl font-extrabold text-center mb-6 text-gray-800">O que você vai receber no seu 5x Mais Colágeno</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-800">
                   <ul className="space-y-2">
-                    <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>Kit de receitas com máscaras coreanas, japonesas e francesas para produção de colágeno.</span></li>
-                    <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>Fórmulas exclusivas para estimular a produção natural de colágeno.</span></li>
-                    <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>Plano semanal personalizado para seu tipo de pele.</span></li>
+                    <li className="flex gap-2"><span className="text-purple-500">⭐</span><span>Kit de receitas com máscaras coreanas, japonesas e francesas para produção de colágeno.</span></li>
+                    <li className="flex gap-2"><span className="text-purple-500">⭐</span><span>Fórmulas exclusivas para estimular a produção natural de colágeno.</span></li>
+                    <li className="flex gap-2"><span className="text-purple-500">⭐</span><span>Plano semanal personalizado para seu tipo de pele.</span></li>
                   </ul>
                   <ul className="space-y-2">
-                    <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>Segredos caseiros que especialistas cobrariam fortunas.</span></li>
-                    <li className="flex gap-2"><span className="text-rose-500">⭐</span><span>Guia completo adaptado às necessidades específicas da sua pele.</span></li>
+                    <li className="flex gap-2"><span className="text-purple-500">⭐</span><span>Segredos caseiros que especialistas cobrariam fortunas.</span></li>
+                    <li className="flex gap-2"><span className="text-purple-500">⭐</span><span>Guia completo adaptado às necessidades específicas da sua pele.</span></li>
                   </ul>
+                </div>
+                
+                {/* CTA adicional no meio da página */}
+                <div className="mt-6 text-center">
+                  <a href="https://pay.kiwify.com.br/JnxC3LG" target="_blank" rel="noopener noreferrer" className="inline-block rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-center py-3 px-6 font-semibold">
+                     Quero meu 5x Mais Colágeno agora com 50% OFF!
+                   </a>
+                  <div className="text-xs text-gray-500 mt-2">Oferta por tempo limitado</div>
                 </div>
               </div>
 
@@ -1171,10 +1207,10 @@ export default function SkinQuizPage() {
               <div className="bg-white rounded-2xl shadow-lg p-6">
                 <h3 className="text-xl font-extrabold text-center mb-6 text-gray-800">Depoimentos Reais</h3>
                 <div className="space-y-4 text-sm text-gray-800">
-                  {[{n:'Maria Costa, 45 anos, Advogada',t:'Vivia reclamando de rugas profundas ao redor dos olhos. Com o plano personalizado, em apenas 3 semanas já notei uma diferença incrível na firmeza da minha pele.',img:'/IMAGEMDECHECKOU1.jpeg'},
-                    {n:'Claudia Ferreira, 52 anos, Professora',t:'Sofria com flacidez no pescoço que me deixava insegura. Após seguir o plano personalizado, recuperei a firmeza e autoestima que não tinha há anos.',img:'/IMAMGEMDECHECKOUT2.jpeg'},
-                    {n:'Renata Oliveira, 48 anos, Empresária',t:'As manchas e a textura irregular da minha pele me incomodavam muito. O plano personalizado restaurou minha produção de colágeno e hoje recebo elogios pela aparência jovial.',img:'/IMAGEMDECHECKOU3.jpeg'}].map((d, i) => (
-                    <div key={i} className="border rounded-2xl p-4 bg-rose-50 shadow">
+                  {[{n:'Maria Costa, 45 anos, Advogada',t:'Vivia reclamando de rugas profundas ao redor dos olhos. Com o 5x Mais Colágeno, em apenas 3 semanas já notei uma diferença incrível na firmeza da minha pele.',img:'/IMAGEM3REJUV.webp'},
+                    {n:'Claudia Ferreira, 52 anos, Professora',t:'Sofria com flacidez no pescoço que me deixava insegura. Após usar o 5x Mais Colágeno, recuperei a firmeza e autoestima que não tinha há anos.',img:'/IMAGEM4REJUV.webp'},
+                    {n:'Renata Oliveira, 48 anos, Empresária',t:'As manchas e a textura irregular da minha pele me incomodavam muito. O 5x Mais Colágeno restaurou minha produção de colágeno e hoje recebo elogios pela aparência jovial.',img:'/IMAGEM 7 REJUV.avif'}].map((d, i) => (
+                    <div key={i} className="border rounded-2xl p-4 bg-purple-50 shadow">
                       <div className="relative w-full h-48 mb-3 rounded-lg overflow-hidden">
                         <Image src={d.img} alt={`Foto de ${d.n}`} fill style={{objectFit: 'cover'}} />
                       </div>
@@ -1185,18 +1221,74 @@ export default function SkinQuizPage() {
                 </div>
               </div>
 
-              {/* Garantia & Segurança */}
-              <div className="border rounded-2xl p-6">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="text-2xl">🔒</div>
-                    <p className="text-sm text-gray-700">
-                      Compra 100% segura. Caso não goste do conteúdo, você tem 7 dias para solicitar reembolso sem burocracia.
-                    </p>
+              {/* Barra de progresso de compras */}
+              <div className="border rounded-2xl p-6 mb-6 bg-purple-50">
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="font-semibold text-gray-700">Pessoas que já compraram hoje:</span>
+                    <span className="font-bold text-purple-700">87%</span>
                   </div>
-                  <a href="https://pay.kiwify.com.br/JnxC3LG" target="_blank" rel="noopener noreferrer" className="inline-flex justify-center items-center rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3">
-                    Quero garantir meu plano personalizado agora!
-                  </a>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5">
+                    <div className="bg-purple-600 h-2.5 rounded-full" style={{width: '87%'}}></div>
+                  </div>
+                  <p className="text-xs text-gray-500 text-center">Apenas <span className="font-bold text-purple-700">13 unidades</span> disponíveis no estoque</p>
+                </div>
+              </div>
+              
+              {/* Garantia & Segurança aprimorados */}
+              <div className="border rounded-2xl p-6 bg-white shadow-lg">
+                <div className="flex flex-col gap-6">
+                  {/* Selos de segurança */}
+                  <div className="flex flex-wrap justify-center gap-4">
+                    <div className="flex flex-col items-center p-3 border rounded-lg bg-gray-50 w-24">
+                      <div className="text-2xl mb-1">🔒</div>
+                      <div className="text-xs text-center font-semibold">Site Seguro</div>
+                    </div>
+                    <div className="flex flex-col items-center p-3 border rounded-lg bg-gray-50 w-24">
+                      <div className="text-2xl mb-1">💳</div>
+                      <div className="text-xs text-center font-semibold">Pagamento Seguro</div>
+                    </div>
+                    <div className="flex flex-col items-center p-3 border rounded-lg bg-gray-50 w-24">
+                      <div className="text-2xl mb-1">🛡️</div>
+                      <div className="text-xs text-center font-semibold">Dados Protegidos</div>
+                    </div>
+
+                  </div>
+                  
+                  {/* Garantia e CTA */}
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-t pt-4">
+                    <div className="flex items-center gap-3">
+                      <div className="text-3xl text-purple-600">🔒</div>
+                      <div>
+                        <p className="font-bold text-gray-800">Garantia de 7 dias</p>
+                        <p className="text-sm text-gray-700">
+                          Compra 100% segura. Caso não goste do conteúdo, você tem 7 dias para solicitar reembolso sem burocracia.
+                        </p>
+                      </div>
+                    </div>
+                    <a href="https://pay.kiwify.com.br/JnxC3LG" target="_blank" rel="noopener noreferrer" className="inline-flex justify-center items-center rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 shadow-lg">
+                       Quero garantir meu 5x Mais Colágeno agora!
+                     </a>
+                  </div>
+                </div>
+              </div>
+              
+              {/* FAQ - Dúvidas Frequentes */}
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <h3 className="text-xl font-extrabold text-center mb-6 text-gray-800">Dúvidas Frequentes</h3>
+                <div className="space-y-4">
+                  {[
+                    {q: 'Quanto tempo leva para ver resultados?', a: 'A maioria das pessoas começa a notar resultados visíveis em apenas 3 semanas de uso consistente do 5x Mais Colágeno.'},
+                     {q: 'O produto é adequado para todos os tipos de pele?', a: 'Sim! Nosso 5x Mais Colágeno foi desenvolvido para ser eficaz em todos os tipos de pele, com fórmulas que se adaptam às suas necessidades específicas.'},
+                     {q: 'Como devo aplicar o produto?', a: 'O 5x Mais Colágeno deve ser aplicado em pele limpa, com movimentos circulares suaves. Recomendamos o uso diário, preferencialmente à noite, para melhores resultados.'},
+                     {q: 'Posso usar junto com outros produtos?', a: 'Sim, nosso 5x Mais Colágeno foi formulado para complementar sua rotina de skincare existente, potencializando os resultados.'},
+                    {q: 'O produto tem garantia?', a: 'Sim! Oferecemos garantia de satisfação de 7 dias. Se não estiver completamente satisfeita, devolvemos seu dinheiro sem burocracia.'}
+                  ].map((faq, i) => (
+                    <div key={i} className="border-b border-gray-200 pb-4 last:border-0 last:pb-0">
+                      <h4 className="font-bold text-gray-800 mb-2">{faq.q}</h4>
+                      <p className="text-gray-700 text-sm">{faq.a}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

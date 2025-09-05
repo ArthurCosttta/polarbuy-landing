@@ -132,7 +132,7 @@ export default function SkinQuizPage() {
     {
       id: 1,
       title: "Deixe seu rosto 15 anos mais jovem",
-      subtitle: "em apenas algumas semanas com nosso método revolucionário",
+      subtitle: "em apenas algumas semanas com nossas máscaras coreanas",
       image: "/IMAGEM1REJUV.webp",
       ctaText: "Continuar"
     },
